@@ -1,0 +1,6 @@
+name: Basic Template
+highlighter: pygments
+safe: false
+baseurl: /basic-template
+exclude: [morea]
+morea_theme: cerulean
