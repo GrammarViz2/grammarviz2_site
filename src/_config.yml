@@ -1,6 +1,6 @@
-name: Basic Template
+name: GrammarViz 2.0
 highlighter: pygments
 safe: false
-baseurl: /basic-template
+baseurl: /GrammarViz_2.0
 exclude: [morea]
-morea_theme: cerulean
+morea_theme: flatly
