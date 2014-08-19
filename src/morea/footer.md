@@ -4,5 +4,5 @@ morea_id: footer
 morea_type: footer
 ---
 
-Example Name | Example Department | Example University <br>
-email@example.com<br>
+GrammarViz 2.0 Demo website <br>
+seninp@gmail.com<br>
