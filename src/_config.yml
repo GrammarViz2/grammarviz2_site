@@ -1,6 +1,6 @@
 name: GrammarViz 2.0
 highlighter: pygments
 safe: false
-baseurl: /GrammarViz_2.0
+baseurl: /grammarviz_2.0
 exclude: [morea]
 morea_theme: flatly
