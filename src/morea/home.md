@@ -4,6 +4,8 @@ morea_id: home
 morea_type: home
 ---
 
-## Welcome to the Basic Template
+## Welcome to GrammarViz 2.0 homepage!
 
-This is the basic template content. You can find it in the home.md file.
+GrammarViz 2.0 is an open source software that implementats a time series mining worflow based on symbolic approximation and grammatical inference.
+
+GrammarViz 2.0 developed in Java and can be used from a command line or interactively through GUI.
