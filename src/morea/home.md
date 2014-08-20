@@ -9,6 +9,6 @@ morea_type: home
 
 GrammarViz 2.0 is an open source software that implementats a time series mining worflow based on symbolic approximation and grammatical inference. The software developed in Java and can be used from a command line or interactively through GUI.
 
-$$\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}$$
+<!-- $$\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}$$ -->
 
-![GrammarViz 2.0 screenshot](/morea/assets/screen-front.png "GrammarViz 2.0 screenshot")
+![GrammarViz 2.0 screenshot](morea/assets/screen-front.png "GrammarViz 2.0 screenshot")
