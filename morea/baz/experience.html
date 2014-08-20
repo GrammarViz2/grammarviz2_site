@@ -6,10 +6,10 @@
   <meta charset="utf-8">
 
   <!--  Load bootswatch-based Morea theme file. -->
-  <link rel="stylesheet" href="/grammarviz_2.0/css/themes/flatly/bootstrap.min.css">
-  <link rel="stylesheet" href="/grammarviz_2.0/css/style.css">
-  <link rel="stylesheet" href="/grammarviz_2.0/css/syntax.css">
-  <link rel="shortcut icon" href="/grammarviz_2.0/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="/GrammarViz_2.0/css/themes/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="/GrammarViz_2.0/css/style.css">
+  <link rel="stylesheet" href="/GrammarViz_2.0/css/syntax.css">
+  <link rel="shortcut icon" href="/GrammarViz_2.0/favicon.ico" type="image/x-icon" />
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -34,19 +34,19 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/grammarviz_2.0/index.html">Home</a></li>
-        <li><a href="/grammarviz_2.0/modules/">Modules</a></li>
+        <li><a href="/GrammarViz_2.0/index.html">Home</a></li>
+        <li><a href="/GrammarViz_2.0/modules/">Modules</a></li>
         <!-- 
-          <li><a href="/grammarviz_2.0/outcomes/">Outcomes</a></li>
+          <li><a href="/GrammarViz_2.0/outcomes/">Outcomes</a></li>
          -->
         
-          <li><a href="/grammarviz_2.0/readings/">Readings</a></li>
+          <li><a href="/GrammarViz_2.0/readings/">Readings</a></li>
         
         
-          <li><a href="/grammarviz_2.0/experiences/">Experiences</a></li>
+          <li><a href="/GrammarViz_2.0/experiences/">Experiences</a></li>
         
         <!-- 
-          <li><a href="/grammarviz_2.0/assessments/">Assessments</a></li>
+          <li><a href="/GrammarViz_2.0/assessments/">Assessments</a></li>
          -->
       </ul>
     </div>
@@ -59,7 +59,7 @@
 
 <p>An experiential learning opportunity.  Here’s some java code:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">  1</span> <span class="kn">package</span> <span class="n">ics311</span><span class="o">;</span>
+<div class="highlight"><pre><code class="java"><span class="lineno">  1</span> <span class="kn">package</span> <span class="n">ics311</span><span class="o">;</span>
 <span class="lineno">  2</span> 
 <span class="lineno">  3</span>     <span class="kn">import</span> <span class="nn">java.util.Map.Entry</span><span class="o">;</span>
 <span class="lineno">  4</span> 
@@ -134,7 +134,7 @@
 <span class="lineno"> 73</span> <span class="cm">        *</span>
 <span class="lineno"> 74</span> <span class="cm">        * @return an entry with the least key, or null if this map is empty</span>
 <span class="lineno"> 75</span> <span class="cm">        */</span>
-<span class="lineno"> 76</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="nf">minimum</span><span class="o">(</span> <span class="o">);</span>
+<span class="lineno"> 76</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="n">minimum</span><span class="o">(</span> <span class="o">);</span>
 <span class="lineno"> 77</span> 
 <span class="lineno"> 78</span> 
 <span class="lineno"> 79</span>         <span class="cm">/**</span>
@@ -145,7 +145,7 @@
 <span class="lineno"> 84</span> <span class="cm">        *</span>
 <span class="lineno"> 85</span> <span class="cm">        * @return an entry with the greatest key, or null if this map is empty.</span>
 <span class="lineno"> 86</span> <span class="cm">        */</span>
-<span class="lineno"> 87</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="nf">maximum</span><span class="o">(</span> <span class="o">);</span>
+<span class="lineno"> 87</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="n">maximum</span><span class="o">(</span> <span class="o">);</span>
 <span class="lineno"> 88</span> 
 <span class="lineno"> 89</span> 
 <span class="lineno"> 90</span>         <span class="cm">/**</span>
@@ -159,7 +159,7 @@
 <span class="lineno"> 98</span> <span class="cm">        *</span>
 <span class="lineno"> 99</span> <span class="cm">        * @return an entry with the greatest key less than key, or null if there is no such key</span>
 <span class="lineno">100</span> <span class="cm">        */</span>
-<span class="lineno">101</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="nf">successor</span><span class="o">(</span><span class="n">Key</span> <span class="n">key</span><span class="o">);</span>
+<span class="lineno">101</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="n">successor</span><span class="o">(</span><span class="n">Key</span> <span class="n">key</span><span class="o">);</span>
 <span class="lineno">102</span> 
 <span class="lineno">103</span>         <span class="cm">/**</span>
 <span class="lineno">104</span> <span class="cm">        * Returns a key-value mapping associated with the greatest key strictly less than the given</span>
@@ -172,11 +172,10 @@
 <span class="lineno">111</span> <span class="cm">        *</span>
 <span class="lineno">112</span> <span class="cm">        * @return an entry with the greatest key less than key, or null if there is no such key</span>
 <span class="lineno">113</span> <span class="cm">        */</span>
-<span class="lineno">114</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="nf">predecessor</span><span class="o">(</span><span class="n">Key</span> <span class="n">key</span><span class="o">);</span>
+<span class="lineno">114</span>         <span class="kd">public</span> <span class="n">Entry</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">,</span> <span class="n">Value</span><span class="o">&gt;</span>  <span class="n">predecessor</span><span class="o">(</span><span class="n">Key</span> <span class="n">key</span><span class="o">);</span>
 <span class="lineno">115</span> 
 <span class="lineno">116</span> 
 <span class="lineno">117</span>     <span class="o">}</span></code></pre></div>
-
 
 </div>
 
@@ -191,7 +190,7 @@ seninp@gmail.com<br /></p>
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2014-08-19 20:17:25 +0200</span></p>
+       Last update on: <span>2014-08-20 16:03:01 +0200</span></p>
     <p style="margin: 0">
       4 modules
       <!-- 
