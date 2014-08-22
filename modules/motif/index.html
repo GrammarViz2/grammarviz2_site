@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Learn to Foo | GrammarViz 2.0 </title>
+  <title> Learn to find motifs | GrammarViz 2.0 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
   <!--  Load bootswatch-based Morea theme file. -->
-  <link rel="stylesheet" href="/grammarviz_2.0/css/themes/cerulean/bootstrap.min.css">
+  <link rel="stylesheet" href="/grammarviz_2.0/css/themes/flatly/bootstrap.min.css">
   <link rel="stylesheet" href="/grammarviz_2.0/css/style.css">
   <link rel="stylesheet" href="/grammarviz_2.0/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
   <link rel="shortcut icon" href="/grammarviz_2.0/favicon.ico" type="image/x-icon" />
+
+  <!--  Load LaTeX processing stuff. -->
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -36,9 +40,7 @@
       <ul class="nav navbar-nav">
         <li><a href="/grammarviz_2.0/index.html">Home</a></li>
         <li><a href="/grammarviz_2.0/modules/">Modules</a></li>
-        <!-- 
-          <li><a href="/grammarviz_2.0/outcomes/">Outcomes</a></li>
-         -->
+        <!--  -->
         
           <li><a href="/grammarviz_2.0/readings/">Readings</a></li>
         
@@ -55,36 +57,11 @@
 
 
   <div class="container">
-  <h1><small>Module: </small> Learn to Foo </h1>
-  <p><p>This is the first module in this sample template.</p>
+  <h1><small>Module: </small> Learn to find motifs </h1>
+  <p><p>This is the second module in which we learn to find recurrent patterns, i.e. motifs.</p>
 </p>
 </div>
 
-
-<div class="section-background-1">
-  <div class="container">
-    <h2>Learning Outcomes</h2>
-
-    
-      
-      <h3>Construct Foos</h3>
-      <p>
-        
-      </p>
-      <p>The student will be able to quickly and correctly construct instances of Foos.</p>
-
-    
-      
-      <h3>Design and create Bars</h3>
-      <p>
-        
-      </p>
-      <p>This is the second learning outcome in this sample template.</p>
-
-    
-
-  </div>
-</div>
 
 
 
@@ -99,12 +76,26 @@
         
         <div class="col-sm-3">
           <div class="thumbnail">
-            <h4><a href="/grammarviz_2.0/morea/foo/reading-1.html">An overview of Foos</a></h4>
-            <p>The first reading.</p>
+            <h4><a href="http://google.com">To Baz or not to Baz?</a></h4>
+            <p>The third reading (google.com)</p>
 
             <p>
               
-              <span class="badge">10 pages</span>
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://github.com">Reading 4</a></h4>
+            <p>The fourth reading (github.com)</p>
+
+            <p>
               
             </p>
           </div>
@@ -130,10 +121,12 @@
         
         <div class="col-sm-3">
           <div class="thumbnail">
-            <h4><a href="/grammarviz_2.0/morea/foo/experience.html">Foo construction</a></h4>
-            <p>Practice construction of Foo instances.</p>
+            <h4><a href="/grammarviz_2.0/morea/motif/experience.html">Experience the Bar</a></h4>
+            <p>The second experiential learning event.</p>
 
             <p>
+              
+              <span class="badge">25 min</span>
               
             </p>
           </div>
@@ -150,61 +143,6 @@
 
 
 
-<div class="section-background-2">
-  <div class="container">
-    <h2>Assessments</h2>
-
-    
-      
-      <h3>Assessment of Foo construction skill</h3>
-      <p>
-        
-      </p>
-    
-    <p>
-      <em>Outcomes assessed:</em>
-      
-      <a href="/outcomes/#outcome1">Construct Foos</a>, 
-      
-      <a href="/outcomes/#outcome2">Design and create Bars</a>
-      
-    </p>
-    
-      <p>Assessed ability to construct foo instances.</p>
-
-<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css" />
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-
-<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-
-<div class="well">
-  <div id="assessment" style="height: 250px;"></div>
-</div>
-
-<script>
-Morris.Bar({
-  element: 'assessment',
-  hideHover: false,
-  data: [
-        { y: 'Very satisfactory (%)', num: 25 },
-        { y: 'Satisfactory (%)', num: 40 },
-        { y: 'Unsatisfactory (%)', num: 30 },
-        { y: 'Absent (%)', num: 5 },
-        ],
-  xkey: 'y',
-  ykeys: ['num'],
-  resize: true,
-  labels: ['Students']
-});
-</script>
-
-
-    
-
-  </div>
-</div>
-
 
 
 
@@ -216,25 +154,23 @@ Morris.Bar({
 <footer>
   <div class="container page-footer">
     
-      <p>GrammarViz 2.0 Demo website <br />
-seninp@gmail.com<br /></p>
+      <p>GrammarViz 2.0 Demo website<br />
+<a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="seninp@gmail.com">seninp@gmail.com</a><br /></p>
 
     
-    <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-08-22 09:04:32 +0200</span></p>
+    <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
+       Last update on: <span>2014-08-22 15:51:06 +0200</span></p>
     <p style="margin: 0">
-      4 modules
-      <!-- 
-        | 3 outcomes
-       -->
+      3 modules
+      <!--  -->
       
         | 4 readings
       
       
-        | 3 experiences
+        | 5 experiences
       
       <!-- 
-        | 3 assessments
+        | 2 assessments
        -->
     </p>
   </div>
