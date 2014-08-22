@@ -23,7 +23,7 @@ morea_type: home
       <div class="col-sm-2">
           <div class="row">
            <div class="col-xs-8">
-             <img style="margin-top: 15px; margin-bottom: 15px" src="/morea/assets/java.png" width="120px" class="center-block img-circle">
+             <img style="margin-top: 15px; margin-bottom: 15px" src="morea/assets/java.png" width="120px" class="center-block img-circle">
            </div>
           </div>
       </div>
