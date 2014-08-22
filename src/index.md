@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Home
-topdiv: container
 ---
 
 {% if site.morea_home_page %}

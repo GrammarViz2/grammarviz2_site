@@ -1,7 +1,7 @@
 ---
 title: "An overview of Foos"
 published: true
-morea_id: reading1
+morea_id: reading-1
 morea_summary: "The first reading."
 morea_type: reading
 morea_sort_order: 1

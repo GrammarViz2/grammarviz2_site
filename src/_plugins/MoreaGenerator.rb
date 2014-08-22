@@ -329,7 +329,7 @@ module Jekyll
 
       # Provide defaults
       if (self.data['morea_type'] == 'experience') || (self.data['morea_type'] == 'reading')
-          unless self.data['layout']
+        unless self.data['layout']
           self.data['layout'] = 'default'
         end
         unless self.data['topdiv']

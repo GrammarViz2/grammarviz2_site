@@ -4,7 +4,7 @@ title: Modules
 ---
 
 <div class="container">
-  <h1>Modules <small>Topics covered in this class.</small></h1>
+  <h1>Modules <small>Topics covered in tutorials.</small></h1>
   <div class="row">
      {% for module in site.morea_module_pages %}
         <div class="col-sm-3">

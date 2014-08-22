@@ -4,5 +4,5 @@ morea_id: footer
 morea_type: footer
 ---
 
-GrammarViz 2.0 Demo website <br>
-seninp@gmail.com<br>
+GrammarViz 2.0 Demo website<br>
+<a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="seninp@gmail.com">seninp@gmail.com</a><br>
