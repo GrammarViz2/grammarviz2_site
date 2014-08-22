@@ -3,12 +3,36 @@ title: "Home"
 morea_id: home
 morea_type: home
 ---
+
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+<link rel="stylesheet" href="/css/gh-fork-ribbon.css">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+<div class="github-fork-ribbon-wrapper right">
+  <div class="github-fork-ribbon">
+    <a href="https://github.com/grammarviz">GrammarViz on GitHub</a>
+  </div>
+</div>
+
 ## Welcome to GrammarViz 2.0 homepage!
+<p><strong>GrammarViz 2.0 is an open source software that implements a time series mining worflow based on symbolic approximation and grammatical inference.</strong></p>
 
-GrammarViz 2.0 is an open source software that implementats a time series mining worflow based on symbolic approximation and grammatical inference. The software developed in Java and can be used from a command line or interactively through GUI.
-
+<div class="gray-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+          <div class="row">
+           <div class="col-xs-8">
+             <img style="margin-top: 15px; margin-bottom: 15px" src="/morea/assets/java.png" width="120px" class="center-block img-circle">
+           </div>
+          </div>
+      </div>
+      <div class="col-sm-10">
+       <h4>The software developed in Java and can be used from a command line or interactively through GUI.</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- $$\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}$$ -->
 
-![GrammarViz 2.0 screenshot](morea/assets/screen-front.png "GrammarViz 2.0 screenshot")
+<!--![GrammarViz 2.0 screenshot](/morea/assets/screen-front.png "GrammarViz 2.0 screenshot")-->
