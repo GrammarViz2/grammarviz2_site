@@ -90,7 +90,7 @@ morea_type: home
          </div>
 
          <div class="col-sm-3">
-           <img style="margin-top: 20px; margin-bottom: 15px" src="morea/assets/lisa_sax.gif" width="102px" class="img-responsive center-block">
+           <img style="margin-top: 20px; margin-bottom: 15px" src="morea/assets/rose-grammar.png" width="160px" class="img-responsive center-block">
          </div>
 
        </div>
