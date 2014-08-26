@@ -1,7 +1,7 @@
 ---
-title: "Experience the Baz"
+title: "SAX parameters selection primer #1"
 published: true
-morea_id: experience-2
+morea_id: experience-e1
 morea_type: experience
 morea_summary: "The third experiential learning event."
 morea_sort_order: 3

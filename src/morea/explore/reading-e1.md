@@ -1,21 +1,21 @@
 ---
-title: "An overview of anomaly discovery"
+morea_type: reading
+morea_id: reading-e1
+title: "Exploring time series structure"
 published: true
 topdiv: other
-morea_id: reading-1
-morea_summary: "Discusses current approaches to time-series anomaly discovery."
-morea_type: reading
+morea_summary: "Discusses strategies for time series structure exploration using GrammarViz 2.0"
 morea_sort_order: 1
 morea_labels:
- - 10 pages
+ - 7 pages
 ---
 
 <style type="text/css">p {font-size: 14px;}</style>
 
 <div class="section-background-1">
  <div class="container">
-  <h2><strong>Time series anomaly discovery.</strong></h2>
-  <h3>In this article we discuss current approaches to time series anomaly discovery and introduce our technique.</h3>
+  <h2><strong>Time series structure exploration.</strong></h2>
+  <h3>In this article we discuss expoloration of time series structure with GrammarViz 2.0</h3>
  </div>
 </div>
 

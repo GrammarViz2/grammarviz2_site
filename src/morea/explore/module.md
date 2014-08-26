@@ -1,19 +1,19 @@
 ---
-title: "Learn to Explore"
+morea_type: module
+morea_id: explore
+title: "Exploring time series structure"
 published: true
-morea_id: baz
 morea_outcomes:
 morea_readings:
- - reading3
- - reading4
+ - reading-e1
+ - reading-e2
 morea_experiences:
- - experience3
+ - experience-e1
 morea_assessments:
-morea_type: module
 morea_icon_url: /morea/explore/logo-explore.png
 morea_sort_order: 3
 morea_labels:
  - tutorial
 ---
 
-This is the last module in which we learn to explore time series with GrammarViz 2.0
+This is the last module in which we learn to explore a time series structure using GrammarViz 2.0

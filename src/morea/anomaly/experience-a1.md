@@ -1,10 +1,12 @@
 ---
-title: "Experience the Baz"
-published: true
-morea_id: experience3
 morea_type: experience
-morea_summary: "The third experiential learning event."
-morea_sort_order: 3
+morea_id: experience-a1
+title: "Time series anomaly discovery using GrammarViz 2.0"
+published: true
+morea_summary: "The first experiential learning event."
+morea_sort_order: 1
+morea_labels:
+ - tutorial
 ---
 
 ### Experiential Learning 3
