@@ -8,6 +8,8 @@ morea_type: home
  <div class="container">
    <h2><strong>Welcome to GrammarViz 2.0 homepage!</strong></h2>
    <p><strong>Open source time series mining worflow based on symbolic approximation and grammatical inference.</strong></p>
+   <br>
+   <h3><strong>Please note, that this website is currently under development... </strong></h3>
  </div>
 </div>
 
