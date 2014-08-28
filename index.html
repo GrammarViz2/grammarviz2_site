@@ -75,20 +75,19 @@
 
            <h3><strong>Time series anomaly and recurrent patterns discovery made interactive</strong></h3>
 
-           <p>GrammarViz 2.0 approach is based on two techniques with a linear time and space complexity:
+           <p>GrammarViz approach is based on two techniques with a linear time and space complexity:
            <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time series into a string,
            and <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
 
-           <p>By exploiting the hierarchical structure of CFG, our approach is able to instantly discover rare and frequent grammar rules, which
-           we associate with anomalous and recurrent subsequences.</p>
-
-           <p>Moreover, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
+           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <em>instantly*</em> discover rare and frequent grammar rules,
+           which we associate with anomalous and recurrent subsequences.
+           Moreover, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
            length in single run.</p>
 
-           <p>Please find our paper here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
+           <p><em>* note that the patterns discovery through grammar inference involves no explicit distance computation</em><br />
+           Please find details in our paper here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
            GrammarViz 2.0: a tool for grammar-based pattern discovery in time series.</a><br />
-           Pavel Senin, Jessica Lin , Xing Wang, Tim Oates, Sunil Gandhi, Arnold P. Boedihardjo, Crystal Chen, Susan Frankenstein, and Manfred Lerner.
-           The European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML/PKDD), 2014.
+           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.
            </p>
 
          </div>
@@ -179,7 +178,7 @@
   <div class="container page-footer">
     
       <p>Continuous Integration:&nbsp;&nbsp; <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src"><img src="https://travis-ci.org/GrammarViz2/grammarviz2_src.svg?branch=master" /> (master)</a></p>
-<p>Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:seninp@gmail.com">seninp@gmail.com</a><br /></p>
+<p>Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:#">seninp@gmail.com</a><br /></p>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -195,7 +194,7 @@
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2014-08-27 21:05:07 +0200</span></p>
+       Last update on: <span>2014-08-28 11:01:04 +0200</span></p>
     <p style="margin: 0">
       3 modules
       <!--  -->
