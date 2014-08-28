@@ -4,7 +4,7 @@ morea_id: footer
 morea_type: footer
 ---
 <p>Continuous Integration:&nbsp;&nbsp; <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src"><img src="https://travis-ci.org/GrammarViz2/grammarviz2_src.svg?branch=master"> (master)</a></p>
-Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:seninp@gmail.com">seninp@gmail.com</a><br>
+Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:#">seninp@gmail.com</a><br>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

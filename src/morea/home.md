@@ -25,20 +25,19 @@ morea_type: home
 
            <h3><strong>Time series anomaly and recurrent patterns discovery made interactive</strong></h3>
 
-           <p>GrammarViz 2.0 approach is based on two techniques with a linear time and space complexity:
+           <p>GrammarViz approach is based on two techniques with a linear time and space complexity:
            <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time series into a string,
            and <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
 
-           <p>By exploiting the hierarchical structure of CFG, our approach is able to instantly discover rare and frequent grammar rules, which
-           we associate with anomalous and recurrent subsequences.</p>
-
-           <p>Moreover, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
+           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <em>instantly*</em> discover rare and frequent grammar rules,
+           which we associate with anomalous and recurrent subsequences.
+           Moreover, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
            length in single run.</p>
 
-           <p>Please find our paper here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
+           <p><em>* note that the patterns discovery through grammar inference involves no explicit distance computation</em><br>
+           Please find details in our paper here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
            GrammarViz 2.0: a tool for grammar-based pattern discovery in time series.</a><br>
-           Pavel Senin, Jessica Lin , Xing Wang, Tim Oates, Sunil Gandhi, Arnold P. Boedihardjo, Crystal Chen, Susan Frankenstein, and Manfred Lerner.
-           The European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML/PKDD), 2014.
+           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.
            </p>
 
          </div>
