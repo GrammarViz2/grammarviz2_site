@@ -22,13 +22,13 @@
            <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time series into a string,
            and <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
 
-           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <em>instantly*</em> discover rare and frequent grammar rules,
+           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <em>instantly*</em> identify rare and frequent grammar rules,
            which we associate with anomalous and recurrent subsequences.
-           Moreover, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
-           length in single run.</p>
+           In addition, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
+           length in a single run.</p>
 
            <p><em>* note that the patterns discovery through grammatical inference involves no explicit distance computation</em><br />
-           Please find details in our paper here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
+           Please find details about our technique here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
            GrammarViz 2.0: a tool for grammar-based pattern discovery in time series.</a><br />
            Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.
            </p>
@@ -59,10 +59,12 @@
 
          <div class="col-sm-9">
            <h3><strong>User and developer friendly platform</strong></h3>
-           <p>GrammarViz 2.0 is developed in Java and can be used interactively through a GUI, called from a command line, or linked as a library.
-           For GUI, we have used a Model–view–controller (MVC) pattern which allows for code re-use in a web applicaion.
-           Our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>, we unit test it and
-           use <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src">Travis CI</a> for our builds.</p>
+           <p>GrammarViz 2.0 is developed in Java and can be used interactively through the GUI, called from a command line, or linked to your code
+           as a library.
+           We followed the Model–view–controller (MVC) pattern in GUI development which allows for code re-use in a web applicaion.
+           For your convenience, our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>,
+           we do Unit test it, analyze with FindBugs and PMD, and use <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src">Travis CI</a>
+           for our builds.</p>
          </div>
 
        </div>
