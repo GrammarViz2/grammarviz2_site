@@ -6,5 +6,8 @@ published: true
 morea_url: http://github.com
 morea_summary: "The fourth reading (github.com)"
 morea_sort_order: 4
+morea_labels:
+ - external link
+ - under construction
 ---
 

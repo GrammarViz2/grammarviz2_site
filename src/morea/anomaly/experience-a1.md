@@ -40,7 +40,7 @@ Figure 13 of the paper further explains the nature of an anomaly:
 </div>
 
 ## 2. Variable length anomaly discovery
-Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click "Process data". Click "Find anomalies" button, select the SAXSequitur anomalies tab and choose the top ranked anomaly (#0):
+Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click "Process data". Click "Find anomalies" button, select the GrammarViz anomalies tab and choose the top ranked anomaly (#0):
 
 <div class="container">
   <div class="row">
