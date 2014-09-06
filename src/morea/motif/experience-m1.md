@@ -93,9 +93,9 @@ Now, click two times on the "Frequency in `R0`" column header and choose the mos
 
 the lengths of subsequences corresponding to this rule ranges from 102 to 121 and few of these subsequences overlap.
 
-*_Note that these variable-length subsequences correspond to single rule of the same grammar inferred by Sequitur from a discretized time series. _*
+*Note that these variable-length subsequences correspond to single rule of the same grammar inferred by Sequitur from a discretized time series.*
 
-Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4, the algorithm finds that most frequently occurring rules are the normal heartbeats:
+Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4, the algorithm finds that the most frequently occurring rules are normal heartbeats:
 
 <div class="container">
   <div class="row">
