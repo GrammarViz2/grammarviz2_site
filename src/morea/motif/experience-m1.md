@@ -49,7 +49,7 @@ in the linux shell. We use the second column of this file:
   </div>
 </div>
 
-We know, that third heartbeat of this dataset contains a true anomaly as it was discussed in the [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
+We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in the [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
 Figure 13 of the paper further explains the nature of an anomaly:
 
 <div class="container">
@@ -95,7 +95,7 @@ the lengths of subsequences corresponding to this rule ranges from 102 to 121 an
 
 *_Note that these variable-length subsequences correspond to single rule of the same grammar inferred by Sequitur from a discretized time series. _*
 
-Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4, the algorithm finds that most frequently occuring rules are the normal heartbeats:
+Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4, the algorithm finds that most frequently occurring rules are the normal heartbeats:
 
 <div class="container">
   <div class="row">

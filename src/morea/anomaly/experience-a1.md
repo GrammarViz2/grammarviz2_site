@@ -9,7 +9,7 @@ morea_labels:
  - tutorial
 ---
 
-### Experiential Learning 3
+### Experiential Learning 1
 
 ## Anomaly discovery with GrammarViz 2.0
 
@@ -28,7 +28,7 @@ in the linux shell. We use the second column of this file. This is the data over
   </div>
 </div>
 
-We know, that third heartbeat of this dataset contains a true anomaly as it was discussed in the [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
+We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in the [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
 Figure 13 of the paper further explains the nature of an anomaly:
 
 <div class="container">
