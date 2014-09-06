@@ -4,6 +4,21 @@ title: Readings
 ---
 
 <div class="container">
+  <h1>Presentations</h1>
+</div>
+
+<div class="section-background-1">
+  <div class="container">
+   <div class="row">
+     <div class="col-sm-4">
+        <script async class="speakerdeck-embed" data-id="3336d38017de01329f66460735b58e3e"
+        data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+     </div>
+   </div>
+ </div>
+</div>
+
+<div class="container">
   <h1>Readings and other resources <small>in module order</small></h1>
 </div>
 

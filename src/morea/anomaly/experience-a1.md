@@ -11,127 +11,58 @@ morea_labels:
 
 ### Experiential Learning 3
 
-An experiential learning opportunity.  Here's some java code:
+## Anomaly discovery with GrammarViz 2.0
 
-{% highlight java linenos %}
+### 1. Introduction
+Here we discuss an anomaly detection in QTDB 0606 ECG dataset. This record can be downloaded from [PHYSIONET FTP](http://physionet.org/physiobank/database/qtdb/) and converted into text file by executing
+<pre>
+rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' >0606.csv
+</pre>
+in the linux shell. We use the second column of this file. This is the data overview:
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/qtdb0606.png" width="800px" class="img-responsive center-block">
+    </div>
+  </div>
+</div>
 
-    package ics311;
+We know, that third heartbeat of this dataset contains a true anomaly as it was discussed in the [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
+Figure 13 of the paper further explains the nature of an anomaly:
 
-    import java.util.Map.Entry;
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_cluster.png" width="400px" class="img-responsive center-block">
+    </div>
+  </div>
+</div>
 
-    /**
-     * This interface is to be used for all of the Dynamic Sets you create for this assignment.
-     *
-     * @author      Robert Ward
-     * @version     1.0
-     * @since       2014-02-01
-     */
-    public interface DynamicSet<Key extends Comparable<Key> , Value> {
+## 2. Variable length anomaly discovery
+Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click "Process data". Click "Find anomalies" button, select the SAXSequitur anomalies tab and choose the top ranked anomaly (#0):
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_03.png" width="800px" class="img-responsive center-block">
+    </div>
+  </div>
+</div>
 
-
-       /**
-        * Returns the name of Data Structure this set uses.
-        *
-        * @return  the name of Data Structure this set uses.
-        */
-        public String setDataStructure();
-
-       /**
-        * Returns the number of key-value mappings in this set.
-        * This method returns zero if the set is empty
-        *
-        * @return  the number of key-value mappings in this set.
-        */
-        public int size();
-
-        /**
-        * Associates the specified value with the specified key in this map.
-        * If the map previously contained a mapping for the key, the old value is replaced.
-        * If there is no current mapping for this key return null,
-        * otherwise the previous value associated with key.
-        *
-        * @param  key - key with which the specified value is to be associated
-        * @param  value - value to be associated with the specified key
-        *
-        * @return the previous value associated with key, or null if there was no mapping for key.
-        *  (A null return can also indicate that the map previously associated null with key.)
-        */
-        public Value insert(Key key, Value value);
+this highlights the grammar rule which coincides with the true anomaly. *Note that rule #28 is of length 123 while next anomaly, the rule #30 is of length 109*
 
 
-        /**
-        * Removes the mapping for this key from this set if present.
-        *
-        * @param key - key for which mapping should be removed
-        *
-        * @return the previous value associated with key, or null if there was no mapping for key.
-        * (A null return can also indicate that the map previously associated null with key.)
-        */
-        public Value delete(Key key);
 
+## 3. Variable length anomaly discovery using rules density
+Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click "Process data". Click on "Rules density" button:
 
-        /**
-        * Returns the value to which the specified key is mapped, or null if this set contains no
-            * mapping for the key.
-        *
-        * @param  key The key under which this data is stored.
-        *
-        * @return the Value of element stored in the set under the Key key.
-        */
-        public Value retrieve(Key key);
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_01.png" width="800px" class="img-responsive center-block">
+    </div>
+  </div>
+</div>
 
-
-        /**
-        * Returns a key-value mapping associated with the least key in this map, or null if the set
-            * is empty.
-        * IMPORTANT: This operation only applies when there is a total ordering on the Key
-        * Returns null if the set is empty. If there is not total ordering on the Key returns null.
-        *
-        * @return an entry with the least key, or null if this map is empty
-        */
-        public Entry<Key, Value>  minimum( );
-
-
-        /**
-        * Returns a key-value mapping associated with the greatest key in this map, or null if the
-            * map is empty.
-        * IMPORTANT: This operation only applies when there is a total ordering on the Key
-        * Returns null if the set is empty. If there is not total ordering on the key returns null.
-        *
-        * @return an entry with the greatest key, or null if this map is empty.
-        */
-        public Entry<Key, Value>  maximum( );
-
-
-        /**
-        * Returns a key-value mapping associated with the least key strictly greater than the given
-            * key, or null if there is no such key.
-        * IMPORTANT: This operation only applies when there is a total ordering on the key
-        * Returns null if the set is empty or the key is not found.
-        * Returns null if the key is the maximum element.
-        * If there is not total ordering on the key for the set returns null.
-        * @param key - the key
-        *
-        * @return an entry with the greatest key less than key, or null if there is no such key
-        */
-        public Entry<Key, Value>  successor(Key key);
-
-        /**
-        * Returns a key-value mapping associated with the greatest key strictly less than the given
-            * key, or null if there is no such key.
-        * IMPORTANT: This operation only applies when there is a total ordering on the key
-        * Returns null if the set is empty or the key is not found.
-        * Returns null if the key is the minimum element.
-        * If there is not total ordering on the key for the set returns null.
-        * @param key - the key
-        *
-        * @return an entry with the greatest key less than key, or null if there is no such key
-        */
-        public Entry<Key, Value>  predecessor(Key key);
-
-
-    }
-
-{% endhighlight %}
+The light blue color near position 490 clearly identifies the true anomaly.
