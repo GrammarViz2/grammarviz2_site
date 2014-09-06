@@ -57,7 +57,98 @@
 <div class="container">
   <h3 id="experiential-learning-2">Experiential Learning 2</h3>
 
-<p>An experiential learning opportunity.</p>
+<h2 id="recurrent-patterns-discovery-with-grammarviz-20">Recurrent patterns discovery with GrammarViz 2.0</h2>
+
+<h3 id="introduction">1. Introduction</h3>
+<p>Here we discuss two use-cases which show GrammarViz GUI utility in variable length time series patterns finding and which support claims about our grammar-driven algorithm ability to discover such features.</p>
+
+<h3 id="dataset-used">2. Dataset used</h3>
+<p>Here we discuss the datasets used in the demo.</p>
+
+<h4 id="winding-dataset">2.1. Winding dataset</h4>
+<p>According to the <a href="ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt">original dataset source</a> this <a href="https://jmotif.googlecode.com/svn/trunk/data/demo/winding.dat.gz">dataset</a> is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/winding_col2.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>unfortunately, we do not know any specific information about this dataset.</p>
+
+<h4 id="qtdb-0606-ecg-dataset">2.2. QTDB 0606 ECG dataset</h4>
+<p>This record can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PhysioNet FTP</a> and converted into the text file by executing</p>
+
+<pre>
+rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' &gt;0606.csv
+</pre>
+
+<p>in the linux shell. We use the second column of this file:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/qtdb0606.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>We know, that third heartbeat of this dataset contains a true anomaly as it was discussed in the <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
+Figure 13 of the paper further explains the nature of an anomaly:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_cluster.png" width="400px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<h3 id="time-series-discretization-and-grammar-induction">3. Time series discretization and grammar induction</h3>
+<p>Our GUI tool implements both common strategies for time series discretization: global and sliding window-based. These are toggled by the checkbox “Slide the window”.</p>
+
+<p>In addition, the process of time series discretization is configured by three parameters: sliding window size, PAA size, and the Alphabet size. These allow to adjust algorithm sensitivity and selectivity so it could capture a localized phenomena. <em>Note however, that grammar induction step effectively mitigates improper sliding window selection.</em> Usually it improves performance, but not necessary, if the selected window size is less than the observed phenomena.</p>
+
+<p>Grammar induction requires no parameters.</p>
+
+<h3 id="variable-length-recurrent-patterns-discovery">4. Variable length recurrent patterns discovery</h3>
+<p>We use winding dataset in this example. Go “Browse”-&gt;select <code>winding.csv</code>-&gt;”Load data”. GUI shows the plot of winding data. Now adjust discretization parameters: “Window size” 100, “PAA Size” 4, and “Alphabet size” 3. Push “Process data”. At this point GUI displays grammar rules. Click on the “Mean length” column header, this sorts the table in ascending order, click again, this sorts the table in descending order. Click on the rule which has longest mean length, GUI shows that rule #29 has length ~353 and observed twice:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-winding01.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>similarly, rules #21 and #33 are observed twice and have lengths of ~227 and ~187 respectively.</p>
+
+<p>Now, click two times on the “Frequency in <code>R0</code>” column header and choose the most frequent rule which is #8:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-winding02.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>the lengths of subsequences corresponding to this rule ranges from 102 to 121 and few of these subsequences overlap.</p>
+
+<p><em>_Note that these variable-length subsequences correspond to single rule of the same grammar inferred by Sequitur from a discretized time series. _</em></p>
+
+<p>Similarly, if we use <code>qtdb0606</code> dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4, the algorithm finds that most frequently occuring rules are the normal heartbeats:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_02.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
 
 </div>
 
@@ -84,7 +175,7 @@
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2014-09-06 13:53:03 +0200</span></p>
+       Last update on: <span>2014-09-06 14:25:11 +0200</span></p>
     <p style="margin: 0">
       3 modules
       <!--  -->
