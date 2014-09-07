@@ -33,13 +33,12 @@ According to the [original dataset source](ftp://ftp.esat.kuleuven.ac.be/pub/SIS
 unfortunately, we do not know any specific information about this dataset.
 
 #### 2.2. QTDB 0606 ECG dataset
-This record can be downloaded from [PhysioNet FTP](http://physionet.org/physiobank/database/qtdb/) and converted into the text file by executing
-
+This data set (database record) can be downloaded from [PHYSIONET FTP](http://physionet.org/physiobank/database/qtdb/) and converted into the text format by executing this command
 <pre>
 rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' >0606.csv
 </pre>
-
-in the linux shell. We use the second column of this file:
+in the linux shell (assuming that you have rdsamp installed at your system).
+We use the second column of this file. This is our dataset overview:
 
 <div class="container">
   <div class="row">
@@ -49,8 +48,8 @@ in the linux shell. We use the second column of this file:
   </div>
 </div>
 
-We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in the [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
-Figure 13 of the paper further explains the nature of an anomaly:
+We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
+Figure 13 of the paper further explains the nature of this true anomaly:
 
 <div class="container">
   <div class="row">
@@ -104,3 +103,7 @@ Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set t
     </div>
   </div>
 </div>
+
+
+## 5. Discussion
+Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, the shown above recurrent pattern discovery technique yields sets of frequent subsequences of a *variable length*.
