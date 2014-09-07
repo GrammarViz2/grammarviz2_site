@@ -7,9 +7,11 @@ morea_type: home
 <div class="section-background-1">
  <div class="container">
    <h2><strong>Welcome to GrammarViz 2.0 homepage!</strong></h2>
-   <p><strong>Open source time series mining worflow based on symbolic approximation and grammatical inference.</strong></p>
-   <br>
-   <h3><strong>Please note, that this website is currently under development... </strong></h3>
+   <h4>Open source time series mining worflow based on symbolic approximation and grammatical inference.</h4>
+   <h3><i><strong>But please note, that this website is currently under development... </strong></i></h3>
+   <h4><i>nevertheless, please find <a href=" https://github.com/GrammarViz2/grammarviz2_src">our application sourcecode</a>
+   and primers on <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomalous</a>
+   and <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">recurrent</a> patterns discovery.</i></h4>
  </div>
 </div>
 
