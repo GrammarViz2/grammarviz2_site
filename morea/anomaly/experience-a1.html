@@ -60,11 +60,12 @@
 <h2 id="anomaly-discovery-with-grammarviz-20">Anomaly discovery with GrammarViz 2.0</h2>
 
 <h3 id="introduction">1. Introduction</h3>
-<p>Here we discuss an anomaly detection in QTDB 0606 ECG dataset. This record can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PHYSIONET FTP</a> and converted into text file by executing</p>
+<p>In this module we discuss an anomaly detection using QTDB 0606 ECG dataset. This data set (database record) can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PHYSIONET FTP</a> and converted into the text format by executing this command</p>
 <pre>
 rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' &gt;0606.csv
 </pre>
-<p>in the linux shell. We use the second column of this file. This is the data overview:</p>
+<p>in the linux shell (assuming that you have rdsamp installed at your system).
+We use the second column of this file. This is our dataset overview:</p>
 
 <div class="container">
   <div class="row">
@@ -74,8 +75,8 @@ rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' &gt;0606.csv
   </div>
 </div>
 
-<p>We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in the <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. The authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by a domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
-Figure 13 of the paper further explains the nature of an anomaly:</p>
+<p>We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
+Figure 13 of the paper further explains the nature of this true anomaly:</p>
 
 <div class="container">
   <div class="row">
@@ -85,7 +86,7 @@ Figure 13 of the paper further explains the nature of an anomaly:</p>
   </div>
 </div>
 
-<h2 id="variable-length-anomaly-discovery">2. Variable length anomaly discovery</h2>
+<h2 id="variable-length-anomaly-discovery-using-grammarviz-20">2. Variable length anomaly discovery using GrammarViz 2.0</h2>
 <p>Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click “Process data”. Click “Find anomalies” button, select the GrammarViz anomalies tab and choose the top ranked anomaly (#0):</p>
 
 <div class="container">
@@ -96,7 +97,7 @@ Figure 13 of the paper further explains the nature of an anomaly:</p>
   </div>
 </div>
 
-<p>this highlights the grammar rule which coincides with the true anomaly. <em>Note that rule #28 is of length 123 while next anomaly, the rule #30 is of length 109</em></p>
+<p>this highlights the grammar rule which coincides with the true anomaly. <em>Note that rule #28 is of length 123 while the next anomaly, the rule #30 is of length 109</em></p>
 
 <h2 id="variable-length-anomaly-discovery-using-rules-density">3. Variable length anomaly discovery using rules density</h2>
 <p>Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click “Process data”. Click on “Rules density” button:</p>
@@ -110,6 +111,9 @@ Figure 13 of the paper further explains the nature of an anomaly:</p>
 </div>
 
 <p>The light blue color near position 490 clearly identifies the true anomaly.</p>
+
+<h2 id="discussion">4. Discussion</h2>
+<p>Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, both anomaly discovery techniques shown above yield sets of rare subsequences of a <em>variable length</em>.</p>
 
 </div>
 
@@ -136,7 +140,7 @@ Figure 13 of the paper further explains the nature of an anomaly:</p>
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2014-09-07 11:01:31 +0200</span></p>
+       Last update on: <span>2014-09-07 13:20:24 +0200</span></p>
     <p style="margin: 0">
       3 modules
       <!--  -->
