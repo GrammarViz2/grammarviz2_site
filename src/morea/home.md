@@ -121,9 +121,6 @@ morea_type: home
   </div>
 </div>
 
-<!-- verify google -->
-<meta name="google-site-verification" content="IPRp9YV-GjZISFj5du9xbjjiTWKkc9Rpwb3_md6PIe8" />
-
 <!-- $$\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}$$ -->
 
 <!--![GrammarViz 2.0 screenshot](/morea/assets/screen-front.png "GrammarViz 2.0 screenshot")-->
