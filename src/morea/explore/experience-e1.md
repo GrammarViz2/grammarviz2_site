@@ -1,6 +1,6 @@
 ---
 title: "SAX parameters selection primer #1"
-published: true
+published: false
 morea_id: experience-e1
 morea_type: experience
 morea_summary: "The third experiential learning event."

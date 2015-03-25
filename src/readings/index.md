@@ -19,6 +19,20 @@ title: Readings
 </div>
 
 <div class="container">
+  <h1>Videos and tutorials</h1>
+</div>
+
+<div class="row">
+  <div class="container">
+    <div class="col-md-10">
+         <div class="embed-responsive embed-responsive-16by9">
+           <iframe width="600" height="338" class="embed-responsive-item" src="//www.youtube.com/embed/9lH-RG5OtkY" frameborder="0" allowfullscreen></iframe>
+         </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <h1>Readings and other resources <small>in module order</small></h1>
 </div>
 

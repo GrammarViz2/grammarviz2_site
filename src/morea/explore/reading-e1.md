@@ -2,7 +2,7 @@
 morea_type: reading
 morea_id: reading-e1
 title: "Exploring time series structure"
-published: true
+published: false
 topdiv: other
 morea_summary: "Discusses strategies for time series structure exploration using GrammarViz 2.0"
 morea_sort_order: 1

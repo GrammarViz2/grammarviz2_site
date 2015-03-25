@@ -2,7 +2,7 @@
 morea_type: module
 morea_id: explore
 title: "Exploring the time series structure"
-published: true
+published: false
 morea_outcomes:
 morea_readings:
  - reading-e1
