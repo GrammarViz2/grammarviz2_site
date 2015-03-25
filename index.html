@@ -62,8 +62,8 @@
  <div class="container">
    <h2><strong>Welcome to GrammarViz 2.0 homepage!</strong></h2>
    <h4>Open source time series mining worflow based on symbolic approximation and grammatical inference.</h4>
-   <h3><i><strong>But please note, that this website is currently under development... </strong></i></h3>
-   <h4><i>nevertheless, please find <a href=" https://github.com/GrammarViz2/grammarviz2_src">our application sourcecode</a>
+   <h5><i><strong>But please note, that this website is currently under development... nevertheless, </strong></i></h5>
+   <h4><i>please find <a href=" https://github.com/GrammarViz2/grammarviz2_src">our application sourcecode</a>
    and primers on <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomalous</a>
    and <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">recurrent</a> patterns discovery.</i></h4>
  </div>
@@ -80,20 +80,21 @@
 
            <h3><strong>Time series anomaly and recurrent patterns discovery made interactive</strong></h3>
 
-           <p>GrammarViz approach is based on two techniques with a linear time and space complexity:
-           <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time series into a string,
-           and <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
+           <p>GrammarViz approach is based on two algorithms that have linear time and space complexity:
+           (i) <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time
+           series into a string, and (ii) <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
 
-           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <em>instantly*</em> identify rare and frequent grammar rules,
-           which we associate with anomalous and recurrent subsequences.
-           In addition, thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
-           length in a single run.</p>
+           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to identify rare and frequent grammar rules
+           <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY"><em>in real time</em></a>, i.e., along with the signal acquisition.
+           Naturally, we associate these patterns with anomalous and recurrent sub-sequences. Thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable
+           length.</p>
 
-           <p><em>* note that the patterns discovery through grammatical inference involves no explicit distance computation</em><br />
-           Please find details about our technique here: <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">
-           GrammarViz 2.0: a tool for grammar-based pattern discovery in time series.</a><br />
-           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.
-           </p>
+           Please find details about our techniques in these publications:<br />
+           <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">GrammarViz 2.0: a tool for grammar-based pattern discovery in time series.</a><br />
+           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.<br />
+           <a href="https://csdl-techreports.googlecode.com/svn/trunk/techreports/2014/14-05/14-05.pdf"> Time series anomaly discovery with grammar-based compression</a><br />
+           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., EDBT 2015.
+           
 
          </div>
 
@@ -121,12 +122,10 @@
 
          <div class="col-sm-9">
            <h3><strong>User and developer friendly platform</strong></h3>
-           <p>GrammarViz 2.0 is developed in Java and can be used interactively through the GUI, called from a command line, or linked to your code
-           as a library.
-           We followed the Model–view–controller (MVC) pattern in GUI development which allows for code re-use in a web applicaion.
-           For your convenience, our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>,
-           we do Unit test it, analyze with FindBugs and PMD, and use <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src">Travis CI</a>
-           for our builds.</p>
+           <p>GrammarViz 2.0 is developed in Java. It can be used as a stand-alone application with GUI, called from a command line, or linked as a library.
+           For GUI, we followed the Model–view–controller (MVC) pattern which allows for the code re-use, for example in a web applicaion.
+           Our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>, we Unit test it, and using
+           <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src">Travis CI</a> for our builds.</p>
          </div>
 
        </div>
@@ -148,7 +147,7 @@
            <h3><strong>Roadmap</strong></h3>
 
            <p>Our software is under active development. Among other things, we are investigating alternative GI algorithms performance,
-           researching the possibility to leverge a grammar's hierarchy for patterns weighting, and working on the system performance
+           researching the possibility to leverage a grammar's hierarchy for patterns weighting, and working on the system performance
            and usability.</p>
 
          </div>
@@ -202,7 +201,7 @@
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2015-03-25 10:16:38 +0100</span></p>
+       Last update on: <span>2015-03-25 11:32:19 +0100</span></p>
     <p style="margin: 0">
       3 modules
       <!--  -->
