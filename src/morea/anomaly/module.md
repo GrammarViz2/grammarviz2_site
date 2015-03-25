@@ -1,7 +1,7 @@
 ---
 morea_type: module
 morea_id: anomaly
-title: "Finding anomalies"
+title: "Time series anomaly discovery"
 morea_icon_url: /morea/anomaly/logo-anomaly.png
 published: true
 morea_outcomes:
@@ -15,4 +15,4 @@ morea_labels:
 morea_sort_order: 1
 ---
 
-This is the first module in which we learn to find surprising (unexpected) patterns in time series, which are also known as anomalies or discords.
+This is the first learning module in which we discuss variable length anomaly (i.e., discord, surprise pattern) discovery in time series using GrammarViz 2.0.
