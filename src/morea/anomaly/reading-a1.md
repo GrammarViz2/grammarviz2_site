@@ -18,7 +18,7 @@ morea_labels:
 <div class="section-background-1">
  <div class="container">
   <h2><strong>Previous work on anomaly detection.</strong></h2>
-  <h4>This is the section from our EDBT paper that discusses previous work in time series anomaly discovery.</h4>
+  <h4>This is a section from our EDBT paper that discusses previous work in time series anomaly discovery.</h4>
  </div>
 </div>
 
