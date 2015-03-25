@@ -119,7 +119,3 @@ morea_type: home
     <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
   </div>
 </div>
-
-<!-- $$\sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6}$$ -->
-
-<!--![GrammarViz 2.0 screenshot](/morea/assets/screen-front.png "GrammarViz 2.0 screenshot")-->
