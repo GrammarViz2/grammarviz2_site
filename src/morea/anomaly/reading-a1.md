@@ -71,7 +71,7 @@ morea_labels:
        size to be specified.</p>
        
        <p>
-       In addition to mentioned above, an extensive empirical study by Chandola et al. [10] provides more details on time series anomaly discovery.
+       In addition to mentioned above, an extensive empirical study by Chandola et al. [11] provides more details on time series anomaly discovery.
        <p>
        
     [1] Keogh, E., Lin, J., Fu, A.,<em> HOT SAX: Efficiently Finding the Most Unusual Time Series Subsequence</em>, In Proc. ICDM'05 (2005)<br>
