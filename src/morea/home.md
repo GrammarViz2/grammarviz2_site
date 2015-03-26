@@ -37,10 +37,10 @@ morea_type: home
            length.</p>
 
            Please find details about our techniques in these publications:<br>
-           <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">GrammarViz 2.0: a tool for grammar-based pattern discovery in time series</a>,<br>
-           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.<br>
            <a href="https://csdl-techreports.googlecode.com/svn/trunk/techreports/2014/14-05/14-05.pdf"> Time series anomaly discovery with grammar-based compression</a>,<br>
            Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., EDBT 2015.<br>
+           <a href="http://www2.hawaii.edu/~senin/assets/papers/grammarviz2.pdf">GrammarViz 2.0: a tool for grammar-based pattern discovery in time series</a>,<br>
+           Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S., Lerner, M., ECML/PKDD, 2014.<br>
            <a href="http://www.cs.gmu.edu/~jessica/publications/grammar_motif_sdm12.pdf">Visualizing Variable-Length Time Series Motifs</a>,<br>
            Yuan Li, Jessica Lin, Tim Oates, SDM 2012.
            </p>
