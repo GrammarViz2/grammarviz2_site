@@ -12,9 +12,6 @@ morea_labels:
 
 <style type="text/css">p {font-size: 14px;}</style>
 
-<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
 <div class="section-background-1">
  <div class="container">
   <h2><strong>Previous work on anomaly detection.</strong></h2>

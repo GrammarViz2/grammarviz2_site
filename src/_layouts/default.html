@@ -13,7 +13,8 @@
   <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon" />
 
   <!--  Load LaTeX processing stuff. -->
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   <!--  Google check-up. -->
   <meta name="google-site-verification" content="IPRp9YV-GjZISFj5du9xbjjiTWKkc9Rpwb3_md6PIe8" />
@@ -37,7 +38,7 @@
         <!--  Display three horizontal lines when navbar collapsed. -->
         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"> {{ site.name }} </a>
+      <a class="navbar-brand" href="{{ site.baseurl }}/index.html"> {{ site.name }} </a>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
