@@ -12,7 +12,11 @@ title: Readings
    <div class="row">
      <div class="col-sm-4">
         <script async class="speakerdeck-embed" data-id="3336d38017de01329f66460735b58e3e"
-        data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+          data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+     </div>
+     <div class="col-sm-4">
+        <script async class="speakerdeck-embed" data-id="21b7703da5a44d42925e6a5212367be9"
+          data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
      </div>
    </div>
  </div>
