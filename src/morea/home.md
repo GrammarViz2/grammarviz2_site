@@ -95,7 +95,7 @@ morea_type: home
            <h3><strong>Roadmap</strong></h3>
 
            <p>Our software is under active development. Among other things, we are investigating alternative GI algorithms performance,
-           researching the possibility to leverage a grammar's hierarchy for patterns weighting, and working on the system performance
+           researching the possibility to leverage a grammar's hierarchy for patterns weighting, and working on the system's performance
            and usability.</p>
 
          </div>
