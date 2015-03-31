@@ -272,7 +272,8 @@ Discords found in 0h 0m 0s 508ms
 
 
 ## 4. Discussion.
-We discussed three ways to discover time series anomaly (i.e., discord). As shown, the RRA algorithm is less sensitive to the parameters selection.
+We discussed three ways to discover time series anomaly (i.e., discord). As shown, the RRA algorithm is faster than other discord discovery techniques;
+in addition, RRA is less sensitive to the parameters selection than the rule-density curve technique.
 
 ## 5. The R code to combine all three plots into a nice figure.
 
