@@ -11,6 +11,7 @@ morea_readings:
  - reading-a2
 morea_experiences:
  - experience-a1
+ - experience-a2 
 morea_labels:
 morea_sort_order: 1
 ---
