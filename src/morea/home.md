@@ -12,7 +12,7 @@ morea_type: home
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomaly discovery</a>,
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">motif discovery</a>, and 
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a2.html">the CLI usage</a>.
-   <a href=" https://github.com/GrammarViz2/grammarviz2_src">The sourcecode.</a></i></h4>
+   <a href=" https://github.com/GrammarViz2/grammarviz2_src">The sourcecode</a>.</i></h4>
  </div>
 </div>
 
