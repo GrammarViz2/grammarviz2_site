@@ -10,7 +10,7 @@ morea_type: home
    <h4>Open source time series mining worflow based on symbolic approximation and grammatical inference.</h4>
    <h4><i>Quick links on primers for
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomaly discovery</a>,
-   <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">recurrent</a>motif discovery, and
+   <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">motif discovery</a>, and
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a2.html">and the CLI usage</a>.
    <a href=" https://github.com/GrammarViz2/grammarviz2_src">The sourcecode.</a></i></h4>
  </div>
