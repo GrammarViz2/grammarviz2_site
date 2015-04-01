@@ -191,7 +191,7 @@ $ head distances.txt
 </pre>
 
 By using this file we can visually inspect how the discovered by RRA discord is rated among other subsequences.
-Here is the [R](http://cran.r-project.org/) code I use (note that you'd need the [ggplot2](http://ggplot2.org/) and Cairo libs installed too):
+Here is the [R](http://cran.r-project.org/) code we use (note that you'd need the [ggplot2](http://ggplot2.org/) and Cairo libs installed too):
 
 <pre>
 data=read.csv(file="../data/ecg0606_1.csv",header=F,sep=",")
@@ -247,8 +247,8 @@ dev.off()
 </div>
 
 As shown above, the rule-density curve does not identify the anomaly clearly. This is a **typical density curve behavior** when the SAX approximation is loose.
-If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly, clearly articulating the true anomaly location
-(also note that now all three discords reported by RRA coincide with those by brute force and HOT-SAX):
+If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly -- not only the true anomaly
+becomes clearly articulated by the drop in rule density curve, but **all** the RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:
 
 <pre>
 $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data/ecg0606_1.csv 100 5 5 3 true
@@ -277,8 +277,9 @@ Discords found in 0h 0m 0s 508ms
 
 
 ## 4. Discussion.
-We discussed three ways to discover time series anomaly (i.e., discord). As shown, the RRA algorithm is faster than other discord discovery techniques;
-in addition, RRA is less sensitive to the parameters selection than the rule-density curve technique.
+We discussed two new ways to discover time series anomaly (i.e., discord) -- the Rare Rule Anomaly (RRA) algorithm and the rule density curve.
+As shown, the RRA algorithm is faster than other discord discovery techniques, namely brute-force and HOT-SAX.
+In addition, we have shown that the approximation degree is crucial for the optimal performance of RRA and rule density curve algorithms.
 
 ## 5. The R code to combine all three plots into a nice figure.
 
