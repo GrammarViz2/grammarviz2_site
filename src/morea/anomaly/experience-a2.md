@@ -41,7 +41,9 @@ Figure 13 of the paper further explains the nature of this true anomaly:
 </div>
 
 ## 2. Running GrammarViz 2.0 using CLI interface
-Note, that by default, the GrammarViz 2.0 jar file configured to launch GUI. In contrast, in this tutorial, we will be using command line. Here is an example of running GrammarViz 2.0 anomaly discovery module using CLI:
+Note, that by default, the GrammarViz 2.0 jar file is configured to launch GUI.
+In contrast, in this tutorial, we will be using command line.
+Here is an example of running GrammarViz 2.0 anomaly discovery module using CLI:
 
 <pre>
 $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord
@@ -61,7 +63,7 @@ Expected parameters:
  [7] indicate true/false for RRA algorithm auxiliary output; 
 </pre>
 
-As shown, the code expects a number of parameters to be specified. These are:
+As shown, the code prints a help output expecting a number of parameters to be specified. The expected parameters and their order are:
 
 1. The algorithm switch.
 2. The dataset name.
@@ -128,7 +130,7 @@ discord #2 "acb", at 539 distance to closest neighbor: 0.44370598373247144, info
 Discords found in 0h 0m 0s 764ms
 </pre>
 
-in less than a second HOT-SAX finds the same discord
+in less than a second HOT-SAX finds exactly the same discords.
 
 ### 2.3. Rare Rule Anomaly (RRA) -driven discords discovery.
 Now let's use our new technique:
@@ -140,7 +142,7 @@ $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data
 15:25:01.488 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - reading from data/ecg0606_1.csv
 15:25:01.525 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - loaded 2299 points from 2299 lines in data/ecg0606_1.csv
 15:25:01.526 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
-15:25:01.526 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running SAXSequitur algorithm...
+15:25:01.526 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running RRA algorithm...
 15:25:01.590 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Whole timeseries covered by rule intervals ...
 params: [3, data/ecg0606_1.csv, 100, 3, 3, 3]
 discord #0 "pos,calls,len,rule 417 15235 110 8", at 417 distance to closest neighbor: 0.013448785622157254, info string: "position 417, length 110, NN distance 0.013448785622157254, elapsed time: 0h 0m 0s 71ms, distance calls: 15235"
@@ -150,7 +152,7 @@ discord #2 "pos,calls,len,rule 1572 36689 109 28", at 1572 distance to closest n
 Discords found in 0h 0m 0s 278ms
 </pre>
 
-in half time of that of HOT-SAX we find the same true discord:
+in half time of that of HOT-SAX we find the same true best discord:
 
 <div class="container">
   <div class="row">
@@ -159,6 +161,8 @@ in half time of that of HOT-SAX we find the same true discord:
     </div>
   </div>
 </div>
+
+two next anomalies, however, are different from brute force and HOT-SAX runs.
 
 ## 3. Auxiliary files
 If we add the seventh parameter to the CLI command:
@@ -243,7 +247,8 @@ dev.off()
 </div>
 
 As shown above, the rule-density curve does not identify the anomaly clearly. This is a **typical density curve behavior** when the SAX approximation is loose.
-If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly, clearly articulating the true anomaly location:
+If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly, clearly articulating the true anomaly location
+(also note that now all three discords reported by RRA coincide with those by brute force and HOT-SAX):
 
 <pre>
 $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data/ecg0606_1.csv 100 5 5 3 true
@@ -252,7 +257,7 @@ $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data
 15:49:08.768 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - reading from data/ecg0606_1.csv
 15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - loaded 2299 points from 2299 lines in data/ecg0606_1.csv
 15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 5, alphabet 5, reporting 3 discords.
-15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running SAXSequitur algorithm...
+15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running RRA algorithm...
 15:49:08.946 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Whole timeseries covered by rule intervals ...
 params: [3, data/ecg0606_1.csv, 100, 5, 5, 3, true]
 discord #0 "pos,calls,len,rule 406 19051 114 25", at 406 distance to closest neighbor: 0.013228247590601405, info string: "position 406, length 114, NN distance 0.013228247590601405, elapsed time: 0h 0m 0s 91ms, distance calls: 19051"
