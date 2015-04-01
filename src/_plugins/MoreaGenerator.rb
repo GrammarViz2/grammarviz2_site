@@ -53,6 +53,7 @@ module Jekyll
       print_morea_problems(site)
       check_for_undefined_home_page(site)
       check_for_undefined_footer_page(site)
+      fix_morea_urls(site)
       sort_pages(site)
       puts @summary
       if site.config['morea_fatal_errors']
@@ -74,6 +75,16 @@ module Jekyll
       site.config['morea_reading_pages'] = site.config['morea_reading_pages'].sort_by {|page| page.data['morea_sort_order']}
       site.config['morea_experience_pages'] = site.config['morea_experience_pages'].sort_by {|page| page.data['morea_sort_order']}
       site.config['morea_assessment_pages'] = site.config['morea_assessment_pages'].sort_by {|page| page.data['morea_sort_order']}
+    end
+
+    # Prepend site.baseurl to reading pages containing a morea_url that does not start with http.
+    def fix_morea_urls(site)
+      site.config['morea_reading_pages'].each do |reading_page|
+        reading_url = reading_page.data['morea_url']
+        if reading_url.match(/^\/morea/)
+          reading_page.data['morea_url'] = site.baseurl + reading_url
+        end
+      end
     end
 
     # Tell each outcome all the modules that referred to it.
@@ -316,8 +327,8 @@ module Jekyll
     attr_accessor :missing_required, :missing_optional, :duplicate_id, :undefined_id
 
     def initialize(site, subdir, file_name, morea_dir)
-      read_yaml(File.join(site.source, morea_dir, subdir), file_name)
       @site = site
+      read_yaml(File.join(site.source, morea_dir, subdir), file_name)
       @base = site.source
       @dir = morea_dir + "/" + subdir
       @name = file_name
@@ -380,8 +391,8 @@ module Jekyll
   # Module pages are dynamically generated, one per MoreaPage with morea_type = module.
   class ModulePage < Page
     def initialize(site, base, dir, morea_page)
-      self.read_yaml(File.join(base, '_layouts'), 'module.html')
       @site = site
+      self.read_yaml(File.join(base, '_layouts'), 'module.html')
       @base = base
       @dir = "modules/" + morea_page.data['morea_id']
       @name = 'index.html'
@@ -396,8 +407,8 @@ module Jekyll
   # Markdown pages have the .markdown suffix. We add a default layout and topdiv value.
   class MarkdownPage < Page
     def initialize(site, base, dir, file_name)
-      self.read_yaml(File.join(base, '_layouts'), 'default.html')
       @site = site
+      self.read_yaml(File.join(base, '_layouts'), 'default.html')
       @base = base
       @dir = dir
       @name = file_name
