@@ -246,7 +246,18 @@ dev.off()
   </div>
 </div>
 
-As shown above, the rule-density curve does not identify the anomaly clearly. This is a **typical density curve behavior** when the SAX approximation is loose.
+As shown above, the rule-density curve does not identify the anomaly clearly.
+This is a **typical density curve behavior** when the SAX approximation is loose -- consider the figure below which shows that the area where the successful
+discovery of this true anomaly with Density Curve approach is twice as small as the area of RRA success:
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_areas.png" width="800px" class="img-responsive center-block">
+    </div>
+  </div>
+</div>
+
 If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly -- not only the true anomaly
 becomes clearly articulated by the drop in rule density curve, but **all** the RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:
 
