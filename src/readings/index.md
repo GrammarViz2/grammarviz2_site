@@ -30,7 +30,7 @@ title: Readings
   <div class="container">
     <div class="col-md-10">
          <div class="embed-responsive embed-responsive-16by9">
-           <iframe width="600" height="338" class="embed-responsive-item" src="//www.youtube.com/embed/9lH-RG5OtkY" frameborder="0" allowfullscreen></iframe>
+           <iframe width="480" height="310" class="embed-responsive-item" src="//www.youtube.com/embed/9lH-RG5OtkY" frameborder="0" allowfullscreen></iframe>
          </div>
     </div>
   </div>
