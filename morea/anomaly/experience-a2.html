@@ -300,8 +300,19 @@ dev.off()
   </div>
 </div>
 
-<p>As shown above, the rule-density curve does not identify the anomaly clearly. This is a <strong>typical density curve behavior</strong> when the SAX approximation is loose.
-If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly – not only the true anomaly
+<p>As shown above, the rule-density curve does not identify the anomaly clearly.
+This is a <strong>typical density curve behavior</strong> when the SAX approximation is loose – consider the figure below which shows that the area where the successful
+discovery of this true anomaly with Density Curve approach is twice as small as the area of RRA success:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_areas.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>If we increase values for PAA and Alphabet discretization coefficients from 3 to 5, the situation improves significantly – not only the true anomaly
 becomes clearly articulated by the drop in rule density curve, but <strong>all</strong> the RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:</p>
 
 <pre>
@@ -442,7 +453,7 @@ analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="st
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2015-04-02 09:44:09 +0200</span></p>
+       Last update on: <span>2015-04-02 14:14:03 +0200</span></p>
     <p style="margin: 0">
       2 modules
       <!--  -->
