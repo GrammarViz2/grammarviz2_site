@@ -4,10 +4,10 @@ morea_id: home
 morea_type: home
 ---
 
-<div class="section-background-1">
+<div class="section-background-1" itemscope="" itemtype="http://schema.org/SoftwareApplication">
  <div class="container">
    <h2><strong>Welcome to GrammarViz 2.0 homepage!</strong></h2>
-   <h4>Open source time series mining worflow based on symbolic approximation and grammatical inference.</h4>
+   <h4><span itemprop="applicationCategory">Open source time series mining worflow based on symbolic approximation and grammatical inference.</span></h4>
    <h4><i>Quick links on primers for
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomaly discovery</a>,
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">motif discovery</a>, and 
@@ -17,7 +17,7 @@ morea_type: home
 </div>
 
 
-<div class="row top-buffer" itemscope itemtype="http://schema.org/SoftwareApplication">
+<div class="row top-buffer">
 
  <div class="section-background-2">
   <div class="container">
