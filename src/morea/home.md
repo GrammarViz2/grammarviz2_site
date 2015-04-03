@@ -62,7 +62,7 @@ morea_type: home
 </div>
 
 
-<div class="row top-buffer">
+<div class="row top-buffer" itemscope="" itemtype="http://schema.org/SoftwareApplication">
 
  <div class="section-background-1">
   <div class="container">
