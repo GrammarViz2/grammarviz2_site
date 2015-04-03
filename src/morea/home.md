@@ -7,7 +7,7 @@ morea_type: home
 <div class="section-background-1" itemscope="" itemtype="http://schema.org/SoftwareApplication">
  <div class="container">
    <h2><strong>Welcome to GrammarViz 2.0 homepage!</strong></h2>
-   <h4><span itemprop="applicationCategory">Open source tool for time series mining that runs on <span itemprop="operatingSystem">all</span> platforms</span></h4>
+   <h4><span itemprop="applicationCategory">Open source Java tool for time series mining</span> that runs on <span itemprop="operatingSystem">all</span> platforms.</h4>
    <h4><i>Quick links on primers for
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomaly discovery</a>,
    <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">motif discovery</a>, and 
