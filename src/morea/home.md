@@ -32,8 +32,8 @@ morea_type: home
            (i) <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time
            series into a string, and (ii) <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
 
-           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <span itemtype="offers">identify rare and frequent grammar rules
-           <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY"><em>in real time</em></a>, i.e., along with the signal acquisition.</span>
+           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to identify rare and frequent grammar rules
+           <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY"><em>in real time</em></a>, i.e., along with the signal acquisition.
            Naturally, we associate these patterns with anomalous and recurrent sub-sequences.
            Thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable length.</p>
 
@@ -75,7 +75,8 @@ morea_type: home
 
          <div class="col-sm-9">
            <h3><strong>User and developer friendly platform</strong></h3>
-           <p>GrammarViz 2.0 is developed in Java. It can be used as a stand-alone application with GUI, called from a command line, or linked as a library.
+           <p>GrammarViz 2.0 is developed in Java and runs on <span itemprop="operatingSystem">all</span> platforms.
+           It can be used as a stand-alone application with GUI, called from a command line, or linked as a library.
            For GUI, we followed the Model–view–controller (MVC) pattern which allows for the code re-use, for example in a web applicaion.
            Our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>, we Unit test it, and using
            <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src">Travis CI</a> for our builds.</p>
