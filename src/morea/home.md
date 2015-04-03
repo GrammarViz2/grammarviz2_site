@@ -62,7 +62,7 @@ morea_type: home
 </div>
 
 
-<div class="row top-buffer" itemscope="" itemtype="http://schema.org/SoftwareApplication">
+<div class="row top-buffer">
 
  <div class="section-background-1">
   <div class="container">
@@ -75,7 +75,7 @@ morea_type: home
 
          <div class="col-sm-9">
            <h3><strong>User and developer friendly platform</strong></h3>
-           <p>GrammarViz 2.0 is developed in Java and runs on <span itemprop="operatingSystem">all</span> platforms.
+           <p>GrammarViz 2.0 is developed in Java and runs on all platforms.
            It can be used as a stand-alone application with GUI, called from a command line, or linked as a library.
            For GUI, we followed the Model–view–controller (MVC) pattern which allows for the code re-use, for example in a web applicaion.
            Our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>, we Unit test it, and using
