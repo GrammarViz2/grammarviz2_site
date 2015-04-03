@@ -32,7 +32,7 @@ morea_type: home
            (i) <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time
            series into a string, and (ii) <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.</p>
 
-           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <span itemtype="offers>identify rare and frequent grammar rules
+           <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to <span itemtype="offers">identify rare and frequent grammar rules
            <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY"><em>in real time</em></a>, i.e., along with the signal acquisition.</span>
            Naturally, we associate these patterns with anomalous and recurrent sub-sequences.
            Thanks to SAX numerosity reduction and CFG hierarchy, our approach is able to discover patterns of both types that are of variable length.</p>
