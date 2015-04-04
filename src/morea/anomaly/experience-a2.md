@@ -173,7 +173,7 @@ $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data
 
 the code produces two files: `distances.txt` and `coverage.txt`.
 
-### 4.1 `distances.txt`
+### 3.1 `distances.txt`
 This files consists of three columns:
 
 1. The time series position.
@@ -217,7 +217,7 @@ and which produces the next figure:
   </div>
 </div>
 
-### 4.2 `coverage.txt`
+### 3.2 `coverage.txt`
 This file is a single column file that contains exactly the amount of lines as the input file and reflects the **rule density curve**.
 Here is the way to visualize this curve using R:
 
