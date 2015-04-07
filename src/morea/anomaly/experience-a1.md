@@ -1,7 +1,7 @@
 ---
 morea_type: experience
 morea_id: experience-a1
-title: "Time series anomaly discovery using GrammarViz 2.0 GUI"
+title: "Time series anomaly detection using GrammarViz 2.0 GUI"
 published: true
 morea_summary: "The first experiential learning event."
 morea_sort_order: 1
