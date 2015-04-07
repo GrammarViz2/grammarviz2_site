@@ -174,7 +174,7 @@ $ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data
 the code produces two files: `distances.txt` and `coverage.txt`.
 
 ### 3.1 `distances.txt`
-This files consists of three columns:
+This file consists of three columns:
 
 1. The time series position.
 2. The distance to closest non-self match.
