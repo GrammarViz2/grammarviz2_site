@@ -65,10 +65,10 @@
 <h2 id="recurrent-patterns-discovery-with-grammarviz-20">Recurrent patterns discovery with GrammarViz 2.0</h2>
 
 <h3 id="introduction">1. Introduction</h3>
-<p>Here we discuss two use-cases which show GrammarViz GUI utility in variable length time series patterns finding and which support claims about our grammar-driven algorithm ability to discover such features.</p>
+<p>We discuss two use-cases which show GrammarViz GUI utility in variable length time series pattern discovery.</p>
 
 <h3 id="dataset-used">2. Dataset used</h3>
-<p>Here we discuss the datasets used in the demo.</p>
+<p>Two datasets are used in this demo:</p>
 
 <h4 id="winding-dataset">2.1. Winding dataset</h4>
 <p>According to the <a href="ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt">original dataset source</a> this <a href="https://jmotif.googlecode.com/svn/trunk/data/demo/winding.dat.gz">dataset</a> is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:</p>
@@ -99,7 +99,7 @@ We use the second column of this file. This is our dataset overview:</p>
   </div>
 </div>
 
-<p>We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
+<p>We know, that third heartbeat of this ECG dataset contains the true anomaly as it was discussed in <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
 Figure 13 of the paper further explains the nature of this true anomaly:</p>
 
 <div class="container">
@@ -111,11 +111,11 @@ Figure 13 of the paper further explains the nature of this true anomaly:</p>
 </div>
 
 <h3 id="time-series-discretization-and-grammar-induction">3. Time series discretization and grammar induction</h3>
-<p>Our GUI tool implements both common strategies for time series discretization: global and sliding window-based. These are toggled by the checkbox “Slide the window”.</p>
+<p>There are two ways to perform time series discretization: global and overlapping sliding window-based (these are toggled by the checkbox “Slide the window”). We are using sliding window-based discretization in this demo.</p>
 
-<p>In addition, the process of time series discretization is configured by three parameters: sliding window size, PAA size, and the Alphabet size. These allow to adjust algorithm sensitivity and selectivity so it could capture a localized phenomena. <em>Note however, that grammar induction step effectively mitigates improper sliding window selection.</em> Usually it improves performance, but not necessary, if the selected window size is less than the observed phenomena.</p>
+<p>The process of time series subsequence discretization is configured by three numerical parameters: sliding window size, PAA size, and the Alphabet size. These adjust discretization granularity, which typically affects the higher level algorithms sensitivity and selectivity, such as the ability to capture a local phenomenon. <em>Note however, that grammar induction step effectively mitigates improper sliding window selection.</em></p>
 
-<p>Grammar induction requires no parameters.</p>
+<p>The grammar induction process requires no parameters.</p>
 
 <h3 id="variable-length-recurrent-patterns-discovery">4. Variable length recurrent patterns discovery</h3>
 <p>We use winding dataset in this example. Go “Browse”-&gt;select <code>winding.csv</code>-&gt;”Load data”. GUI shows the plot of winding data. Now adjust discretization parameters: “Window size” 100, “PAA Size” 4, and “Alphabet size” 3. Push “Process data”. At this point GUI displays grammar rules. Click on the “Mean length” column header, this sorts the table in ascending order, click again, this sorts the table in descending order. Click on the rule which has longest mean length, GUI shows that rule #29 has length ~353 and observed twice:</p>
@@ -196,7 +196,7 @@ analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="st
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2015-04-15 14:33:01 +0200</span></p>
+       Last update on: <span>2015-04-21 11:15:17 +0200</span></p>
     <p style="margin: 0">
       2 modules
       <!--  -->
