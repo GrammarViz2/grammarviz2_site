@@ -14,10 +14,10 @@ morea_labels:
 ## Recurrent patterns discovery with GrammarViz 2.0
 
 ### 1. Introduction
-Here we discuss two use-cases which show GrammarViz GUI utility in variable length time series patterns finding and which support claims about our grammar-driven algorithm ability to discover such features.
+We discuss two use-cases which show GrammarViz GUI utility in variable length time series pattern discovery.
 
 ### 2. Dataset used
-Here we discuss the datasets used in the demo.
+Two datasets are used in this demo:
 
 #### 2.1. Winding dataset
 According to the [original dataset source](ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt) this [dataset](https://jmotif.googlecode.com/svn/trunk/data/demo/winding.dat.gz) is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:
@@ -48,7 +48,7 @@ We use the second column of this file. This is our dataset overview:
   </div>
 </div>
 
-We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
+We know, that third heartbeat of this ECG dataset contains the true anomaly as it was discussed in [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
 Figure 13 of the paper further explains the nature of this true anomaly:
 
 <div class="container">
@@ -60,12 +60,11 @@ Figure 13 of the paper further explains the nature of this true anomaly:
 </div>
 
 ### 3. Time series discretization and grammar induction
-Our GUI tool implements both common strategies for time series discretization: global and sliding window-based. These are toggled by the checkbox "Slide the window".
+There are two ways to perform time series discretization: global and overlapping sliding window-based (these are toggled by the checkbox "Slide the window"). We are using sliding window-based discretization in this demo.
 
-In addition, the process of time series discretization is configured by three parameters: sliding window size, PAA size, and the Alphabet size. These allow to adjust algorithm sensitivity and selectivity so it could capture a localized phenomena. *Note however, that grammar induction step effectively mitigates improper sliding window selection.* Usually it improves performance, but not necessary, if the selected window size is less than the observed phenomena.
+The process of time series subsequence discretization is configured by three numerical parameters: sliding window size, PAA size, and the Alphabet size. These adjust discretization granularity, which typically affects the higher level algorithms sensitivity and selectivity, such as the ability to capture a local phenomenon. *Note however, that grammar induction step effectively mitigates improper sliding window selection.*
 
-Grammar induction requires no parameters.
-
+The grammar induction process requires no parameters.
 
 ### 4. Variable length recurrent patterns discovery
 We use winding dataset in this example. Go "Browse"->select `winding.csv`->"Load data". GUI shows the plot of winding data. Now adjust discretization parameters: "Window size" 100, "PAA Size" 4, and "Alphabet size" 3. Push "Process data". At this point GUI displays grammar rules. Click on the "Mean length" column header, this sorts the table in ascending order, click again, this sorts the table in descending order. Click on the rule which has longest mean length, GUI shows that rule #29 has length ~353 and observed twice:
