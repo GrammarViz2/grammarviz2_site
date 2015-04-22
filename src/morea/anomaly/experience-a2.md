@@ -14,7 +14,7 @@ morea_labels:
 ## Anomaly discovery with GrammarViz 2.0 using command line interface
 
 ### 1. Introduction
-In this module we discuss an anomaly detection using QTDB 0606 ECG dataset. This data set (database record) can be downloaded from [PHYSIONET FTP](http://physionet.org/physiobank/database/qtdb/) and converted into the text format by executing this command
+In this module we discuss the anomaly detection in QTDB 0606 ECG dataset. This data set (database record) can be downloaded from [PHYSIONET FTP](http://physionet.org/physiobank/database/qtdb/) and converted into the text format by executing this command
 <pre>
 rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' >0606.csv
 </pre>
