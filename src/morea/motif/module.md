@@ -14,4 +14,4 @@ morea_sort_order: 2
 morea_labels:
 ---
 
-This is the second learning module in which we discuss variable length recurrent pattern (i.e., motif) discovery in time series using GrammarViz 2.0.
+This module discusses variable length recurrent pattern (i.e., motif) discovery in time series using GrammarViz 2.0.

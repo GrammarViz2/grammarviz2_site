@@ -16,4 +16,4 @@ morea_labels:
 morea_sort_order: 1
 ---
 
-This is the first learning module in which we discuss variable length anomaly (i.e., discord, surprise pattern) discovery in time series using GrammarViz 2.0.
+This module discusses variable length anomaly (i.e., discord, surprise pattern) discovery in time series using GrammarViz 2.0.
