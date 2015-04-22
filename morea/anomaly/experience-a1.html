@@ -65,7 +65,7 @@
 <h2 id="anomaly-discovery-with-grammarviz-20">Anomaly discovery with GrammarViz 2.0</h2>
 
 <h3 id="introduction">1. Introduction</h3>
-<p>In this module we discuss an anomaly detection using QTDB 0606 ECG dataset. This data set (database record) can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PHYSIONET FTP</a> and converted into the text format by executing this command</p>
+<p>In this module we discuss the anomaly detection in QTDB 0606 ECG dataset. This data set (database record) can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PHYSIONET FTP</a> and converted into the text format by executing this command</p>
 <pre>
 rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' &gt;0606.csv
 </pre>
@@ -80,7 +80,7 @@ We use the second column of this file. This is our dataset overview:</p>
   </div>
 </div>
 
-<p>We know, that third heartbeat of this dataset contains the true anomaly as it was discussed in <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
+<p>We know, that the third heartbeat of this dataset contains the true anomaly as it was discussed in <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
 Figure 13 of the paper further explains the nature of this true anomaly:</p>
 
 <div class="container">
@@ -159,7 +159,7 @@ analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="st
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2015-04-22 16:01:28 +0200</span></p>
+       Last update on: <span>2015-04-22 16:03:27 +0200</span></p>
     <p style="margin: 0">
       2 modules
       <!--  -->
