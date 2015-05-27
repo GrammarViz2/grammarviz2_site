@@ -10,6 +10,10 @@ title: Readings
 <div class="section-background-1">
   <div class="container">
    <div class="row">
+    <div class="col-sm-4">
+        <script async class="speakerdeck-embed" data-id="7b79415d9e9d4c9c9ac075a1c5743a12"
+          data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+     </div>
      <div class="col-sm-4">
         <script async class="speakerdeck-embed" data-id="3336d38017de01329f66460735b58e3e"
           data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
