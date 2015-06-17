@@ -46,7 +46,7 @@ In contrast, in this tutorial, we will be using command line.
 Here is an example of running GrammarViz 2.0 anomaly discovery module using CLI:
 
 <pre>
-$ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly
 14:15:01.885 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[]"
 GrammarViz2 v. 1.0 release, contact: seninp@gmail.com
 Expected parameters: 
@@ -79,26 +79,25 @@ So, let's find discords in our dataset using the brute-force discord search
 I use **1** as a placeholder for PAA, and alphabet sizes.*):
 
 <pre>
-$ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 1 data/ecg0606_1.csv 100 1 1 3
-14:30:44.930 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
-14:30:44.933 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parsing param string "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
-14:30:44.933 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - reading from data/ecg0606_1.csv
-14:30:44.979 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - loaded 2299 points from 2299 lines in data/ecg0606_1.csv
-14:30:44.980 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Starting discords search with settings: algorithm 1, data "data/ecg0606_1.csv", window 100, PAA 1, alphabet 1, reporting 3 discords.
-14:30:44.980 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running brute force algorithm...
-14:30:44.983 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - currently known discords: 0 out of 3
-14:30:46.189 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - best discord found at 411, best distance: 1.5045846602966542, in 0h 0m 1s 200ms distance calls: 4203050
-14:30:46.190 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - position 411, NN distance 1.5045846602966542, elapsed time: 0h 0m 1s 206ms, distance calls: 4203050
-14:30:46.190 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - currently known discords: 1 out of 3
-14:30:47.031 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - best discord found at 37, best distance: 0.4787744771810631, in 0h 0m 0s 841ms distance calls: 3603050
-14:30:47.032 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - position 37, NN distance 0.4787744771810631, elapsed time: 0h 0m 0s 842ms, distance calls: 3603050
-14:30:47.032 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - currently known discords: 2 out of 3
-14:30:47.819 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - best discord found at 539, best distance: 0.44370598373247144, in 0h 0m 0s 787ms distance calls: 3324000
-14:30:47.819 [main] DEBUG edu.hawaii.jmotif.timeseries.TSUtils - position 539, NN distance 0.44370598373247144, elapsed time: 0h 0m 0s 787ms, distance calls: 3324000
-discord #0 "#0", at 411 distance to closest neighbor: 1.5045846602966542, info string: "position 411, NN distance 1.5045846602966542, elapsed time: 0h 0m 1s 206ms, distance calls: 4203050"
-discord #1 "#1", at 37 distance to closest neighbor: 0.4787744771810631, info string: "position 37, NN distance 0.4787744771810631, elapsed time: 0h 0m 0s 842ms, distance calls: 3603050"
-discord #2 "#2", at 539 distance to closest neighbor: 0.44370598373247144, info string: "position 539, NN distance 0.44370598373247144, elapsed time: 0h 0m 0s 787ms, distance calls: 3324000"
-3 discords found in 0h 0m 2s 840ms
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 1 data/ecg0606_1.csv 100 1 1 3
+16:05:35.026 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
+16:05:35.029 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
+16:05:35.090 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 1, data "data/ecg0606_1.csv", window 100, PAA 1, alphabet 1, reporting 3 discords.
+16:05:35.090 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running brute force algorithm...
+16:05:35.094 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - currently known discords: 0 out of 3
+16:05:36.363 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - best discord found at 411, best distance: 1.5045846602966542, in 1s208ms distance calls: 4203050
+16:05:36.364 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - position 411, NN distance 1.5045846602966542, elapsed time: 1s269ms, distance calls: 4203050
+16:05:36.364 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - currently known discords: 1 out of 3
+16:05:37.232 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - best discord found at 37, best distance: 0.4787744771810631, in 868ms distance calls: 3605050
+16:05:37.233 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - position 37, NN distance 0.4787744771810631, elapsed time: 869ms, distance calls: 3605050
+16:05:37.233 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - currently known discords: 2 out of 3
+16:05:38.030 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - best discord found at 539, best distance: 0.44370598373247144, in 797ms distance calls: 3326000
+16:05:38.031 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - position 539, NN distance 0.44370598373247144, elapsed time: 798ms, distance calls: 3326000
+discord #0 "#0", at 411 distance to closest neighbor: 1.5045846602966542, info string: "position 411, NN distance 1.5045846602966542, elapsed time: 1s269ms, distance calls: 4203050"
+discord #1 "#1", at 37 distance to closest neighbor: 0.4787744771810631, info string: "position 37, NN distance 0.4787744771810631, elapsed time: 869ms, distance calls: 3605050"
+discord #2 "#2", at 539 distance to closest neighbor: 0.44370598373247144, info string: "position 539, NN distance 0.44370598373247144, elapsed time: 798ms, distance calls: 3326000"
+
+3 discords found in 2s940ms
 </pre>
 
 about 1.2 seconds later the code reports the best discord at the position 411:
@@ -115,19 +114,18 @@ about 1.2 seconds later the code reports the best discord at the position 411:
 Now let's use HOT-SAX algorithm to find discords:
 
 <pre>
-$ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 2 data/ecg0606_1.csv 100 3 3 3 
-15:21:26.112 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
-15:21:26.115 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parsing param string "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
-15:21:26.115 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - reading from data/ecg0606_1.csv
-15:21:26.151 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - loaded 2299 points from 2299 lines in data/ecg0606_1.csv
-15:21:26.151 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Starting discords search with settings: algorithm 2, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
-15:21:26.151 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running HOT SAX Trie-based algorithm...
-15:21:26.159 [main] INFO  edu.hawaii.jmotif.sax.SAXFactory - Trie built in : 0h 0m 0s 3ms
-discord #0 "cab", at 411 distance to closest neighbor: 1.5045846602966542, info string: "position 411, NN distance 1.5045846602966542, elapsed time: 0h 0m 0s 184ms, distance calls: 96050"
-discord #1 "aac", at 37 distance to closest neighbor: 0.4787744771810631, info string: "position 37, NN distance 0.4787744771810631, elapsed time: 0h 0m 0s 245ms, distance calls: 231561"
-discord #2 "acb", at 539 distance to closest neighbor: 0.44370598373247144, info string: "position 539, NN distance 0.44370598373247144, elapsed time: 0h 0m 0s 246ms, distance calls: 254786"
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 2 data/ecg0606_1.csv 100 3 3 3 
+16:05:59.467 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:05:59.471 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:05:59.522 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 2, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
+16:05:59.522 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running HOT SAX Trie-based algorithm...
+16:05:59.592 [main] INFO  n.s.j.s.discord.HOTSAXImplementation - Trie built in : 4ms
+discord #0 "aaa", at 411 distance to closest neighbor: 1.5045846602966542, info string: "position 411, NN distance 1.5045846602966542, elapsed time: 517ms, distance calls: 328271"
+discord #1 "aaa", at 37 distance to closest neighbor: 0.4787744771810631, info string: "position 37, NN distance 0.4787744771810631, elapsed time: 1s133ms, distance calls: 1071973"
+discord #2 "aaa", at 539 distance to closest neighbor: 0.44370598373247144, info string: "position 539, NN distance 0.44370598373247144, elapsed time: 1s261ms, distance calls: 1316045"
 
-Discords found in 0h 0m 0s 764ms
+Discords found in 3s62ms
+
 </pre>
 
 in less than a second HOT-SAX finds exactly the same discords.
@@ -136,20 +134,19 @@ in less than a second HOT-SAX finds exactly the same discords.
 Now let's use our new technique:
 
 <pre>
-$ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data/ecg0606_1.csv 100 3 3 3 
-15:25:01.485 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
-15:25:01.488 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parsing param string "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
-15:25:01.488 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - reading from data/ecg0606_1.csv
-15:25:01.525 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - loaded 2299 points from 2299 lines in data/ecg0606_1.csv
-15:25:01.526 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
-15:25:01.526 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running RRA algorithm...
-15:25:01.590 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Whole timeseries covered by rule intervals ...
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 
+16:06:36.490 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:06:36.493 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:06:36.547 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
+16:06:36.547 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running RRA algorithm...
+16:06:36.610 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Whole timeseries covered by rule intervals ...
 params: [3, data/ecg0606_1.csv, 100, 3, 3, 3]
-discord #0 "pos,calls,len,rule 417 15235 110 8", at 417 distance to closest neighbor: 0.013448785622157254, info string: "position 417, length 110, NN distance 0.013448785622157254, elapsed time: 0h 0m 0s 71ms, distance calls: 15235"
-discord #1 "pos,calls,len,rule 2082 42574 111 32", at 2082 distance to closest neighbor: 0.004159294671527497, info string: "position 2082, length 111, NN distance 0.004159294671527497, elapsed time: 0h 0m 0s 78ms, distance calls: 42574"
-discord #2 "pos,calls,len,rule 1572 36689 109 28", at 1572 distance to closest neighbor: 0.004090035435808949, info string: "position 1572, length 109, NN distance 0.004090035435808949, elapsed time: 0h 0m 0s 59ms, distance calls: 36689"
+discord #0 "pos,calls,len,rule 417 15175 110 8", at 417 distance to closest neighbor: 0.013448785622157254, info string: "position 417, length 110, NN distance 0.013448785622157254, elapsed time: 89ms, distance calls: 15175"
+discord #1 "pos,calls,len,rule 2082 46805 111 32", at 2082 distance to closest neighbor: 0.004159294671527497, info string: "position 2082, length 111, NN distance 0.004159294671527497, elapsed time: 93ms, distance calls: 46805"
+discord #2 "pos,calls,len,rule 1572 36628 109 28", at 1572 distance to closest neighbor: 0.004090035435808949, info string: "position 1572, length 109, NN distance 0.004090035435808949, elapsed time: 63ms, distance calls: 36628"
 
-Discords found in 0h 0m 0s 278ms
+Discords found in 371ms
+
 </pre>
 
 in half time of that of HOT-SAX we find the same true best discord:
@@ -168,7 +165,7 @@ two next anomalies, however, are different from brute force and HOT-SAX runs.
 If we add the seventh parameter to the CLI command:
 
 <pre>
-$ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data/ecg0606_1.csv 100 3 3 3 true
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 true
 </pre>
 
 the code produces two files: `distances.txt` and `coverage.txt`.
@@ -262,20 +259,18 @@ If we increase values for PAA and Alphabet discretization coefficients from 3 to
 becomes clearly articulated by the drop in rule density curve, but **all** the RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:
 
 <pre>
-$ java -cp "grammarviz20.jar" edu.hawaii.jmotif.discord.GrammarVizDiscord 3 data/ecg0606_1.csv 100 5 5 3 true
-15:49:08.765 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
-15:49:08.768 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parsing param string "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
-15:49:08.768 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - reading from data/ecg0606_1.csv
-15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - loaded 2299 points from 2299 lines in data/ecg0606_1.csv
-15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 5, alphabet 5, reporting 3 discords.
-15:49:08.807 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - running RRA algorithm...
-15:49:08.946 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Whole timeseries covered by rule intervals ...
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 5 5 3 true
+16:07:43.702 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
+16:07:43.705 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
+16:07:43.756 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 5, alphabet 5, reporting 3 discords.
+16:07:43.756 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running RRA algorithm...
+16:07:43.881 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Whole timeseries covered by rule intervals ...
 params: [3, data/ecg0606_1.csv, 100, 5, 5, 3, true]
-discord #0 "pos,calls,len,rule 406 19051 114 25", at 406 distance to closest neighbor: 0.013228247590601405, info string: "position 406, length 114, NN distance 0.013228247590601405, elapsed time: 0h 0m 0s 91ms, distance calls: 19051"
-discord #1 "pos,calls,len,rule 34 85651 112 77", at 34 distance to closest neighbor: 0.004952943427593215, info string: "position 34, length 112, NN distance 0.004952943427593215, elapsed time: 0h 0m 0s 129ms, distance calls: 85651"
-discord #2 "pos,calls,len,rule 531 111391 102 28", at 531 distance to closest neighbor: 0.0043192923082177835, info string: "position 531, length 102, NN distance 0.0043192923082177835, elapsed time: 0h 0m 0s 144ms, distance calls: 111391"
+discord #0 "pos,calls,len,rule 406 18145 114 25", at 406 distance to closest neighbor: 0.013228247590601405, info string: "position 406, length 114, NN distance 0.013228247590601405, elapsed time: 109ms, distance calls: 18145"
+discord #1 "pos,calls,len,rule 34 80126 112 77", at 34 distance to closest neighbor: 0.004952943427593215, info string: "position 34, length 112, NN distance 0.004952943427593215, elapsed time: 135ms, distance calls: 80126"
+discord #2 "pos,calls,len,rule 531 132622 102 28", at 531 distance to closest neighbor: 0.0043192923082177835, info string: "position 531, length 102, NN distance 0.0043192923082177835, elapsed time: 193ms, distance calls: 132622"
 
-Discords found in 0h 0m 0s 508ms
+Discords found in 627ms
 </pre>
 
 <div class="container">
