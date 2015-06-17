@@ -46,7 +46,7 @@ In contrast, in this tutorial, we will be using command line.
 Here is an example of running GrammarViz 2.0 anomaly discovery module using CLI:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
 14:15:01.885 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[]"
 GrammarViz2 v. 1.0 release, contact: seninp@gmail.com
 Expected parameters: 
@@ -79,11 +79,11 @@ So, let's find discords in our dataset using the brute-force discord search
 I use **1** as a placeholder for PAA, and alphabet sizes.*):
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 1 data/ecg0606_1.csv 100 1 1 3
-16:05:35.026 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
-16:05:35.029 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
-16:05:35.090 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 1, data "data/ecg0606_1.csv", window 100, PAA 1, alphabet 1, reporting 3 discords.
-16:05:35.090 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running brute force algorithm...
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly 1 data/ecg0606_1.csv 100 1 1 3
+16:05:35.026 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parameters string: "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
+16:05:35.029 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parsing param string "[1, data/ecg0606_1.csv, 100, 1, 1, 3]"
+16:05:35.090 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Starting discords search with settings: algorithm 1, data "data/ecg0606_1.csv", window 100, PAA 1, alphabet 1, reporting 3 discords.
+16:05:35.090 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - running brute force algorithm...
 16:05:35.094 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - currently known discords: 0 out of 3
 16:05:36.363 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - best discord found at 411, best distance: 1.5045846602966542, in 1s208ms distance calls: 4203050
 16:05:36.364 [main] DEBUG n.s.j.s.d.BruteForceDiscordImplementation - position 411, NN distance 1.5045846602966542, elapsed time: 1s269ms, distance calls: 4203050
@@ -114,11 +114,11 @@ about 1.2 seconds later the code reports the best discord at the position 411:
 Now let's use HOT-SAX algorithm to find discords:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 2 data/ecg0606_1.csv 100 3 3 3 
-16:05:59.467 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
-16:05:59.471 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
-16:05:59.522 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 2, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
-16:05:59.522 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running HOT SAX Trie-based algorithm...
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly 2 data/ecg0606_1.csv 100 3 3 3 
+16:05:59.467 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parameters string: "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:05:59.471 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parsing param string "[2, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:05:59.522 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Starting discords search with settings: algorithm 2, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
+16:05:59.522 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - running HOT SAX Trie-based algorithm...
 16:05:59.592 [main] INFO  n.s.j.s.discord.HOTSAXImplementation - Trie built in : 4ms
 discord #0 "aaa", at 411 distance to closest neighbor: 1.5045846602966542, info string: "position 411, NN distance 1.5045846602966542, elapsed time: 517ms, distance calls: 328271"
 discord #1 "aaa", at 37 distance to closest neighbor: 0.4787744771810631, info string: "position 37, NN distance 0.4787744771810631, elapsed time: 1s133ms, distance calls: 1071973"
@@ -134,12 +134,12 @@ in less than a second HOT-SAX finds exactly the same discords.
 Now let's use our new technique:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 
-16:06:36.490 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
-16:06:36.493 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
-16:06:36.547 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
-16:06:36.547 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running RRA algorithm...
-16:06:36.610 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Whole timeseries covered by rule intervals ...
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 
+16:06:36.490 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parameters string: "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:06:36.493 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parsing param string "[3, data/ecg0606_1.csv, 100, 3, 3, 3]"
+16:06:36.547 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 3, alphabet 3, reporting 3 discords.
+16:06:36.547 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - running RRA algorithm...
+16:06:36.610 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Whole timeseries covered by rule intervals ...
 params: [3, data/ecg0606_1.csv, 100, 3, 3, 3]
 discord #0 "pos,calls,len,rule 417 15175 110 8", at 417 distance to closest neighbor: 0.013448785622157254, info string: "position 417, length 110, NN distance 0.013448785622157254, elapsed time: 89ms, distance calls: 15175"
 discord #1 "pos,calls,len,rule 2082 46805 111 32", at 2082 distance to closest neighbor: 0.004159294671527497, info string: "position 2082, length 111, NN distance 0.004159294671527497, elapsed time: 93ms, distance calls: 46805"
@@ -165,7 +165,7 @@ two next anomalies, however, are different from brute force and HOT-SAX runs.
 If we add the seventh parameter to the CLI command:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 true
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 true
 </pre>
 
 the code produces two files: `distances.txt` and `coverage.txt`.
@@ -259,12 +259,12 @@ If we increase values for PAA and Alphabet discretization coefficients from 3 to
 becomes clearly articulated by the drop in rule density curve, but **all** the RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.anomaly.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 5 5 3 true
-16:07:43.702 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parameters string: "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
-16:07:43.705 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Parsing param string "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
-16:07:43.756 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 5, alphabet 5, reporting 3 discords.
-16:07:43.756 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - running RRA algorithm...
-16:07:43.881 [main] INFO  net.seninp.anomaly.GrammarVizAnomaly - Whole timeseries covered by rule intervals ...
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 5 5 3 true
+16:07:43.702 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parameters string: "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
+16:07:43.705 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Parsing param string "[3, data/ecg0606_1.csv, 100, 5, 5, 3, true]"
+16:07:43.756 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Starting discords search with settings: algorithm 3, data "data/ecg0606_1.csv", window 100, PAA 5, alphabet 5, reporting 3 discords.
+16:07:43.756 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - running RRA algorithm...
+16:07:43.881 [main] INFO  net.seninp.grammarviz.GrammarVizAnomaly - Whole timeseries covered by rule intervals ...
 params: [3, data/ecg0606_1.csv, 100, 5, 5, 3, true]
 discord #0 "pos,calls,len,rule 406 18145 114 25", at 406 distance to closest neighbor: 0.013228247590601405, info string: "position 406, length 114, NN distance 0.013228247590601405, elapsed time: 109ms, distance calls: 18145"
 discord #1 "pos,calls,len,rule 34 80126 112 77", at 34 distance to closest neighbor: 0.004952943427593215, info string: "position 34, length 112, NN distance 0.004952943427593215, elapsed time: 135ms, distance calls: 80126"
