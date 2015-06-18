@@ -61,7 +61,7 @@ Figure 13 of the paper further explains the nature of this true anomaly:
 By following the build instructions from our source code repository you can build a stand-alone jar file which we are going to use. It is named as `grammarviz2-X.X.X-SNAPSHOT-jar-with-dependencies.jar` where `X.X.X` is the latest release version. For this tutorial I have used the version tagged with
 [`cli_pre-release`](https://github.com/GrammarViz2/grammarviz2_src/releases/tag/cli_pre-release) tag which you can checkout from repo by running `$ git checkout cli_pre-release`.
 
-Running the jar as usual, i.e., `java -jar ...` runs GUI, thus we must specify a specific class name which implements a CLI interface. If run without parameters, this will print a short help message:
+Running the jar as usual, i.e., `java -jar ...` runs GUI, thus we must specify a specific class name (the one implementing the CLI interface). If run without parameters, this will print a short help message:
 
 <pre>
 
