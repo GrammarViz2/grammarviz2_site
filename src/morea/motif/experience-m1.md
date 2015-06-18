@@ -9,7 +9,7 @@ morea_labels:
  - tutorial
 ---
 
-## Recurrent patterns discovery with GrammarViz 2.0
+## Recurrent patterns discovery with GrammarViz 2.0 GUI
 
 ### 1. Introduction
 We discuss two use-cases which show GrammarViz GUI utility in variable length time series pattern discovery.

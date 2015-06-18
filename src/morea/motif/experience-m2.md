@@ -9,12 +9,10 @@ morea_labels:
  - tutorial
 ---
 
-### Experiential Learning 2
-
-## Recurrent patterns discovery with GrammarViz 2.0
+## Recurrent patterns discovery with GrammarViz 2.0 and command line
 
 ### 1. Introduction
-We discuss two use-cases which show GrammarViz GUI utility in variable length time series pattern discovery.
+We discuss same as in GUI tutorial use-cases which show GrammarViz utility in variable length time series pattern discovery.
 
 ### 2. Dataset used
 Two datasets are used in this demo:
@@ -59,50 +57,118 @@ Figure 13 of the paper further explains the nature of this true anomaly:
   </div>
 </div>
 
-### 3. Time series discretization and grammar induction
-There are two ways to perform time series discretization: global and overlapping sliding window-based (these are toggled by the checkbox "Slide the window"). We are using sliding window-based discretization in this demo.
+### 3. Using CLI.
+By following the build instructions from our source code repository you can build a stand-alone jar file which we are going to use. It is named as `grammarviz2-X.X.X-SNAPSHOT-jar-with-dependencies.jar` where `X.X.X` is the latest release version. For this tutorial I have used the version tagged with
+[`cli_pre-release`](https://github.com/GrammarViz2/grammarviz2_src/releases/tag/cli_pre-release) tag which you can checkout from repo by running `$ git checkout cli_pre-release`.
 
-The process of time series subsequence discretization is configured by three numerical parameters: sliding window size, PAA size, and the Alphabet size. These adjust discretization granularity, which typically affects the higher level algorithms sensitivity and selectivity, such as the ability to capture a local phenomenon. *Note however, that grammar induction step effectively mitigates improper sliding window selection.*
+Running the jar as usual, i.e., `java -jar ...` runs GUI, thus we must specify a specific class name which implements a CLI interface. If run without parameters, this will print a short help message:
 
-The grammar induction process requires no parameters.
+<pre>
+
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar
+Usage: <'main class'> [options] 
+  Options:
+    --alphabet_size, -a
+       SAX alphabet size
+       Default: 4
+    --data_in, -d
+       The input file name
+    --data_out, -o
+       The output file name
+    --help, -h
+       Default: false
+    --strategy
+       Numerosity reduction strategy
+       Default: NONE
+       Possible Values: [NONE, EXACT, MINDIST]
+    --threshold
+       Normalization threshold
+       Default: 0.01
+    --window_size, -w
+       Sliding window size
+       Default: 30
+    --word_size, -p
+       PAA word size
+       Default: 6
+       
+</pre>
+
 
 ### 4. Variable length recurrent patterns discovery
-We use winding dataset in this example. Go "Browse"->select `winding.csv`->"Load data". GUI shows the plot of winding data. Now adjust discretization parameters: "Window size" 100, "PAA Size" 4, and "Alphabet size" 3. Push "Process data". At this point GUI displays grammar rules. Click on the "Mean length" column header, this sorts the table in ascending order, click again, this sorts the table in descending order. Click on the rule which has longest mean length, GUI shows that rule #29 has length ~353 and observed twice:
+We use winding dataset in this tutorial with parameters of sliding window 100, PAA size 4 , alphabet size 3, and EXACT numerosity reduction strategy:
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
-      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-winding01.png" width="800px" class="img-responsive center-block">
-    </div>
-  </div>
-</div>
+<pre>
 
-similarly, rules #21 and #33 are observed twice and have lengths of ~227 and ~187 respectively.
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/winding_col.txt -o winding_grammar.txt -w 100 -p 4 -a 3 --strategy EXACT
+GrammarViz2 CLI converter v.1
+parameters:
+  input file:                  data/winding_col.txt
+  output file:                 winding_grammar.txt
+  SAX sliding window size:     100
+  SAX PAA size:                4
+  SAX alphabet size:           3
+  SAX numerosity reduction:    EXACT
+  SAX normalization threshold: 0.01
 
-Now, click two times on the "Frequency in `R0`" column header and choose the most frequent rule which is #8:
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
-      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-winding02.png" width="800px" class="img-responsive center-block">
-    </div>
-  </div>
-</div>
+14:19:28.906 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Reading data ...
+14:19:29.102 [main] INFO  n.s.g.cli.TS2SequiturGrammar - read 2500 points from null
+14:19:29.102 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Performing SAX conversion ...
+14:19:29.198 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Inferring Sequitur grammar ...
+14:19:29.309 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Collecting stats ...
+14:19:29.320 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Producing the output ...
 
-the lengths of subsequences corresponding to this rule ranges from 102 to 121 and few of these subsequences overlap.
+</pre>
 
-*Note that these variable-length subsequences correspond to single rule of the same grammar inferred by Sequitur from a discretized time series.*
+This will yield a file named `winding_grammar.txt` containing the inferred grammar description and corresponding to its rules subsequences.
 
-Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4, the algorithm finds that the most frequently occurring rules are normal heartbeats:
+The rule #29 description from this file demonstrates the algorithm's ability to capture repeated patterns of a length much larger than the original sliding window size. The subsequences corresponding to this rule are of length 354 and 353:
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
-      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_02.png" width="800px" class="img-responsive center-block">
-    </div>
-  </div>
-</div>
+<pre>
+...
+/// R29
+R29 -> 'R50 abbc abcc abcb R6 R46 R8 R13 R4 cacb R45 R52 R6 R16 bcba R20 R1 R2 acbb acba acbb', expanded rule string: 'bbac bbbc abbc abcc abcb bbcb bbca bcca bcba bcbb bcab ccab cbab cbac caac caab cbab cbbb cabb cacb bacb bbcb bbbb bbbc abbc acbc acbb abbb bbbb bbcb bbca cbca cbba bbba bcba ccaa cbaa cbab cbac caac baac babc babb bacb bbcb bbbb abbb acbb acba acbb '
+subsequences starts: [806, 1806]
+subsequences lengths: [354, 353]
+rule occurrence frequency 2
+rule use frequency 2
+min length 353
+max length 354
+mean length 353
+...
+</pre>
 
+at the same time, the subsequences corresponding to the most frequent rule #8 vary in length between 102 and 121 points:
+
+<pre>
+...
+/// R8
+R8 -> 'bcbb bcab', expanded rule string: 'bcbb bcab '
+subsequences starts: [61, 115, 341, 565, 640, 852, 1565, 1640, 1853, 2060, 2341]
+subsequences lengths: [102, 103, 121, 109, 107, 114, 109, 108, 113, 103, 120]
+rule occurrence frequency 11
+rule use frequency 5
+min length 102
+max length 121
+mean length 109
+...
+</pre>
+
+Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4 (`java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/ecg0606_1.csv -o ecg_grammar.txt -w 100 -p 8 -a 4 --strategy EXACT`), the algorithm finds that the most frequently occurring rules are normal heartbeats ranging in length from 105 to 107 points:
+
+<pre>
+...
+/// R6
+R6 -> 'bbcbbdab bbcbcdab', expanded rule string: 'bbcbbdab bbcbcdab '
+subsequences starts: [62, 209, 506, 652, 798, 943, 1087, 1234, 1384, 1533, 1682, 1828, 1973, 2115]
+subsequences lengths: [105, 107, 107, 105, 107, 106, 106, 106, 106, 107, 106, 107, 107, 107]
+rule occurrence frequency 14
+rule use frequency 4
+min length 105
+max length 107
+mean length 106
+...
+</pre>
 
 ## 5. Discussion
 Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, the shown above recurrent pattern discovery technique yields sets of frequent subsequences of a *variable length*.
