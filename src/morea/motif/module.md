@@ -9,6 +9,7 @@ morea_readings:
  - reading-m1
 morea_experiences:
  - experience-m1
+ - experience-m2 
 morea_assessments:
 morea_sort_order: 2
 morea_labels:
