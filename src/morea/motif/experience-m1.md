@@ -9,8 +9,6 @@ morea_labels:
  - tutorial
 ---
 
-### Experiential Learning 2
-
 ## Recurrent patterns discovery with GrammarViz 2.0
 
 ### 1. Introduction
