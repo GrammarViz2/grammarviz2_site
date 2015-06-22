@@ -47,7 +47,7 @@ Here is an example of running GrammarViz 2.0 anomaly discovery module using CLI:
 
 <pre>
 $ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
-14:15:01.885 [main] INFO  e.h.jmotif.discord.GrammarVizDiscord - Parameters string: "[]"
+14:13:01.977 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - Parameters string: "[]"
 GrammarViz2 v. 1.0 release, contact: seninp@gmail.com
 Expected parameters: 
  [1] algorithm to use: 1 - brute force, 2 - HOT SAX, backed by a Trie
