@@ -172,3 +172,11 @@ mean length 106
 
 ## 5. Discussion
 Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, the shown above recurrent pattern discovery technique yields sets of frequent subsequences of a *variable length*.
+
+<!-- Add a github ribbon. -->
+<link rel="stylesheet" href="../../css/gh-fork-ribbon.css">
+<div class="github-fork-ribbon-wrapper right">
+  <div class="github-fork-ribbon">
+    <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
+  </div>
+</div>
