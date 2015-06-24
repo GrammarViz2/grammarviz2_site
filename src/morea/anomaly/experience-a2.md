@@ -357,7 +357,7 @@ dev.off()
 </pre>
 
 <!-- Add a github ribbon. -->
-<link rel="stylesheet" href="css/gh-fork-ribbon.css">
+<link rel="stylesheet" href="../css/gh-fork-ribbon.css">
 <div class="github-fork-ribbon-wrapper right">
   <div class="github-fork-ribbon">
     <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
