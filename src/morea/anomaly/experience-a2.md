@@ -171,7 +171,8 @@ since HOT-SAX is an exact algorithm, it finds exactly the same discords as the b
 Now let's use our proposed algorithm:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
 
 GrammarViz2 CLI anomaly discovery
 parameters:
@@ -311,7 +312,8 @@ If we increase values for PAA and Alphabet discretization coefficients from 3 to
 becomes clearly articulated by the drop in rule density curve, but **most** of RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
 
 GrammarViz2 CLI anomaly discovery
 parameters:
