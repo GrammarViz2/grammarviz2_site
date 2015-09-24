@@ -227,7 +227,8 @@ discord #4 "bbc", at 188 distance to closest neighbor: 0.41770204691861385, info
 <p>Now let’s use our proposed algorithm:</p>
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
 
 GrammarViz2 CLI anomaly discovery
 parameters:
@@ -369,7 +370,8 @@ discovery of this true anomaly with Density Curve approach is twice as small as 
 becomes clearly articulated by the drop in rule density curve, but <strong>most</strong> of RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:</p>
 
 <pre>
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
 
 GrammarViz2 CLI anomaly discovery
 parameters:
@@ -530,7 +532,7 @@ analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="st
 
     
     <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2015-09-24 10:27:42 +0200</span></p>
+       Last update on: <span>2015-09-24 10:29:10 +0200</span></p>
     <p style="margin: 0">
       2 modules
       <!--  -->
