@@ -5,7 +5,7 @@ kramdown:
   input: GFM
   syntax_highlighter: pygments
 mathjax: true
-baseurl: /grammarviz3_site
+baseurl: /grammarviz2_site
 exclude: [morea]
 morea_theme: flatly
 morea_navbar_items:
