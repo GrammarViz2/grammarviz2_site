@@ -30,9 +30,9 @@ morea_type: home
       <p>GrammarViz approach for time series pattern discovery is based on two algorithms that have linear time and space complexity:
          (i) <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time
          series into a string, and (ii) <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.
-         Recently, we also added another grammar induction algorithm called 
+         Recently, we added another grammar induction algorithm called 
          <a href="http://ieeexplore.ieee.org/document/892708/?arnumber=892708">Re-Pair</a>, which is a bit slower than Sequitur, but powers
-         an additional capability of our tool -- an automated discretization parameters selection.  
+         an additional capability of our tool -- the automated discretization parameters selection.  
       </p>
       <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to identify rare and frequent grammar rules
          <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY"><em>in real time</em></a>, i.e., along with the signal acquisition.
