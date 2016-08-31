@@ -3,7 +3,7 @@
 <div class="row top-buffer">
   <div class="col-md-12">
    <h2><strong>Welcome to GrammarViz 3.0 homepage!</strong></h2>
-   <h4><span itemprop="applicationCategory">Open source Java tool for time series mining</span> that runs on virtually <span itemprop="operatingSystem">all</span> platforms.</h4>
+   <h4><span itemprop="applicationCategory">Open source Java tool for time series pattern mining</span> that runs on virtually <span itemprop="operatingSystem">all</span> platforms.</h4>
    <h5><i>Quick links: GUI-based discovery of 
     <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomaly</a> and
     <a href="http://grammarviz2.github.io/grammarviz2_site/morea/motif/experience-m1.html">motif</a>; command line use for
@@ -20,10 +20,13 @@
 <div class="container-fluid">
 <div class="row top-buffer">
     <div class="col-sm-9">
-      <h3><strong>Time series anomaly and recurrent patterns discovery made interactive</strong></h3>
-      <p>GrammarViz 2.0 approach is based on two algorithms that have linear time and space complexity:
+      <h3><strong>Time series anomaly and recurrent pattern discovery made interactive</strong></h3>
+      <p>GrammarViz approach for time series pattern discovery is based on two algorithms that have linear time and space complexity:
          (i) <a href="http://www.cs.gmu.edu/~jessica/sax.htm">Symbolic Aggregate approXimation</a> (SAX), that discretizes the input time
          series into a string, and (ii) <a href="http://www.sequitur.info/">Sequitur</a>, that induces a context-free grammar (CFG) from it.
+         Recently, we also added another grammar induction algorithm called 
+         <a href="http://ieeexplore.ieee.org/document/892708/?arnumber=892708">Re-Pair</a>, which is a bit slower than Sequitur, but powers
+         an additional capability of our tool -- an automated discretization parameters selection.  
       </p>
       <p>By exploiting the hierarchical structure of CFG, GrammarViz is able to identify rare and frequent grammar rules
          <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY"><em>in real time</em></a>, i.e., along with the signal acquisition.
@@ -56,7 +59,7 @@
     </div>
     <div class="col-sm-9">
       <h3><strong>User and developer friendly platform</strong></h3>
-      <p>GrammarViz 2.0 is developed in Java and runs on all platforms.
+      <p>GrammarViz 3.0 is developed in Java and runs on all platforms.
          It can be used as a stand-alone application with GUI, called from a command line, or linked as a library.
          For GUI, we followed the Model–view–controller (MVC) pattern which allows for the code re-use, for example in a web applicaion.
          Our code is hosted at <a href="https://github.com/GrammarViz2/grammarviz2_src">GitHub</a>, we care about it, and using
