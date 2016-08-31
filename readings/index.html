@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Readings | GrammarViz 2.0 </title>
+  <title> Readings | GrammarViz 3.0 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
   <!--  Load bootswatch-based Morea theme file. -->
-  <link rel="stylesheet" href="/grammarviz2_site/css/themes/flatly/bootstrap.min.css">
-  <link rel="stylesheet" href="/grammarviz2_site/css/style.css">
-  <link rel="stylesheet" href="/grammarviz2_site/css/syntax.css">
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
-  <link rel="shortcut icon" href="/grammarviz2_site/favicon.ico" type="image/x-icon" />
-
-  <!--  Load LaTeX processing stuff. -->
-  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
-  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  <!--  Google check-up. -->
-  <meta name="google-site-verification" content="IPRp9YV-GjZISFj5du9xbjjiTWKkc9Rpwb3_md6PIe8" />
-  <link rel="alternate" href="http://example.com/en" hreflang="en" />
+  <link rel="stylesheet" href="/grammarviz3_site/css/themes/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="/grammarviz3_site/css/style.css">
+  <link rel="stylesheet" href="/grammarviz3_site/css/syntax.css">
+  <link rel="shortcut icon" href="/grammarviz3_site/favicon.ico" type="image/x-icon"/>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
   <![endif]-->
 
   <!-- Load Bootstrap JavaScript components -->
-  <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  
+  <script type="text/javascript"
+          src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+  
+
+  <!-- <script>
+    $(window).load(function () {
+      // If on a page associated with a navbar item, make its navbar item 'active'.
+      $('.navbar-nav').find('a[href="' + location.pathname + '"]').parents('li').addClass('active');
+    });
+  </script> -->
+
 </head>
 <body>
 <!-- Responsive navbar -->
@@ -40,56 +45,35 @@
         <!--  Display three horizontal lines when navbar collapsed. -->
         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/grammarviz2_site/index.html"> GrammarViz 2.0 </a>
+      <a class="navbar-brand" href="/grammarviz3_site/index.html"> GrammarViz 3.0 </a>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/grammarviz2_site/modules/">Modules</a></li>
-        <!--  -->
         
-          <li><a href="/grammarviz2_site/readings/">Readings</a></li>
+        <li><a href="/grammarviz3_site/modules/">Modules</a></li>
         
         
-          <li><a href="/grammarviz2_site/experiences/">Experiences</a></li>
+        <li><a href="/grammarviz3_site/readings/">Readings</a></li>
         
-        <!--  -->
+        
+        <li><a href="/grammarviz3_site/experiences/">Experiences</a></li>
+        
+        
+        
       </ul>
     </div>
   </div>
 </div>
 
 
-  <div class="container">
-  <h1>Presentations</h1>
-</div>
 
-<div class="section-background-1">
+<div class="breadcrumb-bar">
   <div class="container">
-   <div class="row">
-    <div class="col-sm-4">
-        <script async="" class="speakerdeck-embed" data-id="7b79415d9e9d4c9c9ac075a1c5743a12" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-     </div>
-     <div class="col-sm-4">
-        <script async="" class="speakerdeck-embed" data-id="3336d38017de01329f66460735b58e3e" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-     </div>
-     <div class="col-sm-4">
-        <script async="" class="speakerdeck-embed" data-id="21b7703da5a44d42925e6a5212367be9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-     </div>
-   </div>
- </div>
-</div>
-
-<div class="container">
-  <h1>Videos and tutorials</h1>
-</div>
-
-<div class="row">
-  <div class="container">
-    <div class="col-md-10">
-         <div class="embed-responsive embed-responsive-16by9">
-           <iframe width="480" height="310" class="embed-responsive-item" src="//www.youtube.com/embed/9lH-RG5OtkY" frameborder="0" allowfullscreen=""></iframe>
-         </div>
-    </div>
+    <ol class="breadcrumb">
+        
+      <li><a href="/grammarviz3_site/">Home</a></li>
+      <li class="active">Readings</li>
+    </ol>
   </div>
 </div>
 
@@ -99,14 +83,14 @@
 
 <div class="section-background-1">
   <div class="container">
-    <h2><small>Module:</small> <a href="/grammarviz2_site/modules/anomaly/index.html">Time series anomaly discovery</a></h2>
+    <h2><small>Module:</small> <a href="/grammarviz3_site/modules/anomaly/">Time series anomaly discovery</a></h2>
 
     <div class="row">
     
       
        <div class="col-sm-3">
-         <div class="thumbnail">
-           <h4><a href="/grammarviz2_site/morea/anomaly/reading-a1.html">Temporal anomaly discovery</a></h4>
+         <a href="/grammarviz3_site/morea/anomaly/reading-a1.html" class="thumbnail">
+           <h4>Temporal anomaly discovery</h4>
              <p>Discusses previous work on time series anomaly discovery.</p>
 
              <p>
@@ -114,7 +98,7 @@
                <span class="badge">previous work</span>
              
              </p>
-         </div>
+         </a>
        </div>
         
         
@@ -123,8 +107,8 @@
     
       
        <div class="col-sm-3">
-         <div class="thumbnail">
-           <h4><a href="http://www.mdpi.com/journal/entropy/special_issues/kolmogorov_complexity">On complexity, entropy, and compression</a></h4>
+         <a href="http://www.mdpi.com/journal/entropy/special_issues/kolmogorov_complexity" class="thumbnail">
+           <h4>On complexity, entropy, and compression</h4>
              <p>Entropy journal Special Issue on Special Issue Kolmogorov Complexity</p>
 
              <p>
@@ -132,7 +116,7 @@
                <span class="badge">external-link</span>
              
              </p>
-         </div>
+         </a>
        </div>
         
         
@@ -145,14 +129,14 @@
 
 <div class="section-background-2">
   <div class="container">
-    <h2><small>Module:</small> <a href="/grammarviz2_site/modules/motif/index.html">Time series recurrent pattern discovery</a></h2>
+    <h2><small>Module:</small> <a href="/grammarviz3_site/modules/motif/">Time series recurrent pattern discovery</a></h2>
 
     <div class="row">
     
       
        <div class="col-sm-3">
-         <div class="thumbnail">
-           <h4><a href="http://www.cs.gmu.edu/~jessica/GrammarViz.html">The original GrammarViz work.</a></h4>
+         <a href="http://www.cs.gmu.edu/~jessica/GrammarViz.html" class="thumbnail">
+           <h4>The original GrammarViz work.</h4>
              <p>Visualizing Variable-Length Time Series Motifs</p>
 
              <p>
@@ -160,7 +144,7 @@
                <span class="badge">external-link</span>
              
              </p>
-         </div>
+         </a>
        </div>
         
         
@@ -171,22 +155,17 @@
   </div>
 </div>
 
-<!-- Add a github ribbon. -->
-<link rel="stylesheet" href="../css/gh-fork-ribbon.css" />
-
-<div class="github-fork-ribbon-wrapper right">
-  <div class="github-fork-ribbon">
-    <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
-  </div>
-</div>
 
 
 
 
-<div class="footer-background">
-<footer>
-  <div class="container page-footer">
-    
+
+<script src="/grammarviz3_site/js/scrollIfAnchor.js"></script>
+
+<div class="footer-background hidden-print">
+  <footer>
+    <div class="container page-footer">
+      
       <p>Continuous Integration:&nbsp;&nbsp; <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src"><img src="https://travis-ci.org/GrammarViz2/grammarviz2_src.svg?branch=master" /> (master)</a></p>
 <p>Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:#">seninp@gmail.com</a><br /></p>
 
@@ -216,22 +195,24 @@ scJsHost+
 analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/10360660/0/391036a7/1/" alt="shopify site analytics" /></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
 
-    
-    <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-       Last update on: <span>2015-09-24 10:29:10 +0200</span></p>
-    <p style="margin: 0">
-      2 modules
-      <!--  -->
       
+      <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
+        Last update on: <span>2016-08-31 15:47:57 -0600</span></p>
+
+      <p style="margin: 0">
+        
+        2 modules
+        
+        
         | 3 readings
-      
-      
+        
+        
         | 4 experiences
-      
-      <!--  -->
-    </p>
-  </div>
-</footer>
+        
+        
+      </p>
+    </div>
+  </footer>
 </div>
 </body>
 </html>
