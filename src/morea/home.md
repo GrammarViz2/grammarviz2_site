@@ -8,7 +8,7 @@ morea_type: home
 <div class="container-fluid">
 <div class="row top-buffer">
   <div class="col-md-12">
-   <h2><strong>Welcome to GrammarViz 2.0 homepage!</strong></h2>
+   <h2><strong>Welcome to GrammarViz 3.0 homepage!</strong></h2>
    <h4><span itemprop="applicationCategory">Open source Java tool for time series mining</span> that runs on virtually <span itemprop="operatingSystem">all</span> platforms.</h4>
    <h5><i>Quick links: GUI-based discovery of 
     <a href="http://grammarviz2.github.io/grammarviz2_site/morea/anomaly/experience-a1.html">anomaly</a> and
