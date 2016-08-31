@@ -2,6 +2,7 @@
 layout: default
 title: Readings
 ---
+<<<<<<< HEAD
 
 <div class="container">
   <h1>Presentations</h1>
@@ -43,6 +44,29 @@ title: Readings
 <div class="container">
   <h1>Readings and other resources <small>in module order</small></h1>
 </div>
+=======
+<div class="breadcrumb-bar">
+  <div class="container">
+    <ol class="breadcrumb">
+        {% if site.morea_head_breadcrumb_link %}
+          <li><a href="{{ site.morea_head_breadcrumb_link }}">{{ site.morea_head_breadcrumb_label }}</a></li>
+          {% endif %}
+      <li><a href="{{ site.baseurl }}/">Home</a></li>
+      <li class="active">{{ page.title }}</li>
+    </ol>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Readings and other resources <small>in module order</small></h1>
+</div>
+
+{% if site.morea_overview_readings %}
+<div class="container">
+  {{ site.morea_overview_readings.content | markdownify }}
+</div>
+{% endif %}
+>>>>>>> core/master
 
 {% for module in site.morea_module_pages %}
 {% if module.morea_coming_soon != true and module.morea_readings.size > 0 %}
@@ -54,15 +78,24 @@ title: Readings
     {% for page_id in module.morea_readings %}
       {% assign reading = site.morea_page_table[page_id] %}
        <div class="col-sm-3">
+<<<<<<< HEAD
          <div class="thumbnail">
            <h4><a href="{{ reading.morea_url }}">{{ reading.title }}</a></h4>
+=======
+         <a href="{{ reading.morea_url }}" class="thumbnail">
+           <h4>{{ reading.title }}</h4>
+>>>>>>> core/master
              {{ reading.morea_summary | markdownify }}
              <p>
              {% for label in reading.morea_labels %}
                <span class="badge">{{ label }}</span>
              {% endfor %}
              </p>
+<<<<<<< HEAD
          </div>
+=======
+         </a>
+>>>>>>> core/master
        </div>
         {% if forloop.index == 4 %}
           </div><div class="row">
@@ -82,6 +115,7 @@ title: Readings
 </div>
 {% endif %}
 {% endfor %}
+<<<<<<< HEAD
 
 <!-- Add a github ribbon. -->
 <link rel="stylesheet" href="../css/gh-fork-ribbon.css">
@@ -90,3 +124,5 @@ title: Readings
     <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
   </div>
 </div>
+=======
+>>>>>>> core/master

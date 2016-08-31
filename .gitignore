@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 _site/
 .idea
 .DS_Store
+=======
+# Keep IntelliJ files out of github to reduce potential conflicts when others import.
+
+.idea
+core.iml
+src/_site
+>>>>>>> core/master
