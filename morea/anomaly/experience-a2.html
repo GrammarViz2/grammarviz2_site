@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Time series anomaly detection using GrammarViz 2.0 CLI (command line interface) | GrammarViz 3.0 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!--  Load bootswatch-based Morea theme file. -->
+  <link rel="stylesheet" href="/grammarviz3_site/css/themes/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="/grammarviz3_site/css/style.css">
+  <link rel="stylesheet" href="/grammarviz3_site/css/syntax.css">
+  <link rel="shortcut icon" href="/grammarviz3_site/favicon.ico" type="image/x-icon"/>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  
+  <script type="text/javascript"
+          src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+  
+
+  <!-- <script>
+    $(window).load(function () {
+      // If on a page associated with a navbar item, make its navbar item 'active'.
+      $('.navbar-nav').find('a[href="' + location.pathname + '"]').parents('li').addClass('active');
+    });
+  </script> -->
+
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/grammarviz3_site/index.html"> GrammarViz 3.0 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+        <li><a href="/grammarviz3_site/modules/">Modules</a></li>
+        
+        
+        <li><a href="/grammarviz3_site/readings/">Readings</a></li>
+        
+        
+        <li><a href="/grammarviz3_site/experiences/">Experiences</a></li>
+        
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="breadcrumb-bar">
+  <div class="container">
+    <ol class="breadcrumb">
+      
+      <li><a href="/grammarviz3_site/">Home</a></li>
+      <li><a href="/grammarviz3_site/modules">Modules</a></li>
+      <li><a href="/grammarviz3_site/modules/anomaly">Time series anomaly discovery</a></li>
+      <li class="active">Time series anomaly detection using GrammarViz 2.0 CLI (command line interface)</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="container">
+  <h3 id="experiential-learning-2">Experiential Learning 2</h3>
+
+<h2 id="anomaly-discovery-with-grammarviz-20-using-command-line-interface">Anomaly discovery with GrammarViz 2.0 using command line interface</h2>
+
+<h3 id="introduction">1. Introduction</h3>
+<p>In this module we discuss the anomaly detection in QTDB 0606 ECG dataset. This data set (database record) can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PHYSIONET FTP</a> and converted into the text format by executing this command</p>
+<pre>
+rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' &gt;0606.csv
+</pre>
+<p>in the linux shell (assuming that you have rdsamp installed at your system).
+We use the second column of this file. This is our dataset overview:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/qtdb0606.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>We know, that the third heartbeat of this dataset contains the true anomaly as it was discussed in <a href="http://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf">HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: “<em>… We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat….</em>”
+Figure 13 of the paper further explains the nature of this true anomaly:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_cluster.png" width="400px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<h2 id="running-grammarviz-20-using-cli-interface">2. Running GrammarViz 2.0 using CLI interface</h2>
+<p>Note, that by default, the GrammarViz 2.0 jar file is configured to launch GUI.
+In contrast, in this tutorial, we will be using command line.
+Here is an example of running GrammarViz 2.0 anomaly discovery module using CLI:</p>
+
+<pre>
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
+Usage: &lt;main class&gt; [options] 
+  Options:
+    --algorithm, -alg
+       The algorithm to use
+       Default: RRA
+       Possible Values: [BRUTEFORCE, HOTSAX, RRA]
+    --alphabet_size, -a
+       SAX alphabet size
+       Default: 4
+    --data, -i
+       The input file name
+    --output, -o
+       The output file prefix
+       Default: &lt;empty string&gt;
+    --discords_num, -n
+       The algorithm to use
+       Default: 5
+    --gi, -g
+       GI algorithm to use
+       Default: Sequitur
+       Possible Values: [Sequitur, Re-Pair]
+    --strategy
+       Numerosity reduction strategy
+       Default: EXACT
+       Possible Values: [NONE, EXACT, MINDIST]
+    --threshold
+       Normalization threshold
+       Default: 0.01
+    --window_size, -w
+       Sliding window size
+       Default: 170
+    --word_size, -p
+       PAA word size
+       Default: 4
+</pre>
+
+<p>As shown, the code prints a help output expecting a number of parameters to be specified. The expected parameters are:</p>
+
+<ul>
+  <li>The dataset name.</li>
+  <li>A discord discovery algorithm to use, depending on this choice, other parameters are required.</li>
+  <li>A number specifying how many discords to discover.</li>
+  <li>The output files prefix, if none is given, no files produced.</li>
+  <li>The GI algorithm switch.</li>
+  <li>The SAX transform parameters:
+    <ul>
+      <li>the sliding window size;</li>
+      <li>the PAA transform size;</li>
+      <li>the alphabet size;</li>
+      <li>the Z-normalization threshold value.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="brute-force-discord-discovery">2.1. Brute-force discord discovery</h3>
+<p>Let’s find discords in our dataset using the brute-force discord search:</p>
+
+<pre>
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg BRUTEFORCE -i data/ecg0606_1.csv -w 100
+GrammarViz2 CLI anomaly discovery
+parameters:
+ input file:                  data/ecg0606_1.csv
+ output files prefix:         
+ Algorithm implementation:    BRUTEFORCE
+ Num. of discords to report:  5
+ SAX sliding window size:     100
+
+09:25:45.110 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - Reading data ...
+09:25:45.154 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - read 2299 points from data/ecg0606_1.csv
+09:25:45.154 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - running brute force algorithm...
+
+discord #0 "#0", at 411 distance to closest neighbor: 1.5045846602966542, info string: "elapsed time: 1s699ms, distance calls: 4403702"
+discord #1 "#1", at 37 distance to closest neighbor: 0.4787744771810631, info string: "elapsed time: 1s312ms, distance calls: 4004102"
+discord #2 "#2", at 1566 distance to closest neighbor: 0.44370598373247144, info string: "elapsed time: 1s199ms, distance calls: 3725326"
+discord #3 "#3", at 539 distance to closest neighbor: 0.44370598373247144, info string: "elapsed time: 1s94ms, distance calls: 3325726"
+discord #4 "#4", at 188 distance to closest neighbor: 0.41770204691861385, info string: "elapsed time: 980ms, distance calls: 3069982"
+
+5 discords found in 6s285ms
+</pre>
+
+<p>as shown, the best discord has been found at the position 411:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_brute_force100.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<h3 id="hot-saxhttpwwwcsucredueamonndiscords-driven-discords-discovery">2.2. <a href="http://www.cs.ucr.edu/~eamonn/discords/">HOT-SAX</a>-driven discords discovery.</h3>
+<p>Now let’s use HOT-SAX algorithm to find discords:</p>
+
+<pre>
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg HOTSAX -i data/ecg0606_1.csv -w 100 -p 3 -a 3 --strategy NONE
+
+GrammarViz2 CLI anomaly discovery
+parameters:
+ input file:                  data/ecg0606_1.csv
+ output files prefix:         
+ Algorithm implementation:    HOTSAX
+ Num. of discords to report:  5
+ SAX sliding window size:     100
+ SAX PAA size:                3
+ SAX alphabet size:           3
+ SAX numerosity reduction:    NONE
+ SAX normalization threshold: 0.01
+
+09:30:47.811 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - Reading data ...
+09:30:47.851 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - read 2299 points from data/ecg0606_1.csv
+09:30:47.851 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - running HOT SAX hashtable-based algorithm...
+
+discord #0 "cab", at 411 distance to closest neighbor: 1.5045846602966542, info string: elapsed time: 218ms, distance calls: 138449"
+discord #1 "bbc", at 37 distance to closest neighbor: 0.4787744771810631, info string: "elapsed time: 340ms, distance calls: 292766"
+discord #2 "bbb", at 539 distance to closest neighbor: 0.44370598373247144, info string: "elapsed time: 389ms, distance calls: 382983"
+discord #3 "bbb", at 1566 distance to closest neighbor: 0.44370598373247144, info string: "elapsed time: 273ms, distance calls: 323578"
+discord #4 "bbc", at 188 distance to closest neighbor: 0.41770204691861385, info string: "elapsed time: 295ms, distance calls: 338823"
+
+5 discords found in 1s590ms
+</pre>
+
+<p>since HOT-SAX is an exact algorithm, it finds exactly the same discords as the brute-force.</p>
+
+<h3 id="rare-rule-anomaly-rra--driven-discords-discovery">2.3. Rare Rule Anomaly (RRA) -driven discords discovery.</h3>
+<p>Now let’s use our proposed algorithm:</p>
+
+<pre>
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
+
+GrammarViz2 CLI anomaly discovery
+parameters:
+ input file:                  data/ecg0606_1.csv
+ output files prefix:         
+ Algorithm implementation:    RRA
+ Num. of discords to report:  5
+ SAX sliding window size:     100
+ SAX PAA size:                3
+ SAX alphabet size:           3
+ SAX numerosity reduction:    EXACT
+ SAX normalization threshold: 0.01
+ GI Algorithm:                Sequitur
+
+10:17:03.717 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - Reading data ...
+10:17:03.755 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - read 2299 points from data/ecg0606_1.csv
+10:17:03.755 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - running RRA algorithm...
+10:17:03.853 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - 33 Sequitur rules inferred in 53ms
+10:17:03.854 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - the whole timeseries is covered by rule intervals ...
+10:17:03.933 [main] INFO  n.s.g.anomaly.RRAImplementation - 5 discords found in 78ms
+discord #0 info string: "position 417, length 110, NN distance 0.0524406591041029, elapsed time: 45ms, distance calls: 1192"
+discord #1 info string: "position 1222, length 117, NN distance 0.03299117620892709, elapsed time: 9ms, distance calls: 1480"
+discord #2 info string: "position 2094, length 139, NN distance 0.010810115607678493, elapsed time: 7ms, distance calls: 1292"
+discord #3 info string: "position 780, length 124, NN distance 0.009775294705352, elapsed time: 10ms, distance calls: 1296"
+discord #4 info string: "position 0, length 126, NN distance 0.009762227378847584, elapsed time: 4ms, distance calls: 1065"
+
+5 discords found in 179ms
+</pre>
+
+<p>significantly faster, RRA finds approximately the same best discord:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_RRA.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>other discords, however, are different from brute force and HOT-SAX runs – an issue which we address below…</p>
+
+<h2 id="auxiliary-files">3. Auxiliary files</h2>
+<p>If we add the seventh parameter to the CLI command:</p>
+
+<pre>
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly 3 data/ecg0606_1.csv 100 3 3 3 true
+</pre>
+
+<p>the code produces two files: <code>distances.txt</code> and <code>coverage.txt</code>.</p>
+
+<h3 id="distancestxt">3.1 <code>distances.txt</code></h3>
+<p>This file consists of three columns:</p>
+
+<ol>
+  <li>The time series position.</li>
+  <li>The distance to closest non-self match.</li>
+  <li>The subsequence length.</li>
+</ol>
+
+<p>Something like this:</p>
+
+<pre>
+$ head distances.txt
+0,0.4839679741470506,126.0
+1,0.0,0.0
+2,0.0,0.0
+...
+</pre>
+
+<p>By using this file we can visually inspect how the discovered by RRA discord is rated among other subsequences.
+Here is the <a href="http://cran.r-project.org/">R</a> code we use (note that you’d need the <a href="http://ggplot2.org/">ggplot2</a> and Cairo libs installed too):</p>
+
+<pre>
+data=read.csv(file="../data/ecg0606_1.csv",header=F,sep=",")
+distances=read.csv(file="../distances.txt",header=F,sep=",")
+df=data.frame(time=c(1:length(data$V1)),value=distances$V2,width=distances$V3)
+(pd &lt;- ggplot(df, aes(time, value)) + geom_line(color="red") + theme_bw() +
+  ggtitle("Non-self distance to the nearest neighbor among subsequences corresponding to Sequitur rules") + 
+  theme(plot.title = element_text(size = rel(1.5)), axis.title.x = element_blank(),axis.title.y=element_blank(),
+        axis.ticks.y=element_blank(),axis.text.y=element_blank())
+)
+CairoPNG(file = "ecg0606_distances.png", width = 800, height = 200, pointsize = 12, bg = "white")
+print(pd)
+dev.off()
+</pre>
+
+<p>and which produces the next figure:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_distances.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<h3 id="coveragetxt">3.2 <code>coverage.txt</code></h3>
+<p>This file is a single column file that contains exactly the amount of lines as the input file and reflects the <strong>rule density curve</strong>.
+Here is the way to visualize this curve using R:</p>
+
+<pre>
+density=read.csv(file="../coverage.txt",header=F,sep=",")
+density_df=data.frame(time=c(1:length(density$V1)),value=density$V1)
+shade &lt;- rbind(c(0,0), density_df, c(2229,0))
+names(shade)&lt;-c("x","y")
+(pc &lt;- ggplot(density_df, aes(x=time,y=value)) +
+  geom_line(col="cyan2") + theme_bw() +
+  geom_polygon(data = shade, aes(x, y), fill="cyan", alpha=0.5) +
+  ggtitle("Sequitur rules density for (w=100,p=3,a=3)") + 
+  theme(plot.title = element_text(size = rel(1.5)), axis.title.x = element_blank(),
+        axis.title.y=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank()))
+CairoPNG(file = "ecg0606_density1.png",
+         width = 800, height = 200, pointsize = 12, bg = "white")
+print(pc)
+dev.off()
+</pre>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_density1.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>As shown above, the rule-density curve does not identify the anomaly clearly.
+This is a <strong>typical density curve behavior</strong> when the SAX approximation is loose – consider the figure below which shows that the area where the successful
+discovery of this true anomaly with Density Curve approach is twice as small as the area of RRA success:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_areas.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>If we increase values for PAA and Alphabet discretization coefficients from 3 to 5 and the numerosity reduction strategy to NONE, the situation improves significantly – not only the true anomaly
+becomes clearly articulated by the drop in rule density curve, but <strong>most</strong> of RRA discords now coincide with those reported by brute force and HOT-SAX algorithms:</p>
+
+<pre>
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" \
+    net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
+
+GrammarViz2 CLI anomaly discovery
+parameters:
+ input file:                  data/ecg0606_1.csv
+ output files prefix:         
+ Algorithm implementation:    RRA
+ Num. of discords to report:  5
+ SAX sliding window size:     100
+ SAX PAA size:                5
+ SAX alphabet size:           5
+ SAX numerosity reduction:    NONE
+ SAX normalization threshold: 0.01
+ GI Algorithm:                Sequitur
+
+10:24:47.500 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - Reading data ...
+10:24:47.542 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - read 2299 points from data/ecg0606_1.csv
+10:24:47.543 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - running RRA algorithm...
+10:24:47.703 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - 257 Sequitur rules inferred in 117ms
+10:24:47.707 [main] INFO  n.s.grammarviz.GrammarVizAnomaly - the whole timeseries is covered by rule intervals ...
+10:24:48.164 [main] INFO  n.s.g.anomaly.RRAImplementation - 5 discords found in 456ms
+discord #0 info string: "position 409, length 101, NN distance 0.01653509811461176, elapsed time: 130ms, distance calls: 28051"
+discord #1 info string: "position 36, length 102, NN distance 0.010424593293204278, elapsed time: 73ms, distance calls: 30322"
+discord #2 info string: "position 623, length 102, NN distance 0.007555224086403445, elapsed time: 74ms, distance calls: 28657"
+discord #3 info string: "position 1977, length 101, NN distance 0.006775670795858492, elapsed time: 79ms, distance calls: 51673"
+discord #4 info string: "position 1739, length 101, NN distance 0.006647871587763073, elapsed time: 96ms, distance calls: 40432"
+
+5 discords found in 622ms
+
+</pre>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_density2.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<h2 id="discussion">4. Discussion.</h2>
+<p>We discussed two new ways to discover time series anomaly (i.e., discord) – the Rare Rule Anomaly (RRA) algorithm and the rule density curve.
+As shown, the RRA algorithm is faster than other discord discovery techniques, namely brute-force and HOT-SAX.
+In addition, we have shown that the approximation degree is crucial for the optimal performance of RRA and rule density curve algorithms.</p>
+
+<h2 id="the-r-code-to-combine-all-three-plots-into-a-nice-figure">5. The R code to combine all three plots into a nice figure.</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/ecg0606_three_plots.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<pre>
+# libs!
+require(Cairo)
+require(ggplot2)
+require(grid)
+require(gridExtra)
+#
+data=read.csv(file="../data/ecg0606_1.csv",header=F,sep=",")
+plot(data$V1,t="l")
+#
+df=data.frame(time=c(1:length(data$V1)),value=data$V1)
+(p &lt;- ggplot(df, aes(time, value)) + geom_line(lwd=0.65,color="blue1") +
+  ggtitle("Dataset ECG qtdb 0606 [701-3000] and the best RRA discord") + 
+  theme(plot.title = element_text(size = rel(1.5)), axis.title.x = element_blank(),axis.title.y=element_blank(),
+        axis.ticks.y=element_blank(),axis.text.y=element_blank())
+)  
+red_line=df[406:(406+114),]
+p = p + geom_line(data=red_line,col="red", lwd=1.6)
+CairoPNG(file = "ecg0606_RRA.png",
+         width = 800, height = 200, pointsize = 12, bg = "white")
+print(p)
+dev.off()
+
+#
+data=read.csv(file="../data/ecg0606_1.csv",header=F,sep=",")
+distances=read.csv(file="../distances.txt",header=F,sep=",")
+df=data.frame(time=c(1:length(data$V1)),value=distances$V2,width=distances$V3)
+pd &lt;- ggplot(df, aes(time, value)) + geom_line(color="red") + theme_bw() +
+  ggtitle("Non-self distance to the nearest neighbor among subsequences corresponding to Sequitur rules") + 
+  theme(plot.title = element_text(size = rel(1.5)), axis.title.x = element_blank(),axis.title.y=element_blank(),
+        axis.ticks.y=element_blank(),axis.text.y=element_blank())
+pd  
+CairoPNG(file = "ecg0606_distances.png",
+         width = 800, height = 200, pointsize = 12, bg = "white")
+print(pd)
+dev.off()
+
+#
+density=read.csv(file="../coverage.txt",header=F,sep=",")
+density_df=data.frame(time=c(1:length(density$V1)),value=density$V1)
+shade &lt;- rbind(c(0,0), density_df, c(2229,0))
+names(shade)&lt;-c("x","y")
+(pc &lt;- ggplot(density_df, aes(x=time,y=value)) +
+  geom_line(col="cyan2") + theme_bw() +
+  geom_polygon(data = shade, aes(x, y), fill="cyan", alpha=0.5) +
+  ggtitle("Sequitur rules density for ECG qtdb 0606 (w=100,p=5,a=5)") + 
+  theme(plot.title = element_text(size = rel(1.5)), axis.title.x = element_blank(),
+        axis.title.y=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank()))
+CairoPNG(file = "ecg0606_density2.png",
+         width = 800, height = 300, pointsize = 12, bg = "white")
+print(pc)
+dev.off()
+#
+CairoPNG(file = "ecg0606_three_plots.png",
+         width = 800, height = 600, pointsize = 12, bg = "white")
+print(arrangeGrob(p,pd,pc,ncol=1))
+dev.off()
+</pre>
+
+<!-- Add a github ribbon. -->
+<link rel="stylesheet" href="../../css/gh-fork-ribbon.css" />
+
+<div class="github-fork-ribbon-wrapper right">
+  <div class="github-fork-ribbon">
+    <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
+  </div>
+</div>
+
+</div>
+
+
+
+
+<script src="/grammarviz3_site/js/scrollIfAnchor.js"></script>
+
+<div class="footer-background hidden-print">
+  <footer>
+    <div class="container page-footer">
+      
+      <p>Continuous Integration:&nbsp;&nbsp; <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src"><img src="https://travis-ci.org/GrammarViz2/grammarviz2_src.svg?branch=master" /> (master)</a></p>
+<p>Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:#">seninp@gmail.com</a><br /></p>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54135903-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=10360660; 
+var sc_invisible=1; 
+var sc_security="391036a7"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+
+<noscript><div class="statcounter"><a title="shopify site
+analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/10360660/0/391036a7/1/" alt="shopify site analytics" /></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      
+      <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
+        Last update on: <span>2016-08-31 15:44:54 -0600</span></p>
+
+      <p style="margin: 0">
+        
+        2 modules
+        
+        
+        | 3 readings
+        
+        
+        | 4 experiences
+        
+        
+      </p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
