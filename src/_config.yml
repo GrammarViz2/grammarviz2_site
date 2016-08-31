@@ -1,0 +1,29 @@
+name: GrammarViz 3.0
+markdown: kramdown
+kramdown:
+  hard_wrap: false
+  input: GFM
+  syntax_highlighter: pygments
+mathjax: true
+baseurl: /grammarviz3_site
+exclude: [morea]
+morea_theme: flatly
+morea_navbar_items:
+  #- Prerequisites
+  - Modules
+  #- Outcomes
+  - Readings
+  - Experiences
+  #- Assessments
+  #- Schedule
+  #- Schedule
+
+# The following properties are optional.
+# See the User Guide (http://morea-framework.github.io/userguide.html) for more info.
+
+# morea_course: ics311
+# morea_domain: http://morea-framework.github.io/
+# morea_google_analytics_tracking_id: "<your tracking id here>"
+
+#morea_head_breadcrumb_link: "http://cnn.com"
+#morea_head_breadcrumb_label: "CNN Site"
