@@ -82,7 +82,7 @@
 <div class="container">
   <h3 id="experiential-learning-1">Experiential Learning 1</h3>
 
-<h2 id="anomaly-discovery-with-grammarviz-20">Anomaly discovery with GrammarViz 2.0</h2>
+<h2 id="anomaly-discovery-with-grammarviz-30">Anomaly discovery with GrammarViz 3.0</h2>
 
 <h3 id="introduction">1. Introduction</h3>
 <p>In this module we discuss the anomaly detection in QTDB 0606 ECG dataset. This data set (database record) can be downloaded from <a href="http://physionet.org/physiobank/database/qtdb/">PHYSIONET FTP</a> and converted into the text format by executing this command</p>
@@ -111,8 +111,8 @@ Figure 13 of the paper further explains the nature of this true anomaly:</p>
   </div>
 </div>
 
-<h2 id="variable-length-anomaly-discovery-using-grammarviz-20">2. Variable length anomaly discovery using GrammarViz 2.0</h2>
-<p>Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click “Process data”. Click “Find anomalies” button, select the GrammarViz anomalies tab and choose the top ranked anomaly (#0):</p>
+<h2 id="variable-length-exact-anomaly-discovery-using-grammarviz-20">2. Variable length <em>exact</em> anomaly discovery using GrammarViz 2.0</h2>
+<p>Load the dataset using the “Load data” button, adjust SAX discretization parameters to sliding window 100, PAA 3, and alphabet 3. Click “Discretize” to infer a grammar describing the input time series. Click “Find anomalies” button to perform the anomaly discovery, then select the GrammarViz anomalies tab and choose the top ranked anomaly (#0):</p>
 
 <div class="container">
   <div class="row">
@@ -122,10 +122,20 @@ Figure 13 of the paper further explains the nature of this true anomaly:</p>
   </div>
 </div>
 
-<p>this highlights the grammar rule which coincides with the true anomaly. <em>Note that rule #28 is of length 123 while the next anomaly, the rule #30 is of length 109</em></p>
+<p>this highlights the grammar rule which coincides with the true anomaly. <em>Note that rule #8 is of length 110 while the next anomaly, the rule #25 is of length 208</em></p>
 
-<h2 id="variable-length-anomaly-discovery-using-rules-density">3. Variable length anomaly discovery using rules density</h2>
-<p>Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click “Process data”. Click on “Rules density” button:</p>
+<h2 id="variable-length-approximate-anomaly-discovery-using-rule-density-curve">3. Variable length <em>approximate</em> anomaly discovery using rule density curve</h2>
+<p>We use the same dataset. First, change the GI algorithm from Sequitur to RePair using GUI’s menu: click on “Settings” -&gt; chose “GI Implementation tab” -&gt; and toggle “Re-Pair” algorithm to be used:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_02.png" width="800px" class="img-responsive center-block" />
+    </div>
+  </div>
+</div>
+
+<p>Click “Save” button to update the parameters. Adjust SAX discretization parameters to sliding window 100, PAA 5, and alphabet 5. Click “Discretize” to infer a Re-Pair grammar describing the input time series. Then click on “Rules density” button:</p>
 
 <div class="container">
   <div class="row">
@@ -135,7 +145,7 @@ Figure 13 of the paper further explains the nature of this true anomaly:</p>
   </div>
 </div>
 
-<p>The light blue color near position 490 clearly identifies the true anomaly.</p>
+<p>The light blue/white color near position 480 clearly identifies the true anomaly.</p>
 
 <h2 id="discussion">4. Discussion</h2>
 <p>Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, both anomaly discovery techniques shown above yield sets of rare subsequences of a <em>variable length</em>.</p>
@@ -191,7 +201,7 @@ analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="st
 
       
       <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-        Last update on: <span>2016-09-01 14:37:57 -0600</span></p>
+        Last update on: <span>2016-09-01 15:02:43 -0600</span></p>
 
       <p style="margin: 0">
         
