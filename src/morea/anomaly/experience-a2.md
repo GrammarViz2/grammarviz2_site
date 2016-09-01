@@ -124,7 +124,7 @@ discord #4 "#4", info string: "position 1198, NN distance 2.0545797163895627, el
 5 discords found in 12s689ms
 </pre>
 
-as shown, the best discord has been found at the position 411:
+as shown, the best discord has been found at the position 430:
 
 <div class="container">
   <div class="row">
