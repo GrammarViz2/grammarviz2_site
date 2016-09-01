@@ -11,7 +11,7 @@ morea_labels:
 
 ### Experiential Learning 1
 
-## Anomaly discovery with GrammarViz 2.0
+## Anomaly discovery with GrammarViz 3.0
 
 ### 1. Introduction
 In this module we discuss the anomaly detection in QTDB 0606 ECG dataset. This data set (database record) can be downloaded from [PHYSIONET FTP](http://physionet.org/physiobank/database/qtdb/) and converted into the text format by executing this command
@@ -40,8 +40,8 @@ Figure 13 of the paper further explains the nature of this true anomaly:
   </div>
 </div>
 
-## 2. Variable length anomaly discovery using GrammarViz 2.0
-Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click "Process data". Click "Find anomalies" button, select the GrammarViz anomalies tab and choose the top ranked anomaly (#0):
+## 2. Variable length *exact* anomaly discovery using GrammarViz 2.0
+Load the dataset using the "Load data" button, adjust SAX discretization parameters to sliding window 100, PAA 3, and alphabet 3. Click "Discretize" to infer a grammar describing the input time series. Click "Find anomalies" button to perform the anomaly discovery, then select the GrammarViz anomalies tab and choose the top ranked anomaly (#0):
 
 <div class="container">
   <div class="row">
@@ -51,11 +51,21 @@ Load the dataset, adjust SAX discretization parameters to sliding window 100, PA
   </div>
 </div>
 
-this highlights the grammar rule which coincides with the true anomaly. *Note that rule #28 is of length 123 while the next anomaly, the rule #30 is of length 109*
+this highlights the grammar rule which coincides with the true anomaly. *Note that rule #8 is of length 110 while the next anomaly, the rule #25 is of length 208*
 
 
-## 3. Variable length anomaly discovery using rules density
-Load the dataset, adjust SAX discretization parameters to sliding window 100, PAA 8, and alphabet 4. Click "Process data". Click on "Rules density" button:
+## 3. Variable length *approximate* anomaly discovery using rule density curve
+We use the same dataset. First, change the GI algorithm from Sequitur to RePair using GUI's menu: click on "Settings" -> chose "GI Implementation tab" -> and toggle "Re-Pair" algorithm to be used:
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <img style="margin-top: 5px; margin-bottom: 5px" src="../assets/demo-ecg0606_02.png" width="800px" class="img-responsive center-block">
+    </div>
+  </div>
+</div>
+
+Click "Save" button to update the parameters. Adjust SAX discretization parameters to sliding window 100, PAA 5, and alphabet 5. Click "Discretize" to infer a Re-Pair grammar describing the input time series. Then click on "Rules density" button:
 
 <div class="container">
   <div class="row">
@@ -65,7 +75,7 @@ Load the dataset, adjust SAX discretization parameters to sliding window 100, PA
   </div>
 </div>
 
-The light blue color near position 490 clearly identifies the true anomaly.
+The light blue/white color near position 480 clearly identifies the true anomaly.
 
 
 ## 4. Discussion
