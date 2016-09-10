@@ -3,7 +3,7 @@ morea_type: experience
 morea_id: experience-m1
 title: "Time series recurrent pattern (motif) discovery using GUI"
 published: true
-morea_summary: "Discover recurrent time series patterns using GrammarViz 3.0 library Graphical User Interface."
+morea_summary: "Discover recurrent time series patterns using GrammarViz 3.0 Graphical User Interface"
 morea_sort_order: 2
 morea_labels:
  - tutorial

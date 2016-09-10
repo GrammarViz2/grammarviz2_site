@@ -1,9 +1,9 @@
 ---
 morea_type: experience
 morea_id: experience-a1
-title: "Time series anomaly detection using GrammarViz 3.0 GUI"
+title: "Time series anomaly detection using GUI"
 published: true
-morea_summary: "The first experiential learning event."
+morea_summary: "Discover anomalous time series patterns using GrammarViz 3.0 Graphical User Interface"
 morea_sort_order: 1
 morea_labels:
  - tutorial

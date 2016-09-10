@@ -1,9 +1,9 @@
 ---
 morea_type: experience
 morea_id: experience-a2
-title: "Time series anomaly detection using GrammarViz 3.0 CLI (command line interface)"
+title: "Time series anomaly detection using CLI"
 published: true
-morea_summary: "The second experiential learning event."
+morea_summary: "Discover anomalous time series patterns using GrammarViz 3.0 command line interface"
 morea_sort_order: 2
 morea_labels:
  - tutorial
