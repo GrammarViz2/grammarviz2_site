@@ -3,6 +3,16 @@ title: "Footer"
 morea_id: footer
 morea_type: footer
 ---
+
+
+<!-- Add a github ribbon. -->
+<link rel="stylesheet" href="../../css/gh-fork-ribbon.css">
+<div class="github-fork-ribbon-wrapper right">
+  <div class="github-fork-ribbon">
+    <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
+  </div>
+</div>
+
 <p>Continuous Integration:&nbsp;&nbsp; <a href="https://travis-ci.org/GrammarViz2/grammarviz2_src"><img src="https://travis-ci.org/GrammarViz2/grammarviz2_src.svg?branch=master"> (master)</a></p>
 Contact: <a href="http://www2.hawaii.edu/~senin">Pavel Senin,</a> <a href="mailto:#">seninp@gmail.com</a><br>
 

@@ -9,8 +9,6 @@ morea_labels:
  - tutorial
 ---
 
-### Experiential Learning 1
-
 ## Anomaly discovery with GrammarViz 3.0
 
 ### 1. Introduction
@@ -80,11 +78,3 @@ The light blue/white color near position 480 clearly identifies the true anomaly
 
 ## 4. Discussion
 Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, both anomaly discovery techniques shown above yield sets of rare subsequences of a *variable length*.
-
-<!-- Add a github ribbon. -->
-<link rel="stylesheet" href="../../css/gh-fork-ribbon.css">
-<div class="github-fork-ribbon-wrapper right">
-  <div class="github-fork-ribbon">
-    <a href="https://github.com/GrammarViz2/grammarviz2_src">GrammarViz on GitHub</a>
-  </div>
-</div>
