@@ -1,9 +1,9 @@
 ---
 morea_type: experience
 morea_id: experience-o1
-title: "Discretization parameters optimization using GrammarViz 3.0 GUI"
+title: "SAX discretization parameters optimization"
 published: true
-morea_summary: "An example of finding optimal discretization parameters for motif and discord discovery."
+morea_summary: "An example of finding optimal discretization parameters for motif and discord discovery using GrammarViz 3.0 GUI."
 morea_sort_order: 1
 morea_labels:
  - tutorial

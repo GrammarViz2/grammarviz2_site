@@ -1,7 +1,7 @@
 ---
 morea_type: reading
 morea_id: reading-o1
-title: "Discretization parameters optimization"
+title: "SAX discretization parameters optimization"
 published: true
 #topdiv: other
 morea_summary: "Discusses SAX discretization parameters optimization approach implemented in GrammarViz 3.0."

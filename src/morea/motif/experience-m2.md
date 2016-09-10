@@ -3,7 +3,7 @@ morea_type: experience
 morea_id: experience-m2
 title: "Time series recurrent pattern (motif) discovery using CLI"
 published: true
-morea_summary: "Discover recurrent time series patterns using GrammarViz 3.0 and the command line interface"
+morea_summary: "Discover recurrent time series patterns using GrammarViz 3.0 command line interface"
 morea_sort_order: 2
 morea_labels:
  - tutorial
