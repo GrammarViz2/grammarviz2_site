@@ -12,12 +12,13 @@ morea_labels:
 
 ## Previous work on anomaly detection.
 
-### This is a section from our EDBT paper that discusses previous work in time series anomaly discovery
+#### (This is a section from our EDBT paper that discusses previous work in time series anomaly discovery)
+
 
 The brute force solution for the problem of time series anomaly detection or, more specifically,
-the discovery of a discord of a given length $n$ in time series $T$ of length $m$, needs to consider
-all possible distances between each sub-sequence $C$ of length $n$ and all of its non-self matches $M$ ($C,M \in T$).
-This method has $O(m^{2})$ complexity and is simply untenable for large data sets.
+the discovery of a discord of a given length \\(n\\) in time series \\(T\\) of length \\(m\\), needs to consider
+all possible distances between each sub-sequence \\(C\\) of length \\(n\\) and all of its non-self matches \\(M \; (C,M \in T) \\).
+This method has \\(O(m^{2})\\) complexity and is simply untenable for large data sets.
 
 To mitigate this heavy computational requirement, previous work suggests that the sub-sequence comparisons
 should be reordered for efficient pruning. For example HOTSAX [1], which is the pioneering work on
@@ -28,12 +29,12 @@ discover unusual shapes. The authors of [3] and [4] use Haar wavelets and augmen
 to achieve effective pruning of the search space. While these approaches achieve a speed-up of several orders of
 magnitude over the brute-force algorithm, their common drawback is that they all need the length of a potential
 anomaly to be specified as the input, and they output discords of a fixed length. In addition, even with pruning,
-they rely on the distance computation which, as suggested by Keogh et al. [1], accounts for more than 99\% of
+they rely on the distance computation which, as suggested by Keogh et al. [1], accounts for more than 99% of
 these algorithms run-time.  
 
 An interesting approach to find anomalies in a very large database (terabyte-sized data set) was shown by
 Yankov et al.[5]. The authors proposed an algorithm that requires only two scans through the database.
-However, this method needs an anomaly defining range $r$ as the input. In addition, when used to detect an unusual
+However, this method needs an anomaly defining range \\(r\\) as the input. In addition, when used to detect an unusual
 sub-sequence within a time series, it also requires the length of the potential discord. 
 
 Some techniques introduced approximate solutions that do not require distance computation on the raw time series.
@@ -42,8 +43,8 @@ VizTree [6] is a time series visualization tool that allows for the discovery of
 time look-up) to decode the frequency of occurrences for all patterns in their discretized form. Similar to that
 defined in VizTree, Chen et al.[7] also consider anomalies to be the most infrequent time series patterns.
 The authors use support count to compute the anomaly score of each pattern. Although the definition of anomalies by Chen et al.
-is similar to discords, their technique requires more input parameters such as the precision of the slope $e$, the number of
-anomalous patterns $k$, or the minimum threshold. In addition, the anomalies discussed in their paper contain only two points.
+is similar to discords, their technique requires more input parameters such as the precision of the slope \\(e\\), the number of
+anomalous patterns \\(k\\), or the minimum threshold. In addition, the anomalies discussed in their paper contain only two points.
 Wei et al. [8] suggest another method that uses time series bitmaps to measure similarity. 
 
 Finally, some previous work has examined the use of algorithmic randomness for time series anomaly discovery.
