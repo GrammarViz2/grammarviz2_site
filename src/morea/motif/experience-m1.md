@@ -18,7 +18,7 @@ We discuss two use-cases which show GrammarViz GUI utility in variable length ti
 Two datasets are used in this demo:
 
 #### 2.1. Winding dataset
-According to the [original dataset source](ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt) this [dataset](https://jmotif.googlecode.com/svn/trunk/data/demo/winding.dat.gz) is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:
+According to the [original dataset source](ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt) this [dataset](https://github.com/GrammarViz2/grammarviz2_src/blob/master/data/winding.dat.gz?raw=true) is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:
 
 <div class="container">
   <div class="row">
