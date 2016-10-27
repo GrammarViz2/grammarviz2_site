@@ -136,7 +136,9 @@
 </div>
 
 <h3 id="grammar-cover">2. Grammar cover</h3>
-<p>In order to formally describe our redundant rule pruning technique and later the automated parameters selection procedure, we shall define the <em>Grammar Cover</em> \(Cover^{G}(T)\) of a grammar \(G\) inferred from a time series \(T\) is the ratio of two values – the number of time series points which are located within any of the subsequences corresponding to the grammar rules and the total length of time series.</p>
+<p>In order to formally describe our redundant rule pruning technique and later the automated parameters selection procedure, we shall define the <em>Grammar Cover</em> \(Cover^{G}(T)\) of a grammar \(G\) inferred from a time series \(T\) is the ratio of two values – the number of time series points which are located within any of the subsequences corresponding to the grammar rules and the total length of time series, i.e.,</p>
+
+<script type="math/tex; mode=display">\text{Grammar cover}_{G} = \frac{\text{number of time series points covered by any of the grammar rules} \in G}{\text{total number of points in the time series} T}</script>
 
 <h3 id="grammar-rules-numerosity-and-pruning">3. Grammar rules numerosity and pruning.</h3>
 <p>The grammar-based time series decomposition offers an advantageous capability to find patterns of different lengths. However, the hierarchical and the variable-length natures of the patterns mean that often they are numerous and overlapping. While this specificity aids time series anomaly discovery via rule density curve, the large number of overlapping time series motif candidates is difficult to examine visually. Thus, the capacity of pruning and organizing rules in an intelligent way and a mechanism for their automated pruning are highly desirable. We approach the rule pruning with a greedy algorithm following a greedy solution of minimum-cardinality set cover problem (an NP-hard problem) which attempts to find the smallest set of rules which cover the most of the input time series in a greedy fashion. The algorithm is shown below:</p>
@@ -149,7 +151,7 @@
   </div>
 </div>
 
-<p>As shown, the algorithm’s input consists of a grammar ((G\) describing the input time series, and the time series length \(m\). The algorithm outputs a reduced grammar covering the same time series. The pruning process is wrapped into the outer loop (lines 2-29) which breaks in two cases: (i) when the whole time series span is covered by selected grammar rules or (ii) when it is impossible to extend the cover (lines 12-14). Two consecutive over-the-rules loops are inside the main outer loop. In the first loop (lines 4-11) the algorithm finds the rule which extends the current cover at most. In the second loop (lines 16-27) the algorithm performs a check on whether the addition of the new rule makes any of the previously selected rules obsolete – in that case the redundant rule is removed from the selection and set aside. Upon finishing the pruning process, selected rules are partially expanded, following the exclusion of some of the initial rules (line 30), and the resulting grammar is returned.</p>
+<p>As shown, the algorithm’s input consists of a grammar \(G\) describing the input time series, and the time series length \(m\). The algorithm outputs a reduced grammar covering the same time series. The pruning process is wrapped into the outer loop (lines 2-29) which breaks in two cases: (i) when the whole time series span is covered by selected grammar rules or (ii) when it is impossible to extend the cover (lines 12-14). Two consecutive over-the-rules loops are inside the main outer loop. In the first loop (lines 4-11) the algorithm finds the rule which extends the current cover at most. In the second loop (lines 16-27) the algorithm performs a check on whether the addition of the new rule makes any of the previously selected rules obsolete – in that case the redundant rule is removed from the selection and set aside. Upon finishing the pruning process, selected rules are partially expanded, following the exclusion of some of the initial rules (line 30), and the resulting grammar is returned.</p>
 
 <h3 id="the-intuition-behind-the-rule-pruning-algorithm">4. The intuition behind the rule pruning algorithm.</h3>
 <p>The intuition behind this algorithm is simple – since our task in hand is to find maximally repeated <em>and</em> minimally-overlapping subsequences (which we consider the most informative), at each iteration, as the best candidate we select the rule which covers the most of the uncovered-so-far time series span thus naturally provides the most information about its structure.</p>
@@ -236,7 +238,7 @@ analytics" href="http://statcounter.com/shopify/" target="_blank"><img class="st
 
       
       <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: flatly)<br>
-        Last update on: <span>2016-10-27 11:58:11 -0600</span></p>
+        Last update on: <span>2016-10-27 16:09:24 -0600</span></p>
 
       <p style="margin: 0">
         
