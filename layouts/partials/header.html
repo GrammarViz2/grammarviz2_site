@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">
+      <span class="glyph">⩘</span> GrammarViz <span class="ver">3.0</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="nav">menu</button>
+    <nav class="nav" id="nav">
+      {{ $current := .RelPermalink }}
+      {{ range site.Menus.main }}
+        {{ $url := or (and .Page .Page.RelPermalink) (.URL | relLangURL) }}
+        <a href="{{ $url }}" {{ if and (ne $url site.Home.RelPermalink) (hasPrefix $current $url) }}class="active"{{ else if and (eq $url site.Home.RelPermalink) (eq $current site.Home.RelPermalink) }}class="active"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+      <a class="gh" href="{{ site.Params.github }}" target="_blank" rel="noopener" aria-label="Source on GitHub">GitHub ↗</a>
+    </nav>
+  </div>
+</header>

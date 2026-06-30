@@ -1,0 +1,73 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">SAX · Sequitur · Re-Pair · linear time &amp; space</div>
+      <h1>Read the grammar hidden in your time series.</h1>
+      <p class="lede">GrammarViz discretizes a signal into symbols, induces a context-free grammar over them, and turns the grammar's rare and frequent rules into <em>variable-length</em> anomalies and motifs — interactively, as the signal streams in.</p>
+      <div class="btnrow">
+        <a class="btn accent" href="{{ (site.GetPage "/anomaly").RelPermalink }}">Find anomalies →</a>
+        <a class="btn ghost" href="{{ (site.GetPage "/motif").RelPermalink }}">Discover motifs</a>
+        <a class="btn ghost" href="{{ site.Params.github }}" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+    </div>
+    <div>{{ partial "sax-figure.html" . }}</div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What it does</span>
+      <h2>Two linear-time algorithms, one interactive tool</h2>
+      <p>Pattern discovery rests on <a href="http://www.cs.gmu.edu/~jessica/sax.htm" target="_blank" rel="noopener">Symbolic Aggregate approXimation</a> (SAX), which turns the signal into a string, and a grammar-induction step — <a href="http://www.sequitur.info/" target="_blank" rel="noopener">Sequitur</a> or <a href="https://ieeexplore.ieee.org/document/892708" target="_blank" rel="noopener">Re-Pair</a> — which builds a context-free grammar from that string. Exploiting the grammar's hierarchy, rare and frequent rules surface as anomalies and motifs of <em>varying length</em>.</p>
+    </div>
+    <div class="cards">
+      <a class="card" href="{{ (site.GetPage "/anomaly").RelPermalink }}">
+        <span class="num">01 / discord</span>
+        <h3>Anomaly discovery</h3>
+        <p>Rare Rule Anomaly (RRA) and the rule-density curve find surprising subsequences faster than brute-force or HOT-SAX — without fixing the anomaly length up front.</p>
+        <div class="tags"><span class="tag">GUI</span><span class="tag">CLI</span><span class="tag">RRA</span></div>
+      </a>
+      <a class="card" href="{{ (site.GetPage "/motif").RelPermalink }}">
+        <span class="num">02 / motif</span>
+        <h3>Motif discovery</h3>
+        <p>The most-used grammar rules correspond to recurrent patterns. Numerosity reduction and the CFG hierarchy let a single rule span motifs of different lengths.</p>
+        <div class="tags"><span class="tag">GUI</span><span class="tag">CLI</span><span class="tag">Sequitur</span></div>
+      </a>
+      <a class="card" href="{{ (site.GetPage "/optimization").RelPermalink }}">
+        <span class="num">03 / tuning</span>
+        <h3>Parameter optimization</h3>
+        <p>A grammar-reduction heuristic searches the discretization space automatically, ranking the window / PAA / alphabet settings that describe the series most compactly.</p>
+        <div class="tags"><span class="tag">auto-sampling</span><span class="tag">MDL</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow eyebrow-mono">Built for people and pipelines</span>
+      <h2 class="tight">Run it as a desktop app, a CLI, or a library</h2>
+      <p>GrammarViz 3.0 is pure Java and runs anywhere a JVM does. Drive the interactive Swing GUI for exploration, script the command line for batch jobs, or link the core as a dependency. The GUI follows an MVC split so the discovery engine is reusable on its own.</p>
+      <p>You can watch grammar rules form <a href="https://www.youtube.com/watch?v=9lH-RG5OtkY" target="_blank" rel="noopener">in real time</a> as a signal is acquired.</p>
+      <div class="btnrow"><a class="btn" href="{{ site.Params.github }}" target="_blank" rel="noopener">Build from source ↗</a></div>
+    </div>
+    <div class="split-media">
+      <img src="{{ "images/screen-front.png" | relURL }}" alt="GrammarViz 3.0 graphical interface showing a time series and inferred grammar rules">
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">References</span><h2>The work behind the tool</h2></div>
+    <div class="pubs">
+      <div class="pub"><span class="yr">EDBT 2015</span><div><div class="t"><a href="http://csdl.ics.hawaii.edu/techreports/2014/14-05/14-05.pdf" target="_blank" rel="noopener">Time series anomaly discovery with grammar-based compression</a></div><div class="a">Senin, Lin, Wang, Oates, Gandhi, Boedihardjo, Chen, Frankenstein.</div></div></div>
+      <div class="pub"><span class="yr">ECML/PKDD 2014</span><div><div class="t"><a href="http://csdl.ics.hawaii.edu/techreports/2014/14-06/14-06.pdf" target="_blank" rel="noopener">GrammarViz 2.0: a tool for grammar-based pattern discovery in time series</a></div><div class="a">Senin, Lin, Wang, Oates, Gandhi, Boedihardjo, Chen, Frankenstein, Lerner.</div></div></div>
+      <div class="pub"><span class="yr">SDM 2012</span><div><div class="t"><a href="http://www.cs.gmu.edu/~jessica/publications/grammar_motif_sdm12.pdf" target="_blank" rel="noopener">Visualizing Variable-Length Time Series Motifs</a></div><div class="a">Yuan Li, Jessica Lin, Tim Oates.</div></div></div>
+    </div>
+  </div>
+</section>
+{{ end }}

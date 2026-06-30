@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ $title := .Title }}
+{{ if .IsHome }}{{ $title = printf "%s — %s" site.Title site.Params.tagline }}{{ else }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end }}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | truncate 150 }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+<link rel="icon" href="{{ "favicon.ico" | relURL }}">
+
+{{ with resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{ end }}
+
+{{ $math := false }}
+{{ if .Params.math }}{{ $math = true }}{{ else if and .RawContent (or (strings.Contains .RawContent "$$") (strings.Contains .RawContent "\\(")) }}{{ $math = true }}{{ end }}
+{{ if $math }}
+<script>
+  MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+{{ end }}
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{{ site.Params.description }}">

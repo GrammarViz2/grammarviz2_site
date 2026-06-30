@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="doc">
+  <div class="wrap">
+    <div class="crumb"><a href="{{ site.Home.RelPermalink }}">Overview</a> / {{ .Title }}</div>
+    <div class="page-title">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="summary">{{ . }}</p>{{ end }}
+      {{ with .Content }}<div class="doc-body">{{ . }}</div>{{ end }}
+    </div>
+
+    {{ $pages := .Pages.ByParam "weight" }}
+    {{ with $pages }}
+    <div class="cards">
+      {{ range . }}
+      <a class="card" href="{{ .RelPermalink }}">
+        <span class="num">{{ with .Params.pagekind }}{{ . }}{{ else }}page{{ end }}</span>
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+        {{ with .Params.labels }}<div class="tags">{{ range . }}<span class="tag">{{ . }}</span>{{ end }}</div>{{ end }}
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .Params.external }}
+    <h2>Further reading</h2>
+    <div class="pubs">
+      {{ range . }}
+      <div class="pub"><span class="yr">link</span><div><div class="t"><a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }} ↗</a></div>{{ with .note }}<div class="a">{{ . }}</div>{{ end }}</div></div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

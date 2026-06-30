@@ -1,0 +1,5 @@
+{{- $dst := .Destination -}}
+{{- if not (or (hasPrefix $dst "http") (hasPrefix $dst "//")) -}}
+  {{- $dst = printf "images/%s" (path.Base $dst) | relURL -}}
+{{- end -}}
+<img src="{{ $dst | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">

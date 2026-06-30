@@ -1,0 +1,39 @@
+{{/* The signature: a signal crossing equiprobable alphabet bands, discretized to a SAX string. */}}
+<svg class="sax-figure" viewBox="0 0 520 360" role="img" aria-labelledby="saxtitle saxdesc" preserveAspectRatio="xMidYMid meet">
+  <title id="saxtitle">SAX discretization of a time series</title>
+  <desc id="saxdesc">A continuous signal is sliced by equiprobable breakpoints into alphabet bands a–d and read off as a symbol string.</desc>
+
+  {{/* equiprobable bands (a..d), heights mimic Gaussian equal-area cuts */}}
+  <rect class="sax-band"     x="40" y="20"  width="430" height="55"/>
+  <rect class="sax-band alt" x="40" y="75"  width="430" height="62"/>
+  <rect class="sax-band"     x="40" y="137" width="430" height="62"/>
+  <rect class="sax-band alt" x="40" y="199" width="430" height="55"/>
+
+  {{/* breakpoint cut lines */}}
+  <line class="cut" x1="40" y1="75"  x2="470" y2="75"/>
+  <line class="cut" x1="40" y1="137" x2="470" y2="137"/>
+  <line class="cut" x1="40" y1="199" x2="470" y2="199"/>
+
+  {{/* band labels d (top) .. a (bottom) */}}
+  <text class="band-label" x="20" y="52">d</text>
+  <text class="band-label" x="20" y="112">c</text>
+  <text class="band-label" x="20" y="174">b</text>
+  <text class="band-label" x="20" y="232">a</text>
+
+  {{/* the raw z-normalised signal */}}
+  <path class="trace" d="M40,150 C70,90 90,60 120,55 S165,120 190,165 S235,235 270,205 S315,95 350,90 S400,150 430,175 L470,150"/>
+
+  {{/* PAA step approximation (one mean per segment) */}}
+  <polyline class="paa" points="40,160 126,80 212,180 298,118 384,150 470,158"/>
+  <circle class="dot" cx="83"  cy="160" r="3"/>
+  <circle class="dot" cx="169" cy="80"  r="3"/>
+  <circle class="dot" cx="255" cy="180" r="3"/>
+  <circle class="dot" cx="341" cy="118" r="3"/>
+  <circle class="dot" cx="427" cy="150" r="3"/>
+
+  {{/* resulting SAX string */}}
+  <text class="sax-string" x="40" y="305">
+    <tspan class="sax-glyph" style="animation-delay:1.9s">b</tspan><tspan class="sax-glyph hl" style="animation-delay:2.0s">d</tspan><tspan class="sax-glyph" style="animation-delay:2.1s">b</tspan><tspan class="sax-glyph" style="animation-delay:2.2s">c</tspan><tspan class="sax-glyph" style="animation-delay:2.3s">b</tspan>
+  </text>
+  <text class="band-label" x="40" y="335" style="letter-spacing:0">z-norm → PAA → symbols</text>
+</svg>

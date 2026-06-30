@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="doc">
+  <div class="wrap">
+    <div class="crumb">
+      <a href="{{ site.Home.RelPermalink }}">Overview</a>
+      {{ with .Parent }} / <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      / {{ .Title }}
+    </div>
+    <div class="page-title">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="summary">{{ . }}</p>{{ end }}
+    </div>
+    <div class="doc-grid">
+      <article class="doc-body">
+        {{ .Content }}
+        <div class="pager">
+          {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+          {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ else }}<span></span>{{ end }}
+        </div>
+      </article>
+      {{ with .TableOfContents }}
+        {{ if gt (len .) 60 }}
+        <aside class="toc">
+          <strong>On this page</strong>
+          {{ . }}
+        </aside>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

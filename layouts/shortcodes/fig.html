@@ -1,0 +1,7 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $w := .Get "w" -}}
+<figure class="fig"{{ with $w }} style="max-width:{{ . }}px;margin-left:auto;margin-right:auto"{{ end }}>
+  <img src="{{ printf "images/%s" $src | relURL }}" alt="{{ $alt }}" loading="lazy">
+  {{- with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+</figure>

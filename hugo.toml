@@ -1,0 +1,47 @@
+baseURL = "https://grammarviz2.github.io/grammarviz2_site/"
+defaultContentLanguage = "en"
+title = "GrammarViz"
+enableGitInfo = false
+
+# GitHub Pages serves this project site under /grammarviz2_site/
+[params]
+  description = "Open-source Java tool for interactive, variable-length pattern, motif, and anomaly discovery in time series via grammar induction."
+  accent = "grammarviz"
+  github = "https://github.com/GrammarViz2/grammarviz2_src"
+  tagline = "Grammar-based time series pattern mining"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true          # legacy pages embed raw HTML figures
+  [markup.goldmark.extensions.passthrough]
+    enable = true          # keep $...$ / $$...$$ intact for MathJax
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block  = [['$$', '$$'], ['\[', '\]']]
+      inline = [['\(', '\)']]
+  [markup.highlight]
+    noClasses = false      # emit classes so our own theme drives colors
+    style = "github"
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[menu]
+  [[menu.main]]
+    name = "Overview"
+    pageRef = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Anomaly discovery"
+    pageRef = "/anomaly/"
+    weight = 2
+  [[menu.main]]
+    name = "Motif discovery"
+    pageRef = "/motif/"
+    weight = 3
+  [[menu.main]]
+    name = "Parameter optimization"
+    pageRef = "/optimization/"
+    weight = 4
+
+[taxonomies]
+  # no taxonomies; this is a documentation microsite
