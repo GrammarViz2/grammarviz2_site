@@ -1,0 +1,102 @@
+<!doctype html><html lang=en data-accent=grammarviz><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Time series recurrent pattern (motif) discovery using CLI · GrammarViz</title><meta name=description content="Discover recurrent time series patterns using GrammarViz 3.0 command line interface"><link rel=icon href=/grammarviz2_site/favicon.ico><link rel=stylesheet href=/grammarviz2_site/css/main.min.eefa8de58be202fdf4d7b68d149f3ea5588f3efb669db361f7611f034ddaa92a.css integrity="sha256-7vqN5YviAv3017aNFJ8+pViPPvtmnbNh92EfA03aqSo="><meta property="og:title" content="Time series recurrent pattern (motif) discovery using CLI · GrammarViz"><meta property="og:type" content="website"><meta property="og:description" content="Open-source Java tool for interactive, variable-length pattern, motif, and anomaly discovery in time series via grammar induction."></head><body><header class=site-header><div class=wrap><a class=brand href=/grammarviz2_site/><span class=glyph>⩘</span> GrammarViz <span class=ver>3.0</span>
+</a><button class=nav-toggle aria-label="Toggle navigation" aria-controls=nav>menu</button><nav class=nav id=nav><a href=/grammarviz2_site/>Overview</a>
+<a href=/grammarviz2_site/anomaly/>Anomaly discovery</a>
+<a href=/grammarviz2_site/motif/ class=active>Motif discovery</a>
+<a href=/grammarviz2_site/optimization/>Parameter optimization</a>
+<a class=gh href=https://github.com/GrammarViz2/grammarviz2_src target=_blank rel=noopener aria-label="Source on GitHub">GitHub ↗</a></nav></div></header><main id=main><div class=doc><div class=wrap><div class=crumb><a href=/grammarviz2_site/>Overview</a>
+/ <a href=/grammarviz2_site/motif/>Time series motif discovery</a>
+/ Time series recurrent pattern (motif) discovery using CLI</div><div class=page-title><h1>Time series recurrent pattern (motif) discovery using CLI</h1><p class=summary>Discover recurrent time series patterns using GrammarViz 3.0 command line interface</p></div><div class=doc-grid><article class=doc-body><h2 id=1-introduction>1. Introduction</h2><p>We work through the same use cases as in the GUI tutorial, this time showing GrammarViz&rsquo;s utility for variable-length pattern discovery from the command line.</p><blockquote><p>The command-line examples below were captured with the GrammarViz 2.0 CLI. The class names, options, and output are unchanged in GrammarViz 3.0 — substitute the current jar from a <a href=https://github.com/GrammarViz2/grammarviz2_src>release build</a> for the <code>SNAPSHOT</code> path shown here.</p></blockquote><h2 id=2-dataset-used>2. Dataset used</h2><p>Two datasets are used in this demo:</p><h3 id=21-winding-dataset>2.1. Winding dataset</h3><p>According to the <a href=ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt>original dataset source</a> this <a href="https://github.com/GrammarViz2/grammarviz2_src/blob/master/data/winding.dat.gz?raw=true">dataset</a> is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:</p><figure class=fig style=max-width:800px;margin-left:auto;margin-right:auto><img src=/grammarviz2_site/images/winding_col2.png alt loading=lazy></figure><p>unfortunately, we do not know any specific information about this dataset.</p><h3 id=22-qtdb-0606-ecg-dataset>2.2. QTDB 0606 ECG dataset</h3><p>This data set (database record) can be downloaded from <a href=https://physionet.org/physiobank/database/qtdb/>PHYSIONET FTP</a> and converted into the text format by executing this command</p><pre>
+rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' >0606.csv
+</pre><p>in the linux shell (assuming that you have rdsamp installed at your system).
+We use the second column of this file. This is our dataset overview:</p><figure class=fig style=max-width:800px;margin-left:auto;margin-right:auto><img src=/grammarviz2_site/images/qtdb0606.png alt loading=lazy></figure><p>We know, that the third heartbeat of this ECG dataset contains the true anomaly as it was discussed in <a href=https://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf>HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu</a>. Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: &ldquo;<em>&mldr; We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat&mldr;.</em>&rdquo;
+Figure 13 of the paper further explains the nature of this true anomaly:</p><figure class=fig style=max-width:400px;margin-left:auto;margin-right:auto><img src=/grammarviz2_site/images/demo-ecg0606_cluster.png alt loading=lazy></figure><h2 id=3-using-cli>3. Using CLI.</h2><p>By following the build instructions from our source code repository you can build a stand-alone jar file which we are going to use. It is named as <code>grammarviz2-X.X.X-SNAPSHOT-jar-with-dependencies.jar</code> where <code>X.X.X</code> is the latest release version. For this tutorial I have used the version tagged with
+<a href=https://github.com/GrammarViz2/grammarviz2_src/releases/tag/cli_pre-release><code>cli_pre-release</code></a> tag which you can checkout from repo by running <code>$ git checkout cli_pre-release</code>.</p><p>Running the jar as usual, i.e., <code>java -jar ...</code> runs GUI, thus we must specify a specific class name (the one implementing the CLI interface). If run without parameters, this will print a short help message:</p><pre>
+
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar
+Usage: <'main class'> [options] 
+  Options:
+    --alphabet_size, -a
+       SAX alphabet size
+       Default: 4
+    --data_in, -d
+       The input file name
+    --data_out, -o
+       The output file name
+    --help, -h
+       Default: false
+    --strategy
+       Numerosity reduction strategy
+       Default: NONE
+       Possible Values: [NONE, EXACT, MINDIST]
+    --threshold
+       Normalization threshold
+       Default: 0.01
+    --window_size, -w
+       Sliding window size
+       Default: 30
+    --word_size, -p
+       PAA word size
+       Default: 6
+       
+</pre><h2 id=4-variable-length-recurrent-patterns-discovery>4. Variable length recurrent patterns discovery</h2><p>We use winding dataset in this tutorial with parameters of sliding window 100, PAA size 4 , alphabet size 3, and EXACT numerosity reduction strategy:</p><pre>
+
+$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/winding_col.txt -o winding_grammar.txt -w 100 -p 4 -a 3 --strategy EXACT
+GrammarViz2 CLI converter v.1
+parameters:
+  input file:                  data/winding_col.txt
+  output file:                 winding_grammar.txt
+  SAX sliding window size:     100
+  SAX PAA size:                4
+  SAX alphabet size:           3
+  SAX numerosity reduction:    EXACT
+  SAX normalization threshold: 0.01
+
+
+14:19:28.906 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Reading data ...
+14:19:29.102 [main] INFO  n.s.g.cli.TS2SequiturGrammar - read 2500 points from null
+14:19:29.102 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Performing SAX conversion ...
+14:19:29.198 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Inferring Sequitur grammar ...
+14:19:29.309 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Collecting stats ...
+14:19:29.320 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Producing the output ...
+
+</pre><p>This will yield a file named <code>winding_grammar.txt</code> containing the inferred grammar description and corresponding to its rules subsequences.</p><p>The rule #29 description from this file demonstrates the algorithm&rsquo;s ability to capture repeated patterns of a length much larger than the original sliding window size. The subsequences corresponding to this rule are of length 354 and 353:</p><pre>
+...
+/// R29
+R29 -> 'R50 abbc abcc abcb R6 R46 R8 R13 R4 cacb R45 R52 R6 R16 bcba R20 R1 R2 acbb acba acbb', expanded rule string: 'bbac bbbc abbc abcc abcb bbcb bbca bcca bcba bcbb bcab ccab cbab cbac caac caab cbab cbbb cabb cacb bacb bbcb bbbb bbbc abbc acbc acbb abbb bbbb bbcb bbca cbca cbba bbba bcba ccaa cbaa cbab cbac caac baac babc babb bacb bbcb bbbb abbb acbb acba acbb '
+subsequences starts: [806, 1806]
+subsequences lengths: [354, 353]
+rule occurrence frequency 2
+rule use frequency 2
+min length 353
+max length 354
+mean length 353
+...
+</pre><p>at the same time, the subsequences corresponding to the most frequent rule #8 vary in length between 102 and 121 points:</p><pre>
+...
+/// R8
+R8 -> 'bcbb bcab', expanded rule string: 'bcbb bcab '
+subsequences starts: [61, 115, 341, 565, 640, 852, 1565, 1640, 1853, 2060, 2341]
+subsequences lengths: [102, 103, 121, 109, 107, 114, 109, 108, 113, 103, 120]
+rule occurrence frequency 11
+rule use frequency 5
+min length 102
+max length 121
+mean length 109
+...
+</pre><p>Similarly, if we use <code>qtdb0606</code> dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4 (<code>java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/ecg0606_1.csv -o ecg_grammar.txt -w 100 -p 8 -a 4 --strategy EXACT</code>), the algorithm finds that the most frequently occurring rules are normal heartbeats ranging in length from 105 to 107 points:</p><pre>
+...
+/// R6
+R6 -> 'bbcbbdab bbcbcdab', expanded rule string: 'bbcbbdab bbcbcdab '
+subsequences starts: [62, 209, 506, 652, 798, 943, 1087, 1234, 1384, 1533, 1682, 1828, 1973, 2115]
+subsequences lengths: [105, 107, 107, 105, 107, 106, 106, 106, 106, 107, 106, 107, 107, 107]
+rule occurrence frequency 14
+rule use frequency 4
+min length 105
+max length 107
+mean length 106
+...
+</pre><h2 id=5-discussion>5. Discussion</h2><p>Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, the shown above recurrent pattern discovery technique yields sets of frequent subsequences of a <em>variable length</em>.</p><div class=pager><a href=/grammarviz2_site/motif/experience-m1/>← Time series recurrent pattern (motif) discovery using GUI</a>
+<span></span></div></article><aside class=toc><strong>On this page</strong><nav id=TableOfContents><ul><li><a href=#1-introduction>1. Introduction</a></li><li><a href=#2-dataset-used>2. Dataset used</a><ul><li><a href=#21-winding-dataset>2.1. Winding dataset</a></li><li><a href=#22-qtdb-0606-ecg-dataset>2.2. QTDB 0606 ECG dataset</a></li></ul></li><li><a href=#3-using-cli>3. Using CLI.</a></li><li><a href=#4-variable-length-recurrent-patterns-discovery>4. Variable length recurrent patterns discovery</a></li><li><a href=#5-discussion>5. Discussion</a></li></ul></nav></aside></div></div></div></main><footer class=site-footer><div class=wrap><div><strong style=font-family:var(--display);color:var(--ink)>GrammarViz 3.0</strong> ·
+grammar-based time series pattern mining<br>Contact: <a href=mailto:seninp@gmail.com>Pavel Senin</a> ·
+<a href=https://github.com/GrammarViz2/grammarviz2_src target=_blank rel=noopener>source on GitHub</a></div><div class=sib>part of the jMotif stack ·
+<a href=https://jmotif.github.io/sax-vsm_site/ target=_blank rel=noopener>SAX-VSM ↗</a></div></div></footer><script>document.querySelector(".nav-toggle")?.addEventListener("click",function(){document.querySelector(".nav")?.classList.toggle("open")})</script></body></html>
