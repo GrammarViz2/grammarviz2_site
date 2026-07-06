@@ -2,6 +2,7 @@ baseURL = "https://grammarviz2.github.io/grammarviz2_site/"
 defaultContentLanguage = "en"
 title = "GrammarViz"
 enableGitInfo = false
+enableRobotsTXT = true
 
 # GitHub Pages serves this project site under /grammarviz2_site/
 # documentation microsite — no taxonomies (suppresses default /categories/ & /tags/)
@@ -13,6 +14,7 @@ disableKinds = ["taxonomy", "term"]
   github = "https://github.com/GrammarViz2/grammarviz2_src"
   paper = "https://csdl.ics.hawaii.edu/techreports/2014/14-05/14-05.pdf"
   tagline = "Grammar-based time series pattern mining"
+  ogimage = "screen-front.png"          # social-preview card image (static/images/)
 
 [markup]
   [markup.goldmark.renderer]
