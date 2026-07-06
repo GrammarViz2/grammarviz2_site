@@ -15,6 +15,7 @@ disableKinds = ["taxonomy", "term"]
   paper = "https://csdl.ics.hawaii.edu/techreports/2014/14-05/14-05.pdf"
   tagline = "Grammar-based time series pattern mining"
   ogimage = "screen-front.png"          # social-preview card image (static/images/)
+  google_site_verification = "goOEDf6QeLUKZ8PbeAvNx1qvdzHrJfrnznozqJvqEOQ"
 
 [markup]
   [markup.goldmark.renderer]
