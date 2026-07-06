@@ -4,10 +4,14 @@ title = "GrammarViz"
 enableGitInfo = false
 
 # GitHub Pages serves this project site under /grammarviz2_site/
+# documentation microsite — no taxonomies (suppresses default /categories/ & /tags/)
+disableKinds = ["taxonomy", "term"]
+
 [params]
   description = "Open-source Java tool for interactive, variable-length pattern, motif, and anomaly discovery in time series via grammar induction."
   accent = "grammarviz"
   github = "https://github.com/GrammarViz2/grammarviz2_src"
+  paper = "https://csdl.ics.hawaii.edu/techreports/2014/14-05/14-05.pdf"
   tagline = "Grammar-based time series pattern mining"
 
 [markup]
@@ -42,6 +46,3 @@ enableGitInfo = false
     name = "Parameter optimization"
     pageRef = "/optimization/"
     weight = 4
-
-[taxonomies]
-  # no taxonomies; this is a documentation microsite

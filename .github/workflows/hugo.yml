@@ -43,7 +43,9 @@ jobs:
       - name: Build
         env:
           HUGO_ENVIRONMENT: production
-        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        # baseURL comes from hugo.toml — the configure-pages output reports
+        # plain http for this repo, which used to leak into sitemap/canonical URLs
+        run: hugo --gc --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

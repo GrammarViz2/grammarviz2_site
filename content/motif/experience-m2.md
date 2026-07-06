@@ -1,85 +1,87 @@
 ---
 title: "Time series recurrent pattern (motif) discovery using CLI"
-weight: 2
+weight: 3
 pagekind: "tutorial"
-summary: "Discover recurrent time series patterns using GrammarViz 3.0 command line interface"
+summary: "Discover recurrent time series patterns using the GrammarViz 3.0 command line interface"
 labels:
   - tutorial
 ---
 ## 1. Introduction
-We work through the same use cases as in the GUI tutorial, this time showing GrammarViz's utility for variable-length pattern discovery from the command line.
 
-> The command-line examples below were captured with the GrammarViz 2.0 CLI. The class names, options, and output are unchanged in GrammarViz 3.0 — substitute the current jar from a [release build]({{< param github >}}) for the `SNAPSHOT` path shown here.
+We work through the same use cases as in the [GUI tutorial]({{< ref "/motif/experience-m1" >}}), this time from the command line.
 
-## 2. Dataset used
+> All transcripts below were captured with GrammarViz 3.0.0 (`grammarviz2-3.0.0-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
+
+## 2. Datasets used
+
 Two datasets are used in this demo:
 
 ### 2.1. Winding dataset
-According to the [original dataset source](ftp://ftp.esat.kuleuven.ac.be/pub/SISTA/data/process_industry/winding.txt) this [dataset](https://github.com/GrammarViz2/grammarviz2_src/blob/master/data/winding.dat.gz?raw=true) is a snapshot of data collected from industrial winding process whose column #2 corresponds to traction reel angular speed:
 
-{{< fig src="winding_col2.png" w="800" >}}
+This [dataset](https://github.com/GrammarViz2/grammarviz2_src/blob/master/data/winding.dat.gz?raw=true) is a snapshot of data collected from an industrial [winding process](https://homes.esat.kuleuven.be/~smc/daisy/) (the DaISy collection's test setup of an industrial winding process); its column #2 corresponds to the traction reel angular speed. A single-column extract ships with GrammarViz as `data/winding_col.txt`:
 
-unfortunately, we do not know any specific information about this dataset.
+{{< fig src="winding_col2.png" w="800" alt="The winding dataset: traction reel angular speed over 2,500 samples" >}}
 
 ### 2.2. QTDB 0606 ECG dataset
-This data set (database record) can be downloaded from [PHYSIONET FTP](https://physionet.org/physiobank/database/qtdb/) and converted into the text format by executing this command
-<pre>
+
+The database record can be downloaded from the [PhysioNet QT Database](https://physionet.org/content/qtdb/1.0.0/) and converted into text format with
+
+```bash
 rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' >0606.csv
-</pre>
-in the linux shell (assuming that you have rdsamp installed at your system).
-We use the second column of this file. This is our dataset overview:
+```
 
-{{< fig src="qtdb0606.png" w="800" >}}
+(assuming `rdsamp` from the [WFDB toolkit](https://physionet.org/content/wfdb/) is installed on your system). We use the second column of this file; a ready-made copy ships with GrammarViz as `data/ecg0606_1.csv`:
 
-We know, that the third heartbeat of this ECG dataset contains the true anomaly as it was discussed in [HOTSAX paper by Eamonn Keogh, Jessica Lin, and Ada Fu](https://www.cs.gmu.edu/~jessica/publications/discord_icdm05.pdf). Note, that the authors were specifically interested in finding anomalies which are shorter than a regular heartbeat following a suggestion given by the domain expert: "_... We conferred with cardiologist, Dr. Helga Van Herle M.D., who informed us that heart irregularities can sometimes manifest themselves at scales significantly shorter than a single heartbeat...._"
-Figure 13 of the paper further explains the nature of this true anomaly:
+{{< fig src="qtdb0606.png" w="800" alt="Overview plot of the 2,299-point QTDB 0606 ECG excerpt" >}}
 
-{{< fig src="demo-ecg0606_cluster.png" w="400" >}}
+## 3. Using the CLI
 
-## 3. Using CLI.
-By following the build instructions from our source code repository you can build a stand-alone jar file which we are going to use. It is named as `grammarviz2-X.X.X-SNAPSHOT-jar-with-dependencies.jar` where `X.X.X` is the latest release version. For this tutorial I have used the version tagged with
-[`cli_pre-release`](https://github.com/GrammarViz2/grammarviz2_src/releases/tag/cli_pre-release) tag which you can checkout from repo by running `$ git checkout cli_pre-release`.
+Following the build instructions in the [source repository]({{< param github >}}) produces the stand-alone jar `grammarviz2-3.0.0-jar-with-dependencies.jar`, which we use below.
 
-Running the jar as usual, i.e., `java -jar ...` runs GUI, thus we must specify a specific class name (the one implementing the CLI interface). If run without parameters, this will print a short help message:
+Running the jar as usual (`java -jar ...`) starts the GUI, so for CLI work we specify the class implementing the command-line interface. Run without parameters, it prints a help message:
 
-<pre>
-
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar
-Usage: <'main class'> [options] 
+```text
+$ java -cp "target/grammarviz2-3.0.0-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar
+Usage: <main class> [options]
   Options:
     --alphabet_size, -a
-       SAX alphabet size
-       Default: 4
+      SAX alphabet size
+      Default: 4
     --data_in, -d
-       The input file name
+      The input file name
     --data_out, -o
-       The output file name
+      The output file name
     --help, -h
-       Default: false
+
+    --num-workers, -n
+      Number of worker threads to use for SAX
+      Default: 1
+    --prune
+      Pass to prune rules
+      Default: false
     --strategy
-       Numerosity reduction strategy
-       Default: NONE
-       Possible Values: [NONE, EXACT, MINDIST]
+      Numerosity reduction strategy
+      Default: NONE
+      Possible Values: [NONE, EXACT, MINDIST]
     --threshold
-       Normalization threshold
-       Default: 0.01
+      Normalization threshold
+      Default: 0.01
     --window_size, -w
-       Sliding window size
-       Default: 30
+      Sliding window size
+      Default: 30
     --word_size, -p
-       PAA word size
-       Default: 6
-       
-</pre>
+      PAA word size
+      Default: 6
+```
 
+## 4. Variable-length recurrent pattern discovery
 
-## 4. Variable length recurrent patterns discovery
-We use winding dataset in this tutorial with parameters of sliding window 100, PAA size 4 , alphabet size 3, and EXACT numerosity reduction strategy:
+We use the winding dataset with a sliding window of 100, PAA size 4, alphabet size 3, and the EXACT numerosity reduction strategy:
 
-<pre>
-
-$ java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/winding_col.txt -o winding_grammar.txt -w 100 -p 4 -a 3 --strategy EXACT
-GrammarViz2 CLI converter v.1
+```text
+$ java -cp "target/grammarviz2-3.0.0-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar \
+    -d data/winding_col.txt -o winding_grammar.txt -w 100 -p 4 -a 3 --strategy EXACT
+... INFO n.s.g.cli.TS2SequiturGrammar - GrammarViz2 CLI converter v.1
 parameters:
   input file:                  data/winding_col.txt
   output file:                 winding_grammar.txt
@@ -88,57 +90,51 @@ parameters:
   SAX alphabet size:           3
   SAX numerosity reduction:    EXACT
   SAX normalization threshold: 0.01
+  Pruning rules:               false
 
+... INFO n.s.g.cli.TS2SequiturGrammar - read 2500 points from data/winding_col.txt
+... INFO n.s.g.cli.TS2SequiturGrammar - Performing SAX conversion ...
+... INFO n.s.g.cli.TS2SequiturGrammar - Inferring Sequitur grammar ...
+... INFO n.s.g.cli.TS2SequiturGrammar - Collecting stats ...
+... INFO n.s.g.cli.TS2SequiturGrammar - Producing the output ...
+```
 
-14:19:28.906 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Reading data ...
-14:19:29.102 [main] INFO  n.s.g.cli.TS2SequiturGrammar - read 2500 points from null
-14:19:29.102 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Performing SAX conversion ...
-14:19:29.198 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Inferring Sequitur grammar ...
-14:19:29.309 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Collecting stats ...
-14:19:29.320 [main] INFO  n.s.g.cli.TS2SequiturGrammar - Producing the output ...
+This yields the file `winding_grammar.txt` containing the inferred grammar and, for each rule, the corresponding subsequences.
 
-</pre>
+The description of rule #21 in this file demonstrates the algorithm's ability to capture repeated patterns much longer than the sliding window: the two subsequences corresponding to this rule are 227 points each — well over twice the window size:
 
-This will yield a file named `winding_grammar.txt` containing the inferred grammar description and corresponding to its rules subsequences.
-
-The rule #29 description from this file demonstrates the algorithm's ability to capture repeated patterns of a length much larger than the original sliding window size. The subsequences corresponding to this rule are of length 354 and 353:
-
-<pre>
-...
-/// R29
-R29 -> 'R50 abbc abcc abcb R6 R46 R8 R13 R4 cacb R45 R52 R6 R16 bcba R20 R1 R2 acbb acba acbb', expanded rule string: 'bbac bbbc abbc abcc abcb bbcb bbca bcca bcba bcbb bcab ccab cbab cbac caac caab cbab cbbb cabb cacb bacb bbcb bbbb bbbc abbc acbc acbb abbb bbbb bbcb bbca cbca cbba bbba bcba ccaa cbaa cbab cbac caac baac babc babb bacb bbcb bbbb abbb acbb acba acbb '
-subsequences starts: [806, 1806]
-subsequences lengths: [354, 353]
+```text
+/// R21
+R21 -> 'R50 abbb R46 bbba bbca bbba R37 R8 bcac bbac babc cabc R49 bbcb abcb accb',
+  expanded rule string: 'cbbb bbbb abbb abbc bbbc bbbb bbba bbca bbba cbba bbba bbbb bcbb bcab bcac bbac babc cabc cabb cacb bacb bbcb abcb accb '
+subsequences starts: [497, 1497]
+subsequences lengths: [227, 227]
 rule occurrence frequency 2
 rule use frequency 2
-min length 353
-max length 354
-mean length 353
-...
-</pre>
+min length 227
+max length 227
+mean length 227
+```
 
-at the same time, the subsequences corresponding to the most frequent rule #8 vary in length between 102 and 121 points:
+At the same time, the subsequences corresponding to the most frequent rule, #8, vary in length between 102 and 121 points:
 
-<pre>
-...
+```text
 /// R8
 R8 -> 'bcbb bcab', expanded rule string: 'bcbb bcab '
-subsequences starts: [61, 115, 341, 565, 640, 852, 1565, 1640, 1853, 2060, 2341]
-subsequences lengths: [102, 103, 121, 109, 107, 114, 109, 108, 113, 103, 120]
-rule occurrence frequency 11
+subsequences starts: [61, 115, 341, 565, 640, 690, 853, 1565, 1640, 1853, 2060, 2341]
+subsequences lengths: [102, 103, 121, 109, 107, 105, 113, 109, 108, 113, 103, 120]
+rule occurrence frequency 12
 rule use frequency 5
 min length 102
 max length 121
 mean length 109
-...
-</pre>
+```
 
-Similarly, if we use `qtdb0606` dataset with SAX discretization parameters set to sliding window 100, PAA 8, and alphabet 4 (`java -cp "target/grammarviz2-0.0.1-SNAPSHOT-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/ecg0606_1.csv -o ecg_grammar.txt -w 100 -p 8 -a 4 --strategy EXACT`), the algorithm finds that the most frequently occurring rules are normal heartbeats ranging in length from 105 to 107 points:
+Similarly, if we process the ECG dataset with sliding window 100, PAA 8, and alphabet 4 (`java -cp "target/grammarviz2-3.0.0-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/ecg0606_1.csv -o ecg_grammar.txt -w 100 -p 8 -a 4 --strategy EXACT`), the algorithm finds that the most frequently occurring rule captures the normal heartbeats, 105 to 107 points long:
 
-<pre>
-...
-/// R6
-R6 -> 'bbcbbdab bbcbcdab', expanded rule string: 'bbcbbdab bbcbcdab '
+```text
+/// R7
+R7 -> 'bbcbbdab bbcbcdab', expanded rule string: 'bbcbbdab bbcbcdab '
 subsequences starts: [62, 209, 506, 652, 798, 943, 1087, 1234, 1384, 1533, 1682, 1828, 1973, 2115]
 subsequences lengths: [105, 107, 107, 105, 107, 106, 106, 106, 106, 107, 106, 107, 107, 107]
 rule occurrence frequency 14
@@ -146,8 +142,8 @@ rule use frequency 4
 min length 105
 max length 107
 mean length 106
-...
-</pre>
+```
 
 ## 5. Discussion
-Note, that due to two factors: the numerosity reduction embedded in the data discretization process and the nature of GI algorithms, that create rules based on the long-range correlations, the shown above recurrent pattern discovery technique yields sets of frequent subsequences of a *variable length*.
+
+Note that the recurrent pattern discovery technique shown above yields sets of frequent subsequences of *variable length*. Two factors make this possible: the numerosity reduction embedded in the discretization step, and the nature of GI algorithms, which build their rules from long-range correlations in the input.
