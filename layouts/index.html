@@ -8,6 +8,7 @@
       <div class="btnrow">
         <a class="btn accent" href="{{ (site.GetPage "/anomaly").RelPermalink }}">Find anomalies →</a>
         <a class="btn ghost" href="{{ (site.GetPage "/motif").RelPermalink }}">Discover motifs</a>
+        <a class="btn ghost" href="{{ site.Params.paper }}" target="_blank" rel="noopener">The paper ↗</a>
         <a class="btn ghost" href="{{ site.Params.github }}" target="_blank" rel="noopener">Source ↗</a>
       </div>
     </div>
@@ -68,7 +69,7 @@
         <span class="num">maven central</span>
         <h3>Add the dependency</h3>
         {{ $mvn := split site.Params.maven ":" }}
-        <p>GrammarViz ships as <code>{{ site.Params.maven }}</code> on Maven Central.</p>
+        <p>GrammarViz ships as <code>{{ site.Params.maven }}</code> on Maven Central. Build a stand-alone jar with <code>mvn package -DskipTests</code> from <a href="{{ site.Params.github }}" target="_blank" rel="noopener">the source repository</a>.</p>
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;{{ index $mvn 0 }}&lt;/groupId&gt;
   &lt;artifactId&gt;{{ index $mvn 1 }}&lt;/artifactId&gt;
@@ -76,9 +77,10 @@
 &lt;/dependency&gt;</code></pre>
       </div>
       <div class="card">
-        <span class="num">desktop</span>
-        <h3>Run the GUI or CLI</h3>
-        <p>Build the stand-alone jar from <a href="{{ site.Params.github }}" target="_blank" rel="noopener">the source repository</a> (<code>mvn package -DskipTests</code>), or depend on the Maven artifact above and call the discovery classes from your own Java code.</p>
+        <span class="num">reference</span>
+        <h3>Cite the work</h3>
+        <p>Senin, P., Lin, J., Wang, X., Oates, T., Gandhi, S., Boedihardjo, A.P., Chen, C., Frankenstein, S. <em>GrammarViz 3.0: Interactive Discovery of Variable-Length Time Series Patterns.</em> ACM TKDD, 2018.</p>
+        <div class="tags"><a class="tag" href="{{ site.Params.paper }}" target="_blank" rel="noopener">PDF ↗</a>{{ with site.Params.paper_doi }}<a class="tag" href="{{ . }}" target="_blank" rel="noopener">DOI ↗</a>{{ end }}<a class="tag" href="{{ site.Params.github }}" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
     </div>
   </div>
@@ -88,7 +90,7 @@
   <div class="wrap">
     <div class="section-head"><span class="eyebrow">References</span><h2>The work behind the tool</h2></div>
     <div class="pubs">
-      <div class="pub"><span class="yr">TKDD 2018</span><div><div class="t"><a href="https://github.com/csdl/techreports/blob/master/techreports/2017/17-04/17-04.pdf" target="_blank" rel="noopener">GrammarViz 3.0: Interactive Discovery of Variable-Length Time Series Patterns</a></div><div class="a">Senin, Lin, Wang, Oates, Gandhi, Boedihardjo, Chen, Frankenstein.</div></div></div>
+      <div class="pub"><span class="yr">TKDD 2018</span><div><div class="t"><a href="{{ site.Params.paper }}" target="_blank" rel="noopener">GrammarViz 3.0: Interactive Discovery of Variable-Length Time Series Patterns</a></div><div class="a">Senin, Lin, Wang, Oates, Gandhi, Boedihardjo, Chen, Frankenstein.{{ with site.Params.paper_doi }} <a href="{{ . }}" target="_blank" rel="noopener">DOI ↗</a>{{ end }}</div></div></div>
       <div class="pub"><span class="yr">EDBT 2015</span><div><div class="t"><a href="https://csdl.ics.hawaii.edu/techreports/2014/14-05/14-05.pdf" target="_blank" rel="noopener">Time series anomaly discovery with grammar-based compression</a></div><div class="a">Senin, Lin, Wang, Oates, Gandhi, Boedihardjo, Chen, Frankenstein.</div></div></div>
       <div class="pub"><span class="yr">ECML/PKDD 2014</span><div><div class="t"><a href="https://csdl.ics.hawaii.edu/techreports/2014/14-06/14-06.pdf" target="_blank" rel="noopener">GrammarViz 2.0: a tool for grammar-based pattern discovery in time series</a></div><div class="a">Senin, Lin, Wang, Oates, Gandhi, Boedihardjo, Chen, Frankenstein, Lerner.</div></div></div>
       <div class="pub"><span class="yr">SDM 2012</span><div><div class="t"><a href="https://doi.org/10.1137/1.9781611972825.77" target="_blank" rel="noopener">Visualizing Variable-Length Time Series Motifs</a></div><div class="a">Yuan Li, Jessica Lin, Tim Oates.</div></div></div>
