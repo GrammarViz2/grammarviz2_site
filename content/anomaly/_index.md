@@ -4,7 +4,7 @@ weight: 2
 summary: "Variable-length discord (surprise pattern) discovery with the Rare Rule Anomaly algorithm and the rule density curve."
 external:
   - title: "On complexity, entropy, and compression"
-    url: "https://www.mdpi.com/journal/entropy/special_issues/kolmogorov_complexity"
+    url: "https://web.archive.org/web/20240418093415/https://www.mdpi.com/journal/entropy/special_issues/kolmogorov_complexity"
     note: "Entropy journal — Special Issue on Kolmogorov Complexity"
 
 ---

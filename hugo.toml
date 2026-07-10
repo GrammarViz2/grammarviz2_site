@@ -14,6 +14,7 @@ disableKinds = ["taxonomy", "term"]
   github = "https://github.com/GrammarViz2/grammarviz2_src"
   paper = "https://csdl.ics.hawaii.edu/techreports/2014/14-05/14-05.pdf"
   tagline = "Grammar-based time series pattern mining"
+  maven = "net.seninp:grammarviz2:3.0.1"
   ogimage = "screen-front.png"          # social-preview card image (static/images/)
   google_site_verification = "goOEDf6QeLUKZ8PbeAvNx1qvdzHrJfrnznozqJvqEOQ"
 
