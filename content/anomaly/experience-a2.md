@@ -8,7 +8,7 @@ labels:
 ---
 ## 1. Introduction
 
-> All transcripts below were captured with GrammarViz 3.0.2 (`grammarviz2-3.0.2-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
+> All transcripts below were captured with GrammarViz 3.0.3 (`grammarviz2-3.0.3-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
 
 In this module we discuss anomaly detection in the QTDB 0606 ECG dataset. The database record can be downloaded from the [PhysioNet QT Database](https://physionet.org/content/qtdb/1.0.0/) and converted into text format with
 
@@ -29,7 +29,7 @@ We know that the third heartbeat of this dataset contains the true anomaly, as d
 By default, the GrammarViz jar launches the GUI; the CLI lives in a separate class. Running it without parameters prints the usage help:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
 Usage: <main class> [options]
   Options:
     --algorithm, -alg
@@ -81,7 +81,7 @@ The essential parameters are the input file (`-i`), the discord discovery algori
 Let's find discords in our dataset using the brute-force search — every subsequence compared against every other:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg BRUTEFORCE -i data/ecg0606_1.csv -w 100
 
 GrammarViz2 CLI anomaly discovery
@@ -101,7 +101,7 @@ discord #2 "#2", at 2080 distance to closest neighbor: 2.3929983241637354, ... d
 discord #3 "#3", at 25 distance to closest neighbor: 2.3755413245159973, ... distance calls: 3378561
 discord #4 "#4", at 1198 distance to closest neighbor: 2.064930309436058, ... distance calls: 3123611
 
-5 discords found in 0d0h0m2s931ms
+5 discords found in 0d0h0m8s900ms
 ```
 
 As shown, the best discord is found at position 430 — at the cost of nearly 20 million distance computations:
@@ -113,17 +113,17 @@ As shown, the best discord is found at position 430 — at the cost of nearly 20
 Now let's use the [HOT SAX](https://www.cs.ucr.edu/~eamonn/discords/) algorithm, which prunes the search using SAX-word frequencies:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg HOTSAX -i data/ecg0606_1.csv -w 100 -p 3 -a 3 --strategy NONE
 
 ...
-discord #0 "acc", at 430 distance to closest neighbor: 5.279080006170648, ... distance calls: 105891
-discord #1 "cab", at 318 distance to closest neighbor: 4.175756357304875, ... distance calls: 118260
-discord #2 "caa", at 2080 distance to closest neighbor: 2.3929983241637354, ... distance calls: 126834
-discord #3 "cab", at 25 distance to closest neighbor: 2.3755413245159973, ... distance calls: 125023
-discord #4 "cab", at 1198 distance to closest neighbor: 2.064930309436058, ... distance calls: 139795
+discord #0 "acc", at 430 distance to closest neighbor: 5.279080006170648, ... distance calls: 105967
+discord #1 "cab", at 318 distance to closest neighbor: 4.175756357304875, ... distance calls: 120452
+discord #2 "caa", at 2080 distance to closest neighbor: 2.3929983241637354, ... distance calls: 128799
+discord #3 "cab", at 25 distance to closest neighbor: 2.3755413245159973, ... distance calls: 120557
+discord #4 "cab", at 1198 distance to closest neighbor: 2.064930309436058, ... distance calls: 136437
 
-5 discords found in 0d0h0m0s263ms
+5 discords found in 0d0h0m0s820ms
 ```
 
 Since HOT SAX is an exact algorithm, it finds precisely the same discords as brute force — an order of magnitude faster, with roughly 30× fewer distance calls.
@@ -133,18 +133,18 @@ Since HOT SAX is an exact algorithm, it finds precisely the same discords as bru
 Now let's use our proposed algorithm, which ranks the subsequences that correspond to *rarely used grammar rules*:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
 
 ...
-... INFO GrammarVizAnomaly - 33 Sequitur rules inferred in 0d0h0m0s16ms
-discord #0, at 417: length 109, NN distance 0.12040929130766632, ... distance calls: 1276
-discord #1, at 1809: length 208, NN distance 0.09274217265342169, ... distance calls: 709
-discord #2, at 27: length 222, NN distance 0.09187429531381004, ... distance calls: 675
-discord #3, at 526: length 231, NN distance 0.08975407632177715, ... distance calls: 667
-discord #4, at 1202: length 120, NN distance 0.08975407632177715, ... distance calls: 865
+... INFO GrammarVizAnomaly - 33 Sequitur rules inferred in 0d0h0m0s38ms
+discord #0, at 417: length 109, NN distance 0.12040929130766632, ... distance calls: 1156
+discord #1, at 1809: length 208, NN distance 0.09274217265342169, ... distance calls: 949
+discord #2, at 27: length 222, NN distance 0.09187429531381004, ... distance calls: 564
+discord #3, at 526: length 231, NN distance 0.08975407632177715, ... distance calls: 675
+discord #4, at 1202: length 120, NN distance 0.08975407632177715, ... distance calls: 828
 
-5 discords found in 0d0h0m0s50ms
+5 discords found in 0d0h0m0s160ms
 ```
 
 RRA is faster still — note the mere thousands of distance calls — and its best discord (position 417, length 109) approximately coincides with the true anomaly. Note also the *variable lengths* of the reported discords, from 109 to 231 points; neither brute force nor HOT SAX can do that. (The NN distances are not comparable to §2.1/§2.2: RRA normalizes distances by the subsequence length.)
@@ -158,7 +158,7 @@ The remaining RRA discords, however, differ from the brute-force and HOT SAX res
 If we add an output prefix via `-o`, the CLI writes two files whose names start with the prefix:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3 -o ecg0606
 ```
 
@@ -225,18 +225,18 @@ As shown above, at this coarse discretization the rule density curve does *not* 
 If we increase the PAA and alphabet sizes from 3 to 5 and set the numerosity reduction strategy to NONE, the situation improves significantly: not only does the true anomaly become clearly articulated by the drop in the rule density curve, but most RRA discords now coincide with those reported by brute force and HOT SAX:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
 
 ...
-... INFO GrammarVizAnomaly - 257 Sequitur rules inferred in 0d0h0m0s25ms
-discord #0, at 430: length 101, NN distance 0.06262134977716174, ... distance calls: 13908
-discord #1, at 316: length 101, NN distance 0.03448338808657879, ... distance calls: 11501
-discord #2, at 24: length 101, NN distance 0.032198131031693035, ... distance calls: 14662
-discord #3, at 2082: length 101, NN distance 0.030021038948161417, ... distance calls: 19525
-discord #4, at 1498: length 101, NN distance 0.021162714061307847, ... distance calls: 25362
+... INFO GrammarVizAnomaly - 257 Sequitur rules inferred in 0d0h0m0s68ms
+discord #0, at 430: length 101, NN distance 0.06262134977716174, ... distance calls: 14602
+discord #1, at 316: length 101, NN distance 0.03448338808657879, ... distance calls: 11757
+discord #2, at 24: length 101, NN distance 0.032198131031693035, ... distance calls: 14569
+discord #3, at 2082: length 101, NN distance 0.030021038948161417, ... distance calls: 18068
+discord #4, at 1498: length 101, NN distance 0.021162714061307847, ... distance calls: 27080
 
-5 discords found in 0d0h0m0s180ms
+5 discords found in 0d0h0m0s709ms
 ```
 
 {{< fig src="ecg0606_density2.png" w="800" alt="Rule density curve for w=100, PAA 5, alphabet 5 — a clear drop marks the anomaly" >}}

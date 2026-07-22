@@ -10,7 +10,7 @@ labels:
 
 We work through the same use cases as in the [GUI tutorial]({{< ref "/motif/experience-m1" >}}), this time from the command line.
 
-> All transcripts below were captured with GrammarViz 3.0.2 (`grammarviz2-3.0.2-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
+> All transcripts below were captured with GrammarViz 3.0.3 (`grammarviz2-3.0.3-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
 
 ## 2. Datasets used
 
@@ -36,12 +36,12 @@ rdsamp -r sele0606 -f 120.000 -l 60.000 -p -c | sed -n '701,3000p' >0606.csv
 
 ## 3. Using the CLI
 
-Following the build instructions in the [source repository]({{< param github >}}) produces the stand-alone jar `grammarviz2-3.0.2-jar-with-dependencies.jar`, which we use below.
+Following the build instructions in the [source repository]({{< param github >}}) produces the stand-alone jar `grammarviz2-3.0.3-jar-with-dependencies.jar`, which we use below.
 
 Running the jar as usual (`java -jar ...`) starts the GUI, so for CLI work we specify the class implementing the command-line interface. Run without parameters, it prints a help message:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar
 Usage: <main class> [options]
   Options:
     --alphabet_size, -a
@@ -79,7 +79,7 @@ Usage: <main class> [options]
 We use the winding dataset with a sliding window of 100, PAA size 4, alphabet size 3, and the EXACT numerosity reduction strategy:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar \
+$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar \
     -d data/winding_col.txt -o winding_grammar.txt -w 100 -p 4 -a 3 --strategy EXACT
 ... INFO n.s.g.cli.TS2SequiturGrammar - GrammarViz2 CLI converter v.1
 parameters:
@@ -130,7 +130,7 @@ max length 121
 mean length 109
 ```
 
-Similarly, if we process the ECG dataset with sliding window 100, PAA 8, and alphabet 4 (`java -cp "target/grammarviz2-3.0.2-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/ecg0606_1.csv -o ecg_grammar.txt -w 100 -p 8 -a 4 --strategy EXACT`), the algorithm finds that the most frequently occurring rule captures the normal heartbeats, 105 to 107 points long:
+Similarly, if we process the ECG dataset with sliding window 100, PAA 8, and alphabet 4 (`java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" net.seninp.grammarviz.cli.TS2SequiturGrammar -d data/ecg0606_1.csv -o ecg_grammar.txt -w 100 -p 8 -a 4 --strategy EXACT`), the algorithm finds that the most frequently occurring rule captures the normal heartbeats, 105 to 107 points long:
 
 ```text
 /// R7
