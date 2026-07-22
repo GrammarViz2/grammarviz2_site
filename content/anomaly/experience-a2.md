@@ -8,7 +8,7 @@ labels:
 ---
 ## 1. Introduction
 
-> All transcripts below were captured with GrammarViz 3.0.3 (`grammarviz2-3.0.3-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
+> All transcripts below were captured with GrammarViz 3.0.4 (`grammarviz2-3.0.4-jar-with-dependencies.jar`, built with `mvn package -DskipTests` from [the source]({{< param github >}})). Timings will vary with your hardware.
 
 In this module we discuss anomaly detection in the QTDB 0606 ECG dataset. The database record can be downloaded from the [PhysioNet QT Database](https://physionet.org/content/qtdb/1.0.0/) and converted into text format with
 
@@ -29,7 +29,7 @@ We know that the third heartbeat of this dataset contains the true anomaly, as d
 By default, the GrammarViz jar launches the GUI; the CLI lives in a separate class. Running it without parameters prints the usage help:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
+$ java -cp "target/grammarviz2-3.0.4-jar-with-dependencies.jar" net.seninp.grammarviz.GrammarVizAnomaly
 Usage: <main class> [options]
   Options:
     --algorithm, -alg
@@ -81,7 +81,7 @@ The essential parameters are the input file (`-i`), the discord discovery algori
 Let's find discords in our dataset using the brute-force search — every subsequence compared against every other:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.4-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg BRUTEFORCE -i data/ecg0606_1.csv -w 100
 
 GrammarViz2 CLI anomaly discovery
@@ -113,7 +113,7 @@ As shown, the best discord is found at position 430 — at the cost of nearly 20
 Now let's use the [HOT SAX](https://www.cs.ucr.edu/~eamonn/discords/) algorithm, which prunes the search using SAX-word frequencies:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.4-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg HOTSAX -i data/ecg0606_1.csv -w 100 -p 3 -a 3 --strategy NONE
 
 ...
@@ -133,7 +133,7 @@ Since HOT SAX is an exact algorithm, it finds precisely the same discords as bru
 Now let's use our proposed algorithm, which ranks the subsequences that correspond to *rarely used grammar rules*:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.4-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3
 
 ...
@@ -158,7 +158,7 @@ The remaining RRA discords, however, differ from the brute-force and HOT SAX res
 If we add an output prefix via `-o`, the CLI writes two files whose names start with the prefix:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.4-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 3 -a 3 -o ecg0606
 ```
 
@@ -225,7 +225,7 @@ As shown above, at this coarse discretization the rule density curve does *not* 
 If we increase the PAA and alphabet sizes from 3 to 5 and set the numerosity reduction strategy to NONE, the situation improves significantly: not only does the true anomaly become clearly articulated by the drop in the rule density curve, but most RRA discords now coincide with those reported by brute force and HOT SAX:
 
 ```text
-$ java -cp "target/grammarviz2-3.0.3-jar-with-dependencies.jar" \
+$ java -cp "target/grammarviz2-3.0.4-jar-with-dependencies.jar" \
     net.seninp.grammarviz.GrammarVizAnomaly -alg RRA -i data/ecg0606_1.csv -w 100 -p 5 -a 5 --strategy NONE
 
 ...
