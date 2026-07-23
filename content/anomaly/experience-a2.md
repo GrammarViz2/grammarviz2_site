@@ -153,6 +153,40 @@ RRA is faster still — note the mere thousands of distance calls — and its be
 
 The remaining RRA discords, however, differ from the brute-force and HOT SAX results — an issue we address below.
 
+### 2.4. Wall-clock scaling: RRA vs HOT-SAX
+
+The CLI examples above compare **distance-call counts** on ecg0606 (2,299 points). That is the right metric for understanding search efficiency, but users also care about **end-to-end wall time**, which includes grammar construction for RRA (parallel SAX + Re-Pair + interval build). The tables below summarize a controlled Java benchmark on GrammarViz **3.0.4** / jmotif-sax **2.0.1** (MacBook-class hardware, Jul 2026). Each run reports **one** discord (`k = 1`), `seed = 0`, numerosity **NONE**, z-normalization threshold **0.01**. Ratios below **1.0×** mean RRA was faster wall-clock.
+
+**Short series (ecg0606, `n = 2,299`):**
+
+| Parameters | HOT-SAX | RRA | RRA / HOT-SAX |
+|------------|---------|-----|---------------|
+| `w=120, p=4, a=4` | 50 ms | 75 ms | 1.50× slower |
+| `w=100, p=4, a=4` | 19 ms | 29 ms | 1.53× slower |
+| `w=150, p=7, a=4` | 77 ms | 71 ms | **0.92× faster** |
+
+On this demo excerpt, HOT-SAX usually wins wall-clock: the fixed grammar cost dominates when the series is only a few thousand points long. Parameter choice still matters (`w=150, p=7` is the exception above).
+
+**Longer ECG-like series (`w=100, p=4, a=4`, one discord):**
+
+| Series | `n` | HOT-SAX | RRA | RRA / HOT-SAX |
+|--------|-----|---------|-----|---------------|
+| ecg0606 (baseline) | 2,299 | 44 ms | 82 ms | 1.86× slower |
+| chfdbchf15 (`data/chfdbchf15_1.csv`) | 15,000 | 265 ms | 215 ms | **0.81× faster** |
+| chfdb tiled + tiny drift | 50,000 | 10.6 s | 2.3 s | **~0.21× (~5× faster)** |
+| chfdb tiled + tiny drift | 100,000 | 21.0 s | 7.8 s | **~0.37× (~2.7× faster)** |
+
+**Plausible explanation.** HOT-SAX prunes the sliding-window search using SAX-word frequencies but still walks the word index structure over the full series. RRA pays an upfront cost to infer a grammar and build rule intervals, then searches only over those **variable-length** grammar-derived candidates — often **orders of magnitude fewer distance computations** on long series (consistent with the distance-call reductions already visible in §2.2–§2.3). On short series that fixed cost is not amortized; on series of roughly **10k–15k** points and beyond, RRA's reduced search space typically wins wall-clock. The crossover depends on `(window, PAA, alphabet)`, hardware, and how compressible the SAX string is.
+
+**Caveats (read before comparing numbers):**
+
+- **Not a conformance claim.** These tables measure **speed**, not agreement on the top discord span. [jmotif-conformance](https://github.com/jMotif/jmotif-conformance) tier-B RRA checks **region overlap** on ecg0606 because grammar-rule intervals legitimately differ in exact boundaries across implementations.
+- **NN distances are not comparable** between HOT-SAX (fixed window, z-normalized subsequence distance) and RRA (length-normalized distance on grammar spans) — compare wall time and rank, not the printed `nn` values.
+- **Avoid exact periodic tiling** of a short excerpt (e.g. repeating ecg0606 verbatim). HOT-SAX can degenerate (very long run, zero discords reported) when every cycle is an exact clone; the 50k/100k rows above tile **chfdbchf15** with a tiny per-cycle drift instead.
+- **Top positions may differ** on long tiled runs even when both algorithms find a valid discord — different search spaces, not necessarily a bug.
+
+For reproducibility notes and caveats, see the [conformance performance doc](https://github.com/jMotif/jmotif-conformance/blob/master/docs/rra-vs-hotsax-performance.md).
+
 ## 3. Auxiliary files
 
 If we add an output prefix via `-o`, the CLI writes two files whose names start with the prefix:
@@ -243,7 +277,9 @@ discord #4, at 1498: length 101, NN distance 0.021162714061307847, ... distance 
 
 ## 4. Discussion
 
-We discussed two grammar-based ways to discover time series anomalies (discords): the Rare Rule Anomaly (RRA) algorithm and the rule density curve. As shown, RRA is faster than the other discord discovery techniques (brute force and HOT SAX) and reports discords of variable length. We have also shown that the degree of approximation is crucial for both RRA and the rule density curve: a discretization that is too coarse blurs the anomaly, and a modest increase in PAA and alphabet sizes brings the grammar-based results in line with the exact algorithms.
+We discussed two grammar-based ways to discover time series anomalies (discords): the Rare Rule Anomaly (RRA) algorithm and the rule density curve. RRA reports discords of **variable length** and, on long series, can be **substantially faster wall-clock than HOT-SAX** once grammar construction is amortized (see §2.4). On the short ecg0606 demo excerpt, HOT-SAX is often faster end-to-end because RRA's Re-Pair and interval setup dominate; distance-call counts still favor RRA even there. Brute force remains the correctness baseline but is impractical at scale.
+
+We have also shown that the degree of approximation is crucial for both RRA and the rule density curve: a discretization that is too coarse blurs the anomaly, and a modest increase in PAA and alphabet sizes brings the grammar-based results in line with the exact algorithms.
 
 ## 5. Combining all three plots into one figure
 
