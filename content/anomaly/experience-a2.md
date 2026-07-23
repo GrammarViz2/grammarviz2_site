@@ -185,7 +185,7 @@ On this demo excerpt, HOT-SAX usually wins wall-clock: the fixed grammar cost do
 - **Avoid exact periodic tiling** of a short excerpt (e.g. repeating ecg0606 verbatim). HOT-SAX can degenerate (very long run, zero discords reported) when every cycle is an exact clone; the 50k/100k rows above tile **chfdbchf15** with a tiny per-cycle drift instead.
 - **Top positions may differ** on long tiled runs even when both algorithms find a valid discord — different search spaces, not necessarily a bug.
 
-For reproducibility notes and caveats, see the [conformance performance doc](https://github.com/jMotif/jmotif-conformance/blob/master/docs/rra-vs-hotsax-performance.md).
+For reproducibility notes and caveats, see the [conformance README benchmark section](https://github.com/jMotif/jmotif-conformance#rra-vs-hot-sax-wall-clock-informative-not-conformance) (regenerate with `./scripts/bench_rra_hotsax.sh --update-readme`).
 
 ## 3. Auxiliary files
 
