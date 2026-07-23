@@ -155,28 +155,11 @@ The remaining RRA discords, however, differ from the brute-force and HOT SAX res
 
 ### 2.4. Wall-clock scaling: RRA vs HOT-SAX
 
-The CLI examples above compare **distance-call counts** on ecg0606 (2,299 points). That is the right metric for understanding search efficiency, but users also care about **end-to-end wall time**, which includes grammar construction for RRA (parallel SAX + Re-Pair + interval build). The tables below summarize a controlled Java benchmark on GrammarViz **3.0.4** / jmotif-sax **2.0.1** (MacBook-class hardware, Jul 2026). Each run reports **one** discord (`k = 1`), `seed = 0`, numerosity **NONE**, z-normalization threshold **0.01**. Ratios below **1.0×** mean RRA was faster wall-clock.
+The CLI examples above compare **distance-call counts** on ecg0606 (2,299 points). That metric shows search efficiency, but users also care about **end-to-end wall time**, which for RRA includes parallel SAX, Re-Pair, and interval construction. The pinned benchmark uses GrammarViz **3.0.4** / jmotif-sax **2.0.1**, one discord (`k = 1`), `seed = 0`, numerosity **NONE**, and z-normalization threshold **0.01**. **Latest numbers are regenerated in the [jmotif-conformance README](https://github.com/jMotif/jmotif-conformance#rra-vs-hot-sax-wall-clock-informative-not-conformance)** (`./scripts/bench_rra_hotsax.sh --update-readme`); ratios below **1.0×** mean RRA was faster on that row.
 
-**Short series (ecg0606, `n = 2,299`):**
+On the ecg0606 excerpt, HOT-SAX usually wins wall-clock: RRA’s grammar setup dominates at a few thousand points even though distance-call counts still favor RRA (§2.2–§2.3). On long ECG-like series in that benchmark, RRA is several times faster from roughly **50k points** upward; at **~15k** either algorithm can lead depending on parameters and the series.
 
-| Parameters | HOT-SAX | RRA | RRA / HOT-SAX |
-|------------|---------|-----|---------------|
-| `w=120, p=4, a=4` | 50 ms | 75 ms | 1.50× slower |
-| `w=100, p=4, a=4` | 19 ms | 29 ms | 1.53× slower |
-| `w=150, p=7, a=4` | 77 ms | 71 ms | **0.92× faster** |
-
-On this demo excerpt, HOT-SAX usually wins wall-clock: the fixed grammar cost dominates when the series is only a few thousand points long. Parameter choice still matters (`w=150, p=7` is the exception above).
-
-**Longer ECG-like series (`w=100, p=4, a=4`, one discord):**
-
-| Series | `n` | HOT-SAX | RRA | RRA / HOT-SAX |
-|--------|-----|---------|-----|---------------|
-| ecg0606 (baseline) | 2,299 | 44 ms | 82 ms | 1.86× slower |
-| chfdbchf15 (`data/chfdbchf15_1.csv`) | 15,000 | 265 ms | 215 ms | **0.81× faster** |
-| chfdb tiled + tiny drift | 50,000 | 10.6 s | 2.3 s | **~0.21× (~5× faster)** |
-| chfdb tiled + tiny drift | 100,000 | 21.0 s | 7.8 s | **~0.37× (~2.7× faster)** |
-
-**Plausible explanation.** HOT-SAX prunes the sliding-window search using SAX-word frequencies but still walks the word index structure over the full series. RRA pays an upfront cost to infer a grammar and build rule intervals, then searches only over those **variable-length** grammar-derived candidates — often **orders of magnitude fewer distance computations** on long series (consistent with the distance-call reductions already visible in §2.2–§2.3). On short series that fixed cost is not amortized; on series of roughly **10k–15k** points and beyond, RRA's reduced search space typically wins wall-clock. The crossover depends on `(window, PAA, alphabet)`, hardware, and how compressible the SAX string is.
+**What drives the crossover.** HOT-SAX uses SAX-word frequencies to prune the sliding-window search but still walks the word index over the full series. RRA builds a Re-Pair grammar and searches grammar-derived intervals — variable-length candidates whose count shrinks when the SAX string compresses well. On short series the upfront grammar work is not amortized; on long series the smaller candidate set wins wall-clock. The crossover therefore depends on `(window, PAA, alphabet)`, hardware, and how repetitive the discretized series is — not on a single magic length.
 
 **Caveats (read before comparing numbers):**
 
@@ -185,7 +168,7 @@ On this demo excerpt, HOT-SAX usually wins wall-clock: the fixed grammar cost do
 - **Avoid exact periodic tiling** of a short excerpt (e.g. repeating ecg0606 verbatim). HOT-SAX can degenerate (very long run, zero discords reported) when every cycle is an exact clone; the 50k/100k rows above tile **chfdbchf15** with a tiny per-cycle drift instead.
 - **Top positions may differ** on long tiled runs even when both algorithms find a valid discord — different search spaces, not necessarily a bug.
 
-For reproducibility notes and caveats, see the [conformance README benchmark section](https://github.com/jMotif/jmotif-conformance#rra-vs-hot-sax-wall-clock-informative-not-conformance) (regenerate with `./scripts/bench_rra_hotsax.sh --update-readme`).
+For reproducibility and the full benchmark tables, see the [conformance README](https://github.com/jMotif/jmotif-conformance#rra-vs-hot-sax-wall-clock-informative-not-conformance) (regenerate with `./scripts/bench_rra_hotsax.sh --update-readme`).
 
 ## 3. Auxiliary files
 
@@ -277,7 +260,7 @@ discord #4, at 1498: length 101, NN distance 0.021162714061307847, ... distance 
 
 ## 4. Discussion
 
-We discussed two grammar-based ways to discover time series anomalies (discords): the Rare Rule Anomaly (RRA) algorithm and the rule density curve. RRA reports discords of **variable length** and, on long series, can be **substantially faster wall-clock than HOT-SAX** once grammar construction is amortized (see §2.4). On the short ecg0606 demo excerpt, HOT-SAX is often faster end-to-end because RRA's Re-Pair and interval setup dominate; distance-call counts still favor RRA even there. Brute force remains the correctness baseline but is impractical at scale.
+We discussed two grammar-based ways to discover time series anomalies (discords): the Rare Rule Anomaly (RRA) algorithm and the rule density curve. RRA reports discords of **variable length** and, on long series, can be **several times faster wall-clock than HOT-SAX** once grammar construction is amortized (typically from ~50k points in §2.4). On the short ecg0606 demo excerpt, HOT-SAX is often faster end-to-end because RRA's Re-Pair and interval setup dominate; distance-call counts still favor RRA even there. Brute force remains the correctness baseline but is impractical at scale.
 
 We have also shown that the degree of approximation is crucial for both RRA and the rule density curve: a discretization that is too coarse blurs the anomaly, and a modest increase in PAA and alphabet sizes brings the grammar-based results in line with the exact algorithms.
 
